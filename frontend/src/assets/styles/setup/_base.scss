@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0 auto;
+    font-family: AirbnbCereal-Reg, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    color: $main-font-clr;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    font-size: 1rem;
+    border-radius: 3px;
+    background-color: transparent;
+}
+
+img {
+    width: 100%;
+}

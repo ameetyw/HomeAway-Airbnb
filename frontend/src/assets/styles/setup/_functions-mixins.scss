@@ -1,0 +1,77 @@
+// PX to REM
+@function rem($pixelSize) {
+    $remSize: $pixelSize / 16px;
+    @return ($remSize) * 1rem;
+}
+
+@function max-content-width($maxWidth, $marginWidth) {
+    @return ($maxWidth - ($marginWidth * 2));
+}
+
+// Layout mixins
+
+@mixin for-mobile-only {
+    @media (max-width: ($tablet-portrait-startpoint - 1)) {
+        @content;
+    }
+}
+
+@mixin for-large-mobile-up {
+    @media (min-width: $large-mobile-startpoint) {
+        @content;
+    }
+}
+
+@mixin for-tablet-portrait-up {
+    @media (min-width: $tablet-portrait-startpoint) {
+        @content;
+    }
+}
+
+@mixin for-tablet-landscape-up {
+    @media (min-width: $tablet-landscape-startpoint) {
+        @content;
+    }
+}
+
+@mixin for-laptop-up {
+    @media (min-width: $laptop-startpoint) {
+        @content;
+    }
+}
+
+@mixin header-nav-btn {
+    @media (max-width: ($header-nav-width - 1)) {
+        @content;
+    }
+}
+
+@mixin full-header-nav {
+    @media (min-width: $header-nav-width) {
+        @content;
+    }
+}
+
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+    overflow: hidden;
+    &::before {
+      display: block;
+      content: "";
+      width: 100%;
+      padding-top: ($height / $width) * 100%;
+    }
+    > * {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  
+    > img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }

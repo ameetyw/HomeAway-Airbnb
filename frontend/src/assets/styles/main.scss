@@ -1,0 +1,16 @@
+// Setup
+@import "./setup/variables";
+@import "./setup/functions-mixins";
+@import "./setup/typography";
+@import "./setup/base";
+@import "./setup/helpers";
+@import "./setup/layout";
+
+// Pages
+@import "./pages/HomePage";
+@import "./pages/SearchPlaces";
+@import "./pages/StayDetails";
+
+// Components
+@import "./cmps/AppHeader";
+@import "./cmps/AppFooter";

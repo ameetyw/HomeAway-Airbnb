@@ -1,0 +1,121 @@
+.search-bar {
+    @include for-mobile-only {
+        width: 100%;
+    }
+    .simple-search-bar {
+        opacity: 0;
+        height: 48px;
+        width: 0;
+        font-size: rem(14px);
+        line-height: rem(18px);
+        font-family: AirbnbCereal-Med;
+        color: $main-font-clr;
+
+        @include for-mobile-only {
+            width: 100%;
+            opacity: 1;
+            justify-content: center;
+            border-radius: 24px;
+            background-color: $reg-btn-hover-clr;
+            &.home-top {
+                box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+                background-color: #fff;
+            }
+
+            &.active {
+            }
+
+            &::after {
+                content: "Where are you going?";
+            }
+
+            .magnify-glass-wrapper {
+                height: rem(18px);
+                width: rem(18px);
+                margin-inline-end: 8px;
+                color: $main-highlight-clr;
+                svg {
+                    height: rem(16px);
+                    width: rem(16px);
+                }
+            }
+        }
+
+        @include for-tablet-portrait-up {
+            border-radius: 40px;
+            border: 1px solid $header-btn-border-clr;
+            box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 2px, rgba(0, 0, 0, 0.05) 0px 4px 12px;
+            transition: box-shadow 0.2s ease 0s;
+            background-color: #fff;
+            cursor: inherit;
+
+            &.active {
+                animation: slide-top 0.2s;
+                opacity: 1;
+                width: 300px;
+                cursor: pointer;
+            }
+
+            &::before {
+                content: "Start your search";
+                flex-grow: 1;
+                padding: 0 16px;
+            }
+
+            &.home-top {
+                opacity: 0;
+                width: 0;
+                cursor: inherit;
+            }
+
+            &:hover {
+                box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+            }
+
+            .magnify-glass-wrapper {
+                height: rem(32px);
+                width: rem(32px);
+                margin: 7px;
+                margin-left: 0;
+                background-color: $main-highlight-clr;
+                color: white;
+                border-radius: 50%;
+                svg {
+                    height: rem(12px);
+                    width: rem(12px);
+                }
+            }
+        }
+    }
+
+    .explore {
+        display: none;
+        &.active,
+        &.home-top {
+            @include for-mobile-only {
+                display: none;
+            }
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            &::after {
+                content: "";
+                position: relative;
+                top: 9px;
+                border-radius: 1px;
+                width: rem(12px);
+                height: 2px;
+                background-color: currentColor;
+            }
+        }
+    }
+}
+
+@keyframes slide-top {
+    0% {
+        transform: translateY(60px) scaleX(1.4) scaleY(1.2);
+    }
+    100% {
+        transform: translateY(0) scaleX(1) scaleY(1);
+    }
+}

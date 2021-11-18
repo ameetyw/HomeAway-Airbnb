@@ -1,0 +1,52 @@
+.user-menu-btn {
+    background-color: #fff;
+    border: 1px solid $header-btn-border-clr;
+    padding: 5px 5px 5px 12px;
+    overflow: visible;
+    border-radius: rem(21px);
+    height: rem(42px);
+    transition: box-shadow 0.2s ease;
+    // z-index: 1;
+    color: $main-font-clr;
+    font-weight: 800;
+    &:hover {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+    }
+    .menu-icon {
+        height: rem(16px);
+        width: rem(16px);
+    }
+    .avatar-img {
+        color: $ligher-font-clr;
+        height: rem(30px);
+        width: rem(30px);
+        margin-left: 12px;
+        border-radius: 50%;
+        font-size: rem(18px);
+        background-color: #fff;
+    }
+    .notifications {
+        background-color: $main-highlight-clr;
+        box-shadow: #fff 0px 0px 0px 1.5px;
+        border-radius: rem(9px);
+        font-size: rem(10px);
+        height: rem(16px);
+        min-width: rem(16px);
+        line-height: rem(16px);
+        color: #fff;
+    }
+}
+
+// avatar div: 30x30px, color: #717171, margin-left: 12px;
+// flex: 0 0 30px; overflow: hidden; pos: rel, z-idx: 1 ??
+// avatar img: bgc: currentcolor; border-radius: 50%; display: block;? full-size
+
+// notification icon settings
+// position: absolute;
+// z-index: 1;
+// font-weight: 800;
+// left: 100%;
+// margin-left: -14px;
+// padding: 0px 5px;
+// text-align: center;
+// top: -2px;

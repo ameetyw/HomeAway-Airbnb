@@ -1,0 +1,44 @@
+<span data-testid="dot-loader" class="_t0k0we">
+    <span class="_1em44bl3"></span>
+    <span class="_1qn7cxm4"></span>
+    <span class="_10mj6qyu"></span>
+</span>
+
+top span:
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(-50%) !important;
+
+on sub-spans:
+    background-color: #222222 !important;
+    width: 6px !important;
+    height: 6px !important;
+    margin-right: 4px !important;
+    border-radius: 100% !important;
+    display: inline-block !important;
+    animation-name: keyframe_1cjd84a !important;
+    animation-duration: 0.8s !important;
+    animation-iteration-count: infinite !important;
+    animation-timing-function: linear !important;
+    animation-fill-mode: both !important;
+    vertical-align: middle !important;
+    #1- animation-delay: -0.3s !important;
+    #2- animation-delay: -0.15s !important;
+    (#3- animation-delay: 0s !important;)
+
+    @keyframes keyframe_1cjd84a
+    0%, 80%, 100% {
+        opacity: 0;
+    }
+    30%, 50% {
+        opacity: 1;
+    }
+    
+

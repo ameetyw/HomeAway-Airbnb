@@ -1,0 +1,139 @@
+.home {
+    @import "../cmps/HomePage/places";
+    .hero,
+    .host {
+        grid-column: 1 /-1;
+        width: 100%;
+    }
+    .hero {
+        height: calc(100vh - 4rem);
+        padding: 24px;
+        background: url(../../imgs/HomePage/hero.jpg) no-repeat center;
+        background-size: cover;
+        margin-bottom: 35px;
+        .welcome-msg {
+            position: relative;
+            bottom: 7%;
+            h2 {
+                color: white;
+                font-size: rem(28px);
+                font-family: AirbnbCereal-Med;
+                font-weight: 400;
+                line-height: rem(32px);
+                letter-spacing: -0.02rem;
+                padding-bottom: 24px;
+                @include for-mobile-only {
+                    max-width: 10ch;
+                }
+                @include for-tablet-portrait-up {
+                    line-height: rem(36px);
+                    font-size: rem(32px);
+                }
+                @include for-laptop-up {
+                    line-height: rem(53px);
+                    font-size: rem(48px);
+                }
+            }
+            button {
+                padding: 16px 32px;
+                border-radius: 2rem;
+                background-color: #fff;
+                box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.12);
+                transition: box-shadow 0.2s ease-out;
+                &:hover {
+                    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+                }
+                span {
+                    font-weight: 600;
+                    font-size: rem(18px);
+                    line-height: rem(20px);
+                    background: linear-gradient(90deg, #6f019c 0%, #c6017e 135.12%);
+                    color: transparent;
+                    background-clip: text;
+                }
+            }
+        }
+    }
+    .host {
+        margin: 35px 0 96px;
+        position: relative;
+        min-height: 300px;
+        max-height: 600px;
+        img {
+            object-fit: cover;
+        }
+        .host-msg {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            color: white;
+            padding: 3% 24px;
+            h2 {
+                font-size: rem(45px);
+                font-family: AirbnbCereal-Med;
+                font-weight: 400;
+            }
+            p {
+                margin-top: rem(10px);
+                font-size: rem(17px);
+            }
+            button {
+                font-family: AirbnbCereal-Med;
+                background-color: white;
+                color: $main-font-clr;
+                border-radius: rem(8px);
+                padding: rem(14px) rem(24px);
+                margin-top: rem(15px);
+                &:hover {
+                    background-color: $dark-btn-hover-clr;
+                }
+            }
+            @include for-tablet-portrait-up {
+                padding: 3% 48px;
+                h2 {
+                    font-size: rem(55px);
+                }
+            }
+            @include for-tablet-landscape-up {
+                h2 {
+                    font-size: rem(65px);
+                }
+                p {
+                    font-size: rem(19px);
+                }
+            }
+        }
+        @include for-laptop-up {
+            grid-column: 2/3;
+            img {
+                border-radius: 15px;
+            }
+        }
+    }
+
+    @include for-tablet-portrait-up {
+        &::before {
+            background-color: black;
+            min-height: rem(180px);
+            grid-column: 1 /-1;
+            width: 100%;
+            content: "";
+        }
+        .hero {
+            grid-column: 2/3;
+            border-radius: 15px;
+            top: rem(180px);
+            height: calc(100vh - 11.25rem);
+            .backdrop {
+                position: absolute;
+                top: rem(80px);
+                left: 0;
+                right: 0;
+                width: 100%;
+                height: 107vh;
+                z-index: -1;
+                background: linear-gradient(to bottom, #000000 0%, #000000 50%, #ffffff 50%, #ffffff 100%);
+            }
+        }
+    }
+}

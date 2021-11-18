@@ -1,0 +1,122 @@
+header {
+    @import "./AppHeader/UserMenu";
+    @import "./AppHeader/SearchBar";
+    @import "./AppHeader/SearchForm";
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    background-color: #fff;
+    transition: height 0.2s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 0px;
+    height: rem(80px);
+    &.stay {
+        position: absolute;
+    }
+    &.home-top {
+        box-shadow: none;
+        background-color: transparent;
+        @include for-mobile-only {
+            background: linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0.419608) 0,
+                hsla(0, 0%, 100%, 0) 100%,
+                hsla(0, 0%, 100%, 0) 0
+            );
+        }
+    }
+
+    @include for-tablet-portrait-up {
+        &.expanded {
+            height: rem(180px);
+        }
+    }
+
+    .header-content {
+        .top {
+            padding: 16px 0;
+            justify-content: center;
+            .user-nav,
+            .logo-wrapper .logo,
+            .logo-wrapper .name {
+                display: none;
+            }
+        }
+    }
+
+    @include for-tablet-portrait-up {
+        box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
+        .header-content {
+            .top {
+                justify-content: space-between;
+                font-size: rem(14px);
+                line-height: rem(18px);
+                font-family: AirbnbCereal-Med;
+                color: $main-font-clr;
+                .logo-wrapper {
+                    .logo {
+                        display: inline-block;
+                        height: rem(30px);
+                        width: rem(32px);
+                    }
+                    @include for-tablet-landscape-up {
+                        .name {
+                            display: inline-block;
+                            color: $main-highlight-clr;
+                            font-family: AirbnbCereal-Bold;
+                            font-size: rem(22px);
+                            margin-inline-start: 5px;
+                        }
+                    }
+                }
+                .user-nav {
+                    display: flex;
+                    align-items: center;
+                    height: rem(42px);
+                    > a {
+                        padding: 12px;
+                        border-radius: rem(22px);
+                        margin-inline-end: 8px;
+                        background-color: transparent;
+                        transition: background-color 0.2s ease;
+                        &:hover {
+                            background-color: $reg-btn-hover-clr;
+                        }
+                    }
+                }
+            }
+
+            .close-search {
+                opacity: 0;
+                transition: opacity 0.3s ease-in;
+                &.active {
+                    opacity: 1;
+                    position: fixed;
+                    top: rem(180px);
+                    left: 0;
+                    width: 100%;
+                    bottom: 0;
+                    background-color: rgba(0, 0, 0, 0.05);
+                }
+                &.home-top {
+                    opacity: 0;
+                }
+            }
+        }
+
+        &.home-top {
+            .top {
+                color: white;
+                .logo-wrapper .name {
+                    color: white;
+                }
+                .user-nav > a:hover {
+                    background-color: #ffffff26;
+                }
+            }
+        }
+
+        .mobile-nav {
+            display: none;
+        }
+    }
+}

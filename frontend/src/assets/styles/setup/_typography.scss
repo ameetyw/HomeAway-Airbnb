@@ -1,0 +1,24 @@
+@font-face {
+    font-family: AirbnbCereal-Bold;
+    src: url(../../fonts/AirbnbCerealBold.ttf);
+}
+
+@font-face {
+    font-family: AirbnbCereal-Med;
+    src: url(../../fonts/AirbnbCerealMedium.ttf);
+}
+
+@font-face {
+    font-family: AirbnbCereal-Reg;
+    src: url(../../fonts/AirbnbCerealRegular.ttf);
+}
+
+@font-face {
+    font-family: AirbnbCereal-Light;
+    src: url(../../fonts/AirbnbCerealLight.ttf);
+}
+
+.title {
+    font-family: AirbnbCereal-Med;
+    font-weight: 400;
+}

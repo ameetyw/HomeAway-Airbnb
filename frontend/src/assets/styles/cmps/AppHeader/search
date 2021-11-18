@@ -1,0 +1,81 @@
+// flex: 0 1 auto;
+// min-width: 348px;
+// max-width: 1120px;
+// padding: 0 24px;
+
+// simple search
+// (min-width: 950px) center bar
+// transform-origin: 50% 0%;
+// margin: 0px auto;
+// --
+// display: inline-block;
+// vertical-align: middle;
+// text-align: left;
+// transform-origin: 0% 0%;
+// width: 100%;
+// transform: scale(1, 1) translateY(0px);
+// transition: transform 150ms ease 0s, opacity 50ms ease 20ms, pointer-events 0ms ease 150ms, visibility 0ms ease 25ms;
+
+// expanded search
+// (min-width: 950px)
+// top: 0px;
+// transform-origin: 50% 0%;
+// transform: scale(0.35, 0.727273) translateY(-58px);
+// (min-width: 744px)
+// padding-left: 40px;
+// padding-right: 40px;
+// --
+// padding-left: 24px;
+// padding-right: 24px;
+// left: 0px;
+// position: absolute;
+// text-align: left;
+// top: 64px;
+// width: 100%;
+// z-index: 2;
+// visibility: hidden;
+// opacity: 0;
+// transform-origin: 60px 0%;
+// transform: scale(0.4, 0.727273) translate(60px, -122px);
+// will-change: transform, opacity;
+// transition: transform 150ms ease 0s, opacity 50ms ease 20ms, visibility 0ms ease 25ms;
+// pointer-events: none;
+
+//border: 1 px solid #dddddd;
+// border-radius: 32px;
+// color: #222222;
+// height: 66px;
+// max-width: 850px;
+// margin: 0 auto;
+
+// > *:
+// border: 1px solid transparent;
+// border-radius: 32px;
+// hover: background-color: #EBEBEB;
+
+// location: flex: 1.5 0 0%;
+
+// divider:
+// border-right: 1px solid #dddddd;
+// height: 32px;
+// align-self: center;
+
+// dates: flex: 2 0 0%;
+// guests: flex: 0.95 0 auto;
+// (dates+guests) padding: 14px 24px; (location) 14px 32px;
+
+// small title:
+// font-size: 12px !important;
+// line-height: 16px !important;
+// font-weight: 800 !important;
+// letter-spacing: 0.04em !important;
+// padding-bottom: 2 px;
+
+// input:
+// border: 0px; padding: 0px;
+// font-size: 14px !important;
+// line-height: 18px !important;
+// font-weight: 600 !important;
+// color: #222222 !important;
+// text-overflow: ellipsis;
+// (placeholder lighter gray...)
