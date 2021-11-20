@@ -1,7 +1,7 @@
 .form-screen {
     position: absolute;
-    left:0;
-    right:0;
+    left: 0;
+    right: 0;
     &.active {
         top: 0;
         bottom: 0;
@@ -20,9 +20,9 @@
         @include for-tablet-portrait-up {
             border: 1px solid $header-btn-border-clr;
             top: rem(80px);
+            max-width: 650px;
             border-radius: 32px;
             width: 100%;
-            max-width: 850px;
             transition: margin 0.25s ease-in-out;
             margin: 0 auto;
             .search-sub-btn {
@@ -87,7 +87,7 @@
                         flex: 1 0 auto;
                     }
                 }
-                
+
                 .search-btn {
                     position: relative;
                     height: rem(48px);
@@ -118,7 +118,6 @@
                         }
                     }
                 }
-                
             }
 
             .dates-wrapper {
@@ -129,7 +128,7 @@
             }
 
             &.open {
-                margin: 0 auto 34px;
+                margin: 0 40px 34px;
                 opacity: 1;
                 animation: slide-bottom 0.35s;
                 .search-sub-btn {
@@ -137,8 +136,12 @@
                 }
             }
         }
-        
+
         @include for-tablet-landscape-up {
+            max-width: 850px;
+            &.open {
+                margin: 0 auto 34px;
+            }
             &.active {
                 .search-btn {
                     min-width: rem(111px);

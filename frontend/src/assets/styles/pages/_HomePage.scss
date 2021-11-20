@@ -17,8 +17,6 @@
             h2 {
                 color: white;
                 font-size: rem(28px);
-                font-family: AirbnbCereal-Med;
-                font-weight: 400;
                 line-height: rem(32px);
                 letter-spacing: -0.02rem;
                 padding-bottom: 24px;
@@ -40,11 +38,11 @@
                 background-color: #fff;
                 box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.12);
                 transition: box-shadow 0.2s ease-out;
+                font-family: AirbnbCereal-Bold;
                 &:hover {
                     box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
                 }
                 span {
-                    font-weight: 600;
                     font-size: rem(18px);
                     line-height: rem(20px);
                     background: linear-gradient(90deg, #6f019c 0%, #c6017e 135.12%);

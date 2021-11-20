@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 // import { useParams } from 'react-router-dom';
 import { StayHeader } from '../cmps/StayDetails/StayHeader';
 import { StayInfo } from '../cmps/StayDetails/StayInfo';
+import { DatePickerRange } from '../cmps/DatePickerRange';
 import { ReactComponent as MoreIcon } from '../assets/imgs/icons/general/icon-dots.svg';
 
 export const StayDetails = () => {
@@ -23,7 +24,7 @@ export const StayDetails = () => {
             "https://a0.muscache.com/im/pictures/56e274cb-953c-437b-9a09-cc6e14bc52c7.jpg?im_w=720",
         ],
         "price": 62.00,
-        "summary": `חדר עם מרפסת פרטי מעוצב, מרוהט ומאובזר להשכרה לטווח קצר או ארוך בתוך מיני גסטהאוס בלב תל אביב דקה הליכה מרוטשילד. שירותים, מקלחת, ומטבח משותפים. ניתן לפנות לשאלות נוספות.
+        "description": `חדר עם מרפסת פרטי מעוצב, מרוהט ומאובזר להשכרה לטווח קצר או ארוך בתוך מיני גסטהאוס בלב תל אביב דקה הליכה מרוטשילד. שירותים, מקלחת, ומטבח משותפים. ניתן לפנות לשאלות נוספות.
         
         Large spacious room with private balcony in a boutique guesthouse with a rooftop located in the very heart of the city, right next to the famous Rothschild boulevard, and walking distance to most major sites in Tel Aviv as well as a short walk to the beach.
         
@@ -67,72 +68,65 @@ export const StayDetails = () => {
         "bathType": "shared",
         "sleep": [
             {
-              "room": "bedroom 1", "beds": [
-                { "type": "queen bed", "quantity": 1 },
-                { "type": "single bed", "quantity": 1 },
-              ]
+                "room": "bedroom 1", "beds": [
+                    { "type": "queen bed", "quantity": 1 },
+                    { "type": "single bed", "quantity": 1 },
+                ]
             },
             {
-              "room": "living room", "beds": [
-                { "type": "sofa bed", "quantity": 1 },
-                { "type": "couch", "quantity": 1 },
-              ]
+                "room": "living room", "beds": [
+                    { "type": "sofa bed", "quantity": 1 },
+                    { "type": "couch", "quantity": 1 },
+                ]
             },
-          ],
-        "amenities": {
-            "bathroom": [
-                "shampoo",
-                "body soap",
-                "hot water",
-                "hair dryer"
-            ],
-            "bedroom+laundry": [
-                "Washer",
-                "Dryer",
-                { "type": "Essentials", "desc": "Towels, bed sheets, soap, and toilet paper" },
-                "Bed linens",
-                "Extra pillows and blankets",
-                "Hangers",
-                "Room-darkening shades",
-            ],
-            "entertainment": [
-                "40\" HDTV with Chromecast",
-                "Board games"
-            ],
-            "heating+cooling": [
-                "Air conditioning",
-                "Heating"
-            ],
-            "home-safety": [
-                "Smoke alarm",
-                "Carbon monoxide alarm",
-                "Fire extinguisher",
-                "First aid kit"
-            ],
-            "internet+office": [
-                "Wifi",
-                { "type": "Dedicated workspace", "desc": "A desk or table with a chair and space for a laptop." }
-            ],
-            "kitchen+dining": [
-                { "type": "Kitchen", "desc": "Space where guests can cook their own meals" },
-                "Refrigerator",
-                "Microwave",
-                "Freezer",
-                "Stove",
-                "kettle",
-                "Toaster",
-                "Dining table",
-                { "type": "Cooking basics", "desc": "Pots and pans, oil, salt and pepper" },
-                { "type": "Dishes and silverware", "desc": "Bowls, chopsticks, plates, cups, etc." },
-            ],
-            "outdoor": ["Patio or balcony", "Outdoor furniture", "Outdoor dining area"],
-            "features+services": [
-                "Laundromat nearby",
-                "Paid parking off premises",
-                "Self check-in",
-                { "type": "Luggage dropoff allowed", "desc": "For guests' convenience when they have early arrival or late departure" },
-            ]
-        },
+        ],
+        "amenities": [
+            { "type": "bathroom", "amenity": "Shampoo", "iconName": "shampoo" },
+            { "type": "bathroom", "amenity": "Body soap", "iconName": "soap" },
+            { "type": "bathroom", "amenity": "Shower gel", "iconName": "soap" },
+            { "type": "bathroom", "amenity": "Hot water", "iconName": "hotwater" },
+            { "type": "bathroom", "amenity": "Hair dryer", "iconName": "hairdryer", "displayScore": 19 },
+            { "type": "bathroom", "amenity": "Conditioner", "iconName": "shampoo" },
+            { "type": "bathroom", "amenity": "Bath tub", "iconName": "bathtub", "displayScore": 14 },
+            { "type": "bedroom+laundry", "amenity": "Essentials", "iconName": "essentials", "desc": "Towels, bed sheets, soap, toilet paper, and pillows" },
+            { "type": "bedroom+laundry", "amenity": "Bed linens", "iconName": "linens" },
+            { "type": "bedroom+laundry", "amenity": "Dryer", "iconName": "dryer", "displayScore": 11 },
+            { "type": "bedroom+laundry", "amenity": "Room-darkening shades", "iconName": "shades" },
+            { "type": "bedroom+laundry", "amenity": "Washer", "iconName": "washer", "displayScore": 10 },
+            { "type": "entertainment", "amenity": "Exercise equipment", "iconName": "exercise", "displayScore": 23 },
+            { "type": "entertainment", "amenity": "Toys", "iconName": "toys" },
+            { "type": "entertainment", "amenity": "TV", "iconName": "tv", "displayScore": 8 },
+            { "type": "heating+cooling", "amenity": "Air conditioning", "iconName": "ac", "displayScore": 12 },
+            { "type": "heating+cooling", "amenity": "Indoor fireplace", "iconName": "firepit", "displayScore": 16 },
+            // { "type": "home-safety", "amenity": "Carbon monoxide alarm", "iconName": "cmoalarm" },
+            { "type": "home-safety", "amenity": "Fire extinguisher", "iconName": "fireext" },
+            { "type": "home-safety", "amenity": "First aid kit", "iconName": "firstaid" },
+            // { "type": "home-safety", "amenity": "Smoke alarm", "iconName": "smokealarm" },
+            { "type": "internet+office", "amenity": "Dedicated workspace", "iconName": "workspace", "desc": "A desk or table with a chair and space for a laptop.", "displayScore": 20 },
+            { "type": "internet+office", "amenity": "Wifi", "iconName": "wifi", "desc": "Available throughout the listing.", "displayScore": 3 },
+            { "type": "kitchen+dining", "amenity": "Barbecue utensils", "iconName": "bbq", "desc": "Grill, charcoal, bamboo skewers/iron skewers, etc." },
+            { "type": "kitchen+dining", "amenity": "Cooking basics", "iconName": "kitchen", "desc": "Pots and pans, oil, salt and pepper." },
+            { "type": "kitchen+dining", "amenity": "Dining table", "iconName": "dining" },
+            { "type": "kitchen+dining", "amenity": "Dishwasher", "iconName": "washer" },
+            { "type": "kitchen+dining", "amenity": "Freezer", "iconName": "freezer" },
+            { "type": "kitchen+dining", "amenity": "Kitchen", "iconName": "kitchen", "desc": "Space where guests can cook their own meals.", "displayScore": 2 },
+            { "type": "kitchen+dining", "amenity": "Refrigerator", "iconName": "freezer", "displayScore": 21 },
+            { "type": "outdoor", "amenity": "BBQ grill", "iconName": "bbq", "displayScore": 15 },
+            { "type": "outdoor", "amenity": "Fire pit", "iconName": "firepit", "displayScore": 18 },
+            { "type": "outdoor", "amenity": "Beach essentials", "iconName": "beach", "desc": "Beach towels, umbrella, beach blanket, snorkeling gear." },
+            { "type": "outdoor", "amenity": "Outdoor dining area", "iconName": "outdoordining", "displayScore": 17 },
+            { "type": "outdoor", "amenity": "Outdoor furniture", "iconName": "outdoordining" },
+            { "type": "outdoor", "amenity": "Patio or balcony", "iconName": "patio", "displayScore": 13 },
+            { "type": "features+services", "amenity": "Beach access", "iconName": "beach", "desc": "Guests can enjoy a nearby beach.", "displayScore": 1 },
+            { "type": "features+services", "amenity": "Private entrance", "iconName": "home", "desc": "Separate street or building entrance." },
+            { "type": "features+services", "amenity": "Elevator", "iconName": "elevator", "desc": "The home or building has an elevator that’s at least 52 inches deep and a doorway at least 32 inches wide.", "displayScore": 9 },
+            { "type": "features+services", "amenity": "Free parking", "iconName": "car", "displayScore": 5 },
+            { "type": "features+services", "amenity": "Gym", "iconName": "exercise", "displayScore": 22 },
+            { "type": "features+services", "amenity": "Hot tub", "iconName": "hottub", "displayScore": 7 },
+            { "type": "features+services", "amenity": "Paid parking", "iconName": "car", "displayScore": 24 },
+            { "type": "features+services", "amenity": "Pool", "iconName": "pool", "displayScore": 6 },
+            { "type": "features+services", "amenity": "Pets allowed", "iconName": "pets", "displayScore": 4 },
+        ],
         "unavailableDates": [
             { "from": "2021-11-10", "to": "2021-11-13" },
             { "from": "2021-11-28", "to": "2021-12-04" },
@@ -185,12 +179,13 @@ export const StayDetails = () => {
     };
     const galleryUrls = stay.imgUrls.slice(0, 5);
 
-    useEffect(() => { document.title = stay.title; }, []);
+    useEffect(() => { document.title = `HomeAway: ${stay.title}`; }, []);
     //useEffect for stayId..
 
     return (
         <section className="stay stay-details content-wrapper">
             <StayHeader stay={stay} />
+
             <section className="gallery">
                 {galleryUrls.map((imgUrl, idx) => (
                     <Link key={`img${idx + 1}`} to=""><img src={imgUrl} alt="" /></Link>
@@ -200,10 +195,12 @@ export const StayDetails = () => {
                     Show all photos
                 </button>
             </section>
+
             <section className="stay-info-wrapper flex space-between">
                 <StayInfo stay={stay} />
                 <div className="book-stay"></div>
             </section>
+            <DatePickerRange />
         </section>
     );
 };

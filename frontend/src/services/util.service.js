@@ -6,3 +6,9 @@ export function makeId(length = 8) {
     }
     return id;
 }
+
+export function importImgs(requireCtx) {
+    let images = {};
+    requireCtx.keys().forEach(item => { images[item.match(/[\w\._-]+(?=[\.])/)[0]] = requireCtx(item); });
+    return images;
+}

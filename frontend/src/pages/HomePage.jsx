@@ -43,7 +43,7 @@ export const HomePage = () => {
             <section className="hero">
                 <span className="backdrop"></span>
                 <div className="welcome-msg flex column align-center text-center full-size justify-end">
-                    <h2>Not sure where to go? Perfect.</h2>
+                    <h2 className="title">Not sure where to go? Perfect.</h2>
                     <button className="center-content">
                         <span>I'm flexible</span>
                     </button>

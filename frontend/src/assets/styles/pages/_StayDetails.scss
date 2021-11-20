@@ -103,9 +103,9 @@
                     display: -webkit-box;
                     -webkit-line-clamp: 6;
                     -webkit-box-orient: vertical;
+                    margin-bottom: 16px;
                 }
-                button {
-                    margin-top: rem(16px);
+                .show-more {
                     text-decoration: underline;
                     gap: 4px;
                     svg {
@@ -116,8 +116,47 @@
             }
             .amenities {
                 padding: 48px 0;
-                .list {
-                    margin: 24px 0;
+                h2 {
+                    margin-bottom: 24px;
+                }
+                .amenities-list {
+                    // margin: 24px 0;
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    margin-bottom: 24px;
+                    .amenity {
+                        gap: 16px;
+                        margin-bottom: 16px;
+                        img {
+                            height: 24px;
+                            width: 24px;
+                        }
+                        &.missing-safety {
+                            text-decoration: line-through;
+                        }
+                    }
+                    .wide-display {
+                        display: none;
+                    }
+                    @include for-laptop-up {
+                        grid-template-columns: 1fr 1fr;
+                        .wide-display {
+                            display: flex;
+                        }
+                    }
+                }
+                .show-all {
+                    font-family: AirbnbCereal-Med;
+                    padding: 13px 23px;
+                    border: 1px solid $main-font-clr;
+                    border-radius: rem(8px);
+                    &:hover {
+                        text-decoration: underline;
+                        background-color: $reg-btn-hover-clr;
+                    }
+                    @include for-mobile-only {
+                        width: 100%;
+                    }
                 }
             }
         }
