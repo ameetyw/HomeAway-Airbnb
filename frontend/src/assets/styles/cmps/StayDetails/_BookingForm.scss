@@ -11,16 +11,24 @@
     border: 1px solid $header-btn-border-clr;
     .form-header {
         margin-bottom: 24px;
+        flex-direction: column;
+        gap: 8px;
         .night-price span {
             font-family: AirbnbCereal-Med;
             font-size: rem(22px);
         }
         .info-sum {
             gap: 4px;
+            padding-bottom: rem(2px);
             .rating svg {
                 height: rem(12px);
                 width: rem(12px);
             }
+        }
+        @include for-tablet-landscape-up {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-end;
         }
     }
     .form-input {

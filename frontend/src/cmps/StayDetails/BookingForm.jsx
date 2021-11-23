@@ -1,14 +1,19 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setDates } from '../../store/actions/appActions';
 import { RatingReviews } from './RatingReviews';
 import { ReactComponent as ArrowDown } from '../../assets/imgs/icons/general/icon-arrowhead-down.svg';
 import { ReactComponent as ArrowUp } from '../../assets/imgs/icons/general/icon-arrowhead-up.svg';
 import { DatePickerRange } from '../DatePickerRange';
 
-export const BookingForm = ({ stay, stayDates, setDates, stayGuests, setGuests }) => {
+export const BookingForm = ({ stay }) => {
+    const dispatch = useDispatch();
+    const { stayDates } = useSelector(state => state.appModule.currBooking);
+    const { startDate, endDate } = stayDates;
+
     const [isGuestsOpen, setGuestsOpen] = useState(false);
-    const [isCalendarOpen, setCalendarOpen] = useState([false, false]);
-    const [isStartOpen, isEndOpen] = isCalendarOpen;
-    const [startDate, endDate] = stayDates;
+    const [isCalendarOpen, setCalendarOpen] = useState({ isStartOpen: false, isEndOpen: false });
+    const { isStartOpen, isEndOpen } = isCalendarOpen;
     // const { adults, children, infants, pets } = stayGuests;
 
     const getDatesHeader = () => {
@@ -30,12 +35,12 @@ export const BookingForm = ({ stay, stayDates, setDates, stayGuests, setGuests }
 
     const closeInputs = () => {
         setGuestsOpen(false);
-        setCalendarOpen([false, false]);
+        setCalendarOpen({ isStartOpen: false, isEndOpen: false });
     };
 
     return (
         <div className="booking-form">
-            <div className="form-header flex align-center space-between">
+            <div className="form-header flex">
                 <div className="night-price">
                     <span>${stay.price}</span> / night
                 </div>
@@ -45,20 +50,23 @@ export const BookingForm = ({ stay, stayDates, setDates, stayGuests, setGuests }
             </div>
 
             <div className="form-input">
-                <button className={`dates${isStartOpen ? " open" : ""}`} onClick={() => setCalendarOpen([true, false])}>
+                <button className={`dates${isStartOpen ? " open" : ""}`}
+                    onClick={() => setCalendarOpen({ isStartOpen: true, isEndOpen: false })}>
                     <h4 className="title">Check-in</h4>
                     <span className={`input${!startDate ? " placeholder" : ""}`}>
                         {startDate ? getFormattedDate(startDate) : "Add date"}
                     </span>
                 </button>
-                <button className={`dates${isEndOpen ? " open" : ""}`} onClick={() => setCalendarOpen([false, true])}>
+                <button className={`dates${isEndOpen ? " open" : ""}`}
+                    onClick={() => setCalendarOpen({ isStartOpen: false, isEndOpen: true })}>
                     <h4 className="title">Check-out</h4>
                     <span className={`input${!endDate ? " placeholder" : ""}`}>
                         {endDate ? getFormattedDate(endDate) : "Add date"}
                     </span>
                 </button>
 
-                <button className="guests flex align-center" onClick={() => setGuestsOpen(!isGuestsOpen)}>
+                <button className={`guests${isGuestsOpen ? " open" : ""} flex align-center`}
+                    onClick={() => setGuestsOpen(!isGuestsOpen)}>
                     <span>
                         <h4 className="title">Guests</h4>
                         <span className="input">1 guest</span>
@@ -70,15 +78,19 @@ export const BookingForm = ({ stay, stayDates, setDates, stayGuests, setGuests }
                     <h2>{getDatesHeader()}</h2>
                     <p>{getDatesSubheader()}</p>
                     <DatePickerRange
-                        excludeDates={stay.unavailableDates}
                         isOpen={isCalendarOpen}
                         setIsOpen={setCalendarOpen}
-                        dates={stayDates}
-                        setDates={setDates}
+                        excludeDates={stay.unavailableDates}
                     />
                     <span className="dates-ctrl">
-                        <button className="clear-dates" onClick={() => setDates([null, null])}>Clear dates</button>
-                        <button className="close-dates" onClick={() => setCalendarOpen([false, false])}>Close</button>
+                        <button className="clear-dates"
+                            onClick={() => dispatch(setDates({ startDate: null, endDate: null }))}>
+                            Clear dates
+                        </button>
+                        <button className="close-dates"
+                            onClick={() => setCalendarOpen({ isStartOpen: false, isEndOpen: false })}>
+                            Close
+                        </button>
                     </span>
                 </div>
 

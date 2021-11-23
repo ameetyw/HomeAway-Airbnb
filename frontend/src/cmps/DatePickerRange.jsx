@@ -1,26 +1,45 @@
+import { useSelector, useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { setDates } from '../store/actions/appActions';
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
-export const DatePickerRange = (props) => {
-    const { isOpen, setIsOpen, dates, setDates, excludeDates } = props;
-    const [startDate, endDate] = dates;
-    const [isStartOpen, isEndOpen] = isOpen;
+export const DatePickerRange = ({ isOpen, setIsOpen, excludeDates }) => {
+    const dispatch = useDispatch();
+    const { stayDates } = useSelector(state => state.appModule.currBooking);
+    // const [startDate, endDate] = dates;
+    const { startDate, endDate } = stayDates;
+    // const [isStartOpen, isEndOpen] = isOpen;
+    const { isStartOpen, isEndOpen } = isOpen;
 
     const handleChange = (newDate, btnType) => {
         if ((startDate && newDate.getTime() === startDate.getTime()) ||
             (endDate && newDate.getTime() === endDate.getTime())) {
-            setDates([null, null]);
-            setIsOpen([true, false]);
+            // setDates([null, null]);
+            dispatch(setDates({ startDate: null, endDate: null }));
+            // setIsOpen([true, false]);
+            setIsOpen({ isStartOpen: true, isEndOpen: false });
         } else if (btnType === 'start') {
-            if (newDate > endDate) setDates([newDate, null]);
-            else setDates([newDate, endDate]);
-            setIsOpen([false, true]);
+            // if (newDate > endDate) setDates([newDate, null]);
+            if (newDate > endDate) {
+                dispatch(setDates({ startDate: newDate, endDate: null }));
+            }
+            // else setDates([newDate, endDate]);
+            else dispatch(setDates({ startDate: newDate, endDate }));
+            // setIsOpen([false, true]);
+            setIsOpen({ isStartOpen: false, isEndOpen: true });
         } else {
-            if (newDate < startDate) setDates([newDate, endDate]);
-            else if (!startDate && newDate > endDate) setDates([newDate, null]);
-            else setDates([startDate, newDate]);
-            if (!startDate) setIsOpen([true, false]);
+            // if (newDate < startDate) setDates([newDate, endDate]);
+            if (newDate < startDate) {
+                dispatch(setDates({ startDate: newDate, endDate }));
+            } else if (!startDate && newDate > endDate) {
+                // else if (!startDate && newDate > endDate) setDates([newDate, null]);
+                dispatch(setDates({ startDate: newDate, endDate: null }));
+            }
+            // else setDates([startDate, newDate]);
+            else dispatch(setDates({ startDate, endDate: newDate }));
+            // if (!startDate) setIsOpen([true, false]);
+            if (!startDate) setIsOpen({ isStartOpen: true, isEndOpen: false });
         }
     };
 

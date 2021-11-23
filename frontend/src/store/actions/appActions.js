@@ -1,5 +1,4 @@
 export function setHomeTop(isHomeTop) {
-    // console.log('appAction setHomeTop:', isHomeTop);
     return {
         type: 'SET_HOME_TOP',
         isHomeTop
@@ -17,5 +16,33 @@ export function setUser(loggedInUser) {
     return {
         type: 'SET_USER',
         loggedInUser
+    };
+}
+
+export function setStay(currStay) {
+    return {
+        type: 'SET_STAY',
+        currStay
+    };
+}
+
+export function saveBooking(currBooking) {
+    return {
+        type: 'SET_BOOKING',
+        currBooking
+    };
+}
+
+export function setDates(dates) {
+    return {
+        type: 'SET_DATES',
+        dates
+    };
+}
+
+export function setGuests(guests) {
+    return {
+        type: 'SET_GUESTS',
+        guests
     };
 }

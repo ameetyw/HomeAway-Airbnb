@@ -1,14 +1,20 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { setDates } from '../../store/actions/appActions';
 import { InfoHeader } from './InfoHeader';
 import { StayDescription } from './StayDescription';
 import { StayAmenities } from './StayAmenities';
 import { DatePickerRange } from '../DatePickerRange';
 
-export const StayInfo = ({ stay, stayDates, setDates }) => {
-    const [calendarOpen, setCalendarOpen] = useState([true, false]);
-
+export const StayInfo = ({ stay }) => {
+    // const [calendarOpen, setCalendarOpen] = useState([true, false]);
+    const [calendarOpen, setCalendarOpen] = useState({ isStartOpen: true, isEndOpen: false });
+    const { currBooking } = useSelector(state => state.appModule);
+    const { stayDates } = currBooking;
+    console.log('stayinfo, stay:', stay, 'booking:', currBooking);
     const getDatesHeader = () => {
-        const [startDate, endDate] = stayDates;
+        // const [startDate, endDate] = stayDates;
+        const { startDate, endDate } = stayDates;
         if (!startDate && !endDate) return 'Select check-in date';
         else if (!endDate) return 'Select check-out date';
         const nights = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24));
@@ -24,13 +30,14 @@ export const StayInfo = ({ stay, stayDates, setDates }) => {
             <section className="select-dates info-section">
                 <h2>{getDatesHeader(stayDates)}</h2>
                 <DatePickerRange
-                    excludeDates={stay.unavailableDates}
                     isOpen={calendarOpen}
                     setIsOpen={setCalendarOpen}
-                    dates={stayDates}
-                    setDates={setDates}
+                    excludeDates={stay.unavailableDates}
                 />
-                <button className="clear-dates" onClick={() => setDates([null, null])}>Clear dates</button>
+                <button className="clear-dates"
+                    onClick={() => setDates({ startDate: null, endDate: null })}>
+                    Clear dates
+                </button>
             </section>
         </section>
     );

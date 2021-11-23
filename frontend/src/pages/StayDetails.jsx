@@ -1,15 +1,23 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-// import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setStay, saveBooking } from '../store/actions/appActions';
 import { StayHeader } from '../cmps/StayDetails/StayHeader';
 import { StayInfo } from '../cmps/StayDetails/StayInfo';
 import { BookingForm } from '../cmps/StayDetails/BookingForm';
 import { ReactComponent as MoreIcon } from '../assets/imgs/icons/general/icon-dots.svg';
 
 export const StayDetails = () => {
-    // const stayId = useParams();
-    const stay = {
-        "_id": "10006546",
+    const dispatch = useDispatch();
+    const stayId = useParams().id;
+    const stay = useSelector(state => state.appModule.currStay);
+    const emptyBooking = {
+        stayId,
+        stayDates: { startDate: null, endDate: null },
+        stayGuests: {}
+    };
+    const tempStay = {
+        "_id": "3a",
         "title": "Private Balcony Room ❤ 1m walk from Rothschild Blv",
         "imgUrls": [
             "https://a0.muscache.com/im/pictures/17e9d170-5dee-414b-a605-c5c69ab8b01c.jpg?im_w=960",
@@ -24,6 +32,7 @@ export const StayDetails = () => {
             "https://a0.muscache.com/im/pictures/56e274cb-953c-437b-9a09-cc6e14bc52c7.jpg?im_w=720",
         ],
         "price": 62.00,
+        "cleaning": 40,
         "description": `חדר עם מרפסת פרטי מעוצב, מרוהט ומאובזר להשכרה לטווח קצר או ארוך בתוך מיני גסטהאוס בלב תל אביב דקה הליכה מרוטשילד. שירותים, מקלחת, ומטבח משותפים. ניתן לפנות לשאלות נוספות.
         
         Large spacious room with private balcony in a boutique guesthouse with a rooftop located in the very heart of the city, right next to the famous Rothschild boulevard, and walking distance to most major sites in Tel Aviv as well as a short walk to the beach.
@@ -177,12 +186,19 @@ export const StayDetails = () => {
             "value": 4.7
         },
     };
-    const galleryUrls = stay.imgUrls.slice(0, 5);
-    const [stayDates, setDates] = useState([null, null]);
 
-    useEffect(() => { document.title = `HomeAway: ${stay.title}`; }, []);
+    useEffect(() => {
+        if (stay && stay._id === stayId) document.title = `HomeAway: ${stay.title}`;
+        else {
+            dispatch(setStay(tempStay));
+            dispatch(saveBooking(emptyBooking));
+        }
+    }, [stay._id]);
     //useEffect for stayId..
 
+    if (stay._id !== stayId) return <div className="loading">loading...</div>;
+
+    const galleryUrls = stay.imgUrls.slice(0, 5);
     return (
         <section className="stay stay-details content-wrapper">
             <StayHeader stay={stay} />
@@ -198,8 +214,8 @@ export const StayDetails = () => {
             </section>
 
             <section className="stay-info-wrapper flex space-between">
-                <StayInfo stay={stay} stayDates={stayDates} setDates={setDates} />
-                <BookingForm stay={stay} stayDates={stayDates} setDates={setDates} />
+                <StayInfo stay={stay} />
+                <BookingForm stay={stay} />
             </section>
         </section>
     );
