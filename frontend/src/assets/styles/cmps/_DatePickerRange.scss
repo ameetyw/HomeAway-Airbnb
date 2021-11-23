@@ -90,7 +90,8 @@
                     font-weight: 400;
                     background-color: transparent;
                 }
-                &.react-datepicker__day--in-selecting-range:not(.react-datepicker__day--selected, .react-datepicker__day--keyboard-selected) {
+                &.react-datepicker__day--in-selecting-range:not(.react-datepicker__day--selected, .react-datepicker__day--keyboard-selected),
+                &.react-datepicker__day--in-range:not(.react-datepicker__day--selected, .react-datepicker__day--keyboard-selected) {
                     background-color: $reg-btn-hover-clr;
                 }
                 &:hover:not(.react-datepicker__day--disabled) {

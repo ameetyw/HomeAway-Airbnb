@@ -36,14 +36,14 @@ export const DatePickerRange = (props) => {
     //     return date.toLocaleDateString('en-US', { dateStyle: 'medium' }).split(',')[0];
     // };
 
-    // function getDates(startDate, stopDate) {
-    //     var dateArray = new Array();
-    //     var currentDate = startDate;
-    //     while (currentDate <= stopDate) {
-    //         dateArray.push(new Date (currentDate));
+    // function getDatesBetweenRangeToExclude(startDate, endDate) {
+    //     let dates = [];
+    //     let currentDate = startDate;
+    //     while (currentDate <= endDate) {
+    //         dates.push(new Date (currentDate));
     //         currentDate = currentDate.addDays(1);
     //     }
-    //     return dateArray;
+    //     return dates;
     // }
 
     return (

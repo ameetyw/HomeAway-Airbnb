@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ReactComponent as ArrowIcon } from '../../assets/imgs/icons/general/icon-arrow.svg';
+import { ReactComponent as ArrowIcon } from '../../assets/imgs/icons/general/icon-arrowhead-right.svg';
 
 export const StayDescription = ({ desc }) => {
 

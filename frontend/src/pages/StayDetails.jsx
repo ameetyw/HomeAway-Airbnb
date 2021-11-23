@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // import { useParams } from 'react-router-dom';
 import { StayHeader } from '../cmps/StayDetails/StayHeader';
@@ -178,6 +178,7 @@ export const StayDetails = () => {
         },
     };
     const galleryUrls = stay.imgUrls.slice(0, 5);
+    const [stayDates, setDates] = useState([null, null]);
 
     useEffect(() => { document.title = `HomeAway: ${stay.title}`; }, []);
     //useEffect for stayId..
@@ -197,8 +198,8 @@ export const StayDetails = () => {
             </section>
 
             <section className="stay-info-wrapper flex space-between">
-                <StayInfo stay={stay} />
-                <BookingForm stay={stay} />
+                <StayInfo stay={stay} stayDates={stayDates} setDates={setDates} />
+                <BookingForm stay={stay} stayDates={stayDates} setDates={setDates} />
             </section>
         </section>
     );

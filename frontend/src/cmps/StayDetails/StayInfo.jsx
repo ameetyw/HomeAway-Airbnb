@@ -4,9 +4,8 @@ import { StayDescription } from './StayDescription';
 import { StayAmenities } from './StayAmenities';
 import { DatePickerRange } from '../DatePickerRange';
 
-export const StayInfo = ({ stay }) => {
+export const StayInfo = ({ stay, stayDates, setDates }) => {
     const [calendarOpen, setCalendarOpen] = useState([true, false]);
-    const [stayDates, setDates] = useState([null, null]);
 
     const getDatesHeader = () => {
         const [startDate, endDate] = stayDates;
@@ -31,7 +30,7 @@ export const StayInfo = ({ stay }) => {
                     dates={stayDates}
                     setDates={setDates}
                 />
-                <button onClick={() => setDates([null, null])}>Clear dates</button>
+                <button className="clear-dates" onClick={() => setDates([null, null])}>Clear dates</button>
             </section>
         </section>
     );

@@ -12,15 +12,117 @@
     .form-header {
         margin-bottom: 24px;
         .night-price span {
-                font-family: AirbnbCereal-Med;
-                font-size: rem(22px);
-            }
+            font-family: AirbnbCereal-Med;
+            font-size: rem(22px);
+        }
         .info-sum {
             gap: 4px;
             .rating svg {
                 height: rem(12px);
                 width: rem(12px);
             }
+        }
+    }
+    .form-input {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border: 1px solid #b0b0b0;
+        border-radius: rem(8px);
+        margin-bottom: 16px;
+        position: relative;
+
+        .dates,
+        .guests {
+            width: 100%;
+            padding: 10px 12px;
+            text-align: start;
+            position: relative;
+            z-index: 2;
+            .title {
+                text-transform: uppercase;
+                font-size: rem(10px);
+                line-height: rem(12px);
+                font-weight: 400;
+                font-family: AirbnbCereal-Bold;
+            }
+            .input {
+                font-size: rem(14px);
+                line-height: rem(18px);
+                &.placeholder {
+                    color: $ligher-font-clr;
+                }
+            }
+            &.open {
+                border: 2px solid $main-font-clr !important;
+                border-radius: 8px !important;
+            }
+        }
+
+        .dates:nth-of-type(2) {
+            border-left: 1px solid #b0b0b0;
+            border-radius: 0;
+        }
+
+        .guests {
+            grid-column: -1/1;
+            border-top: 1px solid #b0b0b0;
+            border-radius: 0;
+            span {
+                flex-grow: 1;
+            }
+            svg {
+                height: rem(16px);
+                width: rem(16px);
+            }
+        }
+
+        .calendar-wrapper {
+            display: none;
+            position: absolute;
+            right: rem(-35px);
+            top: rem(58px);
+            border-radius: 16px;
+            padding: 24px 32px 16px;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
+            width: 660px;
+            background-color: #fff;
+            h2 {
+                font-size: rem(22px);
+            }
+            p {
+                margin-top: rem(8px);
+                font-size: rem(14px);
+                color: $ligher-font-clr;
+            }
+            .react-datepicker {
+                margin-bottom: calc(2.125rem + 22px);
+            }
+            .dates-ctrl {
+                position: absolute;
+                right: 32px;
+                bottom: 16px;
+                .close-dates {
+                    background-color: $main-font-clr;
+                    color: white;
+                    font-family: AirbnbCereal-Med;
+                    font-size: rem(14px);
+                    padding: rem(8px) rem(16px);
+                    margin-inline-start: 8px;
+                }
+            }
+            &.open {
+                display: initial;
+                z-index: 2;
+            }
+        }
+
+        .screen.open {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            z-index: 1;
         }
     }
 }
