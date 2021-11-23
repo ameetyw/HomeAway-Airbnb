@@ -21,14 +21,14 @@
             border: 1px solid $header-btn-border-clr;
             top: rem(80px);
             max-width: 650px;
-            border-radius: 32px;
+            border-radius: rem(32px);
             width: 100%;
             transition: margin 0.25s ease-in-out;
             margin: 0 auto;
             .search-sub-btn {
                 transition: min-height 0.25s ease-in-out;
                 cursor: pointer;
-                border-radius: 32px;
+                border-radius: rem(32px);
                 text-overflow: ellipsis;
                 &:hover {
                     background-color: $dark-btn-hover-clr;

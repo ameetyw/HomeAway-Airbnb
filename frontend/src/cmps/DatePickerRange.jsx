@@ -1,100 +1,86 @@
-import { useState, useRef } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
-export const DatePickerRange = () => {
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
-    const startRef = useRef(null);
-    const endRef = useRef(null);
-    const onChange = (date, currBtn) => {
-        console.log(currBtn, date);
-        let nextBtn;
-        if (currBtn === startRef) {
-            setStartDate(date);
-            nextBtn = endRef;
+export const DatePickerRange = (props) => {
+    const { isOpen, setIsOpen, dates, setDates, excludeDates } = props;
+    const [startDate, endDate] = dates;
+    const [isStartOpen, isEndOpen] = isOpen;
+
+    const handleChange = (newDate, btnType) => {
+        if ((startDate && newDate.getTime() === startDate.getTime()) ||
+            (endDate && newDate.getTime() === endDate.getTime())) {
+            setDates([null, null]);
+            setIsOpen([true, false]);
+        } else if (btnType === 'start') {
+            if (newDate > endDate) setDates([newDate, null]);
+            else setDates([newDate, endDate]);
+            setIsOpen([false, true]);
         } else {
-            setEndDate(date);
-            nextBtn = startRef;
+            if (newDate < startDate) setDates([newDate, endDate]);
+            else if (!startDate && newDate > endDate) setDates([newDate, null]);
+            else setDates([startDate, newDate]);
+            if (!startDate) setIsOpen([true, false]);
         }
-        // currBtn.current.setBlur();
-        nextBtn.current.setFocus();
     };
 
-    return (
-        <div className="date-picker-wrapper">
-            <div className="date-picker-range">
-                <DatePicker
-                    ref={startRef}
-                    selected={startDate}
-                    onChange={(date) => { onChange(date, startRef); }}
-                    // onChange={(date) => setStartDate(date)}
-                    selectsStart
-                    monthsShown={2}
-                    startDate={startDate}
-                    endDate={endDate}
-                    isClearable
-                    placeholderText="Add dates"
-                />
-                <DatePicker
-                    ref={endRef}
-                    selected={endDate}
-                    onChange={(date) => { onChange(date, endRef); }}
-                    selectsEnd
-                    monthsShown={2}
-                    startDate={startDate}
-                    endDate={endDate}
-                    isClearable
-                    placeholderText="Add dates"
-                />
+    // const handleClick = (btnType) => {
+    //     if (btnType === 'start') {
+    //         setIsOpen([!isStartOpen, false]);
+    //     } else {
+    //         setIsOpen([false, !isEndOpen]);
+    //     }
+    // };
 
-                {/* <DatePicker
-                    renderCustomHeader={({
-                        monthDate,
-                        customHeaderCount,
-                        decreaseMonth,
-                        increaseMonth,
-                    }) => (
-                        <div>
-                            <button
-                                aria-label="Previous Month"
-                                className={"react-datepicker__navigation react-datepicker__navigation--previous"}
-                                style={customHeaderCount === 1 ? { visibility: "hidden" } : null}
-                                onClick={decreaseMonth}>
-                                <span
-                                    className={"react-datepicker__navigation-icon react-datepicker__navigation-icon--previous"}>
-                                    {"<"}
-                                </span>
-                            </button>
-                            <span className="react-datepicker__current-month">
-                                {monthDate.toLocaleString("en-US", {
-                                    month: "long",
-                                    year: "numeric",
-                                })}
-                            </span>
-                            <button
-                                aria-label="Next Month"
-                                className={"react-datepicker__navigation react-datepicker__navigation--next"}
-                                style={customHeaderCount === 0 ? { visibility: "hidden" } : null}
-                                onClick={increaseMonth}>
-                                <span
-                                    className={"react-datepicker__navigation-icon react-datepicker__navigation-icon--next"}>
-                                    {">"}
-                                </span>
-                            </button>
-                        </div>
-                    )}
-                    className="date-picker-class"
+    // const getFormattedDate = (date) => {
+    //     return date.toLocaleDateString('en-US', { dateStyle: 'medium' }).split(',')[0];
+    // };
+
+    // function getDates(startDate, stopDate) {
+    //     var dateArray = new Array();
+    //     var currentDate = startDate;
+    //     while (currentDate <= stopDate) {
+    //         dateArray.push(new Date (currentDate));
+    //         currentDate = currentDate.addDays(1);
+    //     }
+    //     return dateArray;
+    // }
+
+    return (
+        <>
+            {/* <span className="date-btns flex align-center">
+                    <button className={`date-btn${isStartOpen ? " open" : ""}`} onClick={() => handleClick('start')}>
+                        {startDate ? getFormattedDate(startDate) : "Add date"}
+                    </button>
+                    <button className={`date-btn${isEndOpen ? " open" : ""}`} onClick={() => handleClick('end')}>
+                        {endDate ? getFormattedDate(endDate) : "Add date"}
+                    </button>
+                </span> */}
+
+            {isStartOpen && (
+                <DatePicker
+                    selectsStart
                     selected={startDate}
-                    onChange={onChange}
-                    monthsShown={2}
+                    onSelect={(date) => handleChange(date, 'start')}
+                    minDate={new Date()}
                     startDate={startDate}
                     endDate={endDate}
+                    monthsShown={2}
+                    inline
+                />
+            )}
+            {isEndOpen && (
+                <DatePicker
+                    selectsEnd
+                    selected={endDate}
+                    onSelect={(date) => handleChange(date, 'end')}
                     minDate={new Date()}
-                    selectsRange
-                    inline /> */}
-            </div>
-        </div>
+                    startDate={startDate}
+                    endDate={endDate}
+                    monthsShown={2}
+                    inline
+                />
+            )}
+        </>
     );
 };

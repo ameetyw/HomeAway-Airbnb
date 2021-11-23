@@ -1,0 +1,26 @@
+.booking-form {
+    width: 33.33333%;
+    margin-inline-start: 8.33333%;
+    border-radius: 12px;
+    position: sticky;
+    align-self: flex-start;
+    top: rem(80px);
+    margin-bottom: 48px;
+    padding: 24px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+    border: 1px solid $header-btn-border-clr;
+    .form-header {
+        margin-bottom: 24px;
+        .night-price span {
+                font-family: AirbnbCereal-Med;
+                font-size: rem(22px);
+            }
+        .info-sum {
+            gap: 4px;
+            .rating svg {
+                height: rem(12px);
+                width: rem(12px);
+            }
+        }
+    }
+}

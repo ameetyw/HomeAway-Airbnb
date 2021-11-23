@@ -34,7 +34,7 @@
             right: 24px;
             background-color: white;
             border: 1px solid $main-font-clr;
-            border-radius: 8px;
+            // border-radius: 8px;
             gap: 8px;
             padding: 7px 15px;
             font-size: rem(14px);
@@ -69,11 +69,11 @@
 
     .stay-info-wrapper {
         width: 100%;
-        .book-stay {
-        }
-
+        @import "../cmps/StayDetails/RatingReviews";
+        @import "../cmps/StayDetails/BookingForm";
+        @import "../cmps/StayDetails/StayAmenities";
         .stay-info {
-            max-width: 60%;
+            width: 58.33333%;
             flex-grow: 1;
             .info-header {
                 padding-bottom: 24px;
@@ -114,48 +114,35 @@
                     }
                 }
             }
-            .amenities {
-                padding: 48px 0;
+            .select-dates {
+                position: relative;
+                padding-top: 48px;
                 h2 {
-                    margin-bottom: 24px;
+                    margin-bottom: 16px;
                 }
-                .amenities-list {
-                    // margin: 24px 0;
-                    display: grid;
-                    grid-template-columns: 1fr;
-                    margin-bottom: 24px;
-                    .amenity {
-                        gap: 16px;
-                        margin-bottom: 16px;
-                        img {
-                            height: 24px;
-                            width: 24px;
-                        }
-                        &.missing-safety {
-                            text-decoration: line-through;
-                        }
+                .react-datepicker {
+                    margin-bottom: calc(2.125rem + 16px);
+                    .react-datepicker__navigation {
+                        top: rem(24px);
                     }
-                    .wide-display {
+                    .react-datepicker__month-container:nth-of-type(3) {
                         display: none;
-                    }
-                    @include for-laptop-up {
-                        grid-template-columns: 1fr 1fr;
-                        .wide-display {
-                            display: flex;
+                        @include for-laptop-up {
+                            display: inline-block;
                         }
                     }
                 }
-                .show-all {
+                button {
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    padding: 8px;
+                    font-size: rem(14px);
+                    line-height: rem(18px);
                     font-family: AirbnbCereal-Med;
-                    padding: 13px 23px;
-                    border: 1px solid $main-font-clr;
-                    border-radius: rem(8px);
+                    text-decoration: underline;
                     &:hover {
-                        text-decoration: underline;
                         background-color: $reg-btn-hover-clr;
-                    }
-                    @include for-mobile-only {
-                        width: 100%;
                     }
                 }
             }

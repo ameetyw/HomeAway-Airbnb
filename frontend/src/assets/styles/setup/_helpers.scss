@@ -50,10 +50,6 @@
     width: 100%;
 }
 
-.rounded {
-    border-radius: 10px;
-}
-
 .text-center {
     text-align: center;
 }
@@ -77,7 +73,6 @@
     justify-content: center;
     border: 1px solid $light-btn-border-clr;
     background-color: #fff;
-    color: $main-font-clr;
     font-size: rem(12px);
     line-height: rem(16px);
     border-radius: rem(30px);

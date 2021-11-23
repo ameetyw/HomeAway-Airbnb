@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 // import { useParams } from 'react-router-dom';
 import { StayHeader } from '../cmps/StayDetails/StayHeader';
 import { StayInfo } from '../cmps/StayDetails/StayInfo';
-import { DatePickerRange } from '../cmps/DatePickerRange';
+import { BookingForm } from '../cmps/StayDetails/BookingForm';
 import { ReactComponent as MoreIcon } from '../assets/imgs/icons/general/icon-dots.svg';
 
 export const StayDetails = () => {
@@ -198,9 +198,8 @@ export const StayDetails = () => {
 
             <section className="stay-info-wrapper flex space-between">
                 <StayInfo stay={stay} />
-                <div className="book-stay"></div>
+                <BookingForm stay={stay} />
             </section>
-            <DatePickerRange />
         </section>
     );
 };

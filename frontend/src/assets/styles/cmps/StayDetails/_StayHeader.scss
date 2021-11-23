@@ -12,22 +12,9 @@
         font-family: AirbnbCereal-Med;
         .info {
             gap: rem(4px);
-            .rating {
-                gap: rem(4px);
-                svg {
-                    height: rem(14px);
-                    width: rem(14px);
-                    color: $main-highlight-clr;
-                }
-            }
+            @import "./RatingReviews";
             .sep {
                 padding: 0 4px;
-            }
-            .reviews {
-                color: $ligher-font-clr;
-                text-decoration: underline;
-                font-size: rem(14px);
-                font-family: AirbnbCereal-Med;
             }
             .location {
                 color: $ligher-font-clr;
