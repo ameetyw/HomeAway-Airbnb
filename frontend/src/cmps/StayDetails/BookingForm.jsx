@@ -4,9 +4,10 @@ import { setDates } from '../../store/actions/appActions';
 import { RatingReviews } from './RatingReviews';
 import { DatePickerRange } from '../DatePickerRange';
 import { GuestsPicker } from '../GuestsPicker';
+import { DatesBtn } from './DatesBtn';
 import { ReactComponent as ArrowDown } from '../../assets/imgs/icons/general/icon-arrowhead-down.svg';
 import { ReactComponent as ArrowUp } from '../../assets/imgs/icons/general/icon-arrowhead-up.svg';
-import { DatesBtn } from './DatesBtn';
+import { ReactComponent as CloseIcon } from '../../assets/imgs/icons/general/icon-close.svg';
 
 export const BookingForm = ({ stay }) => {
     const dispatch = useDispatch();
@@ -41,6 +42,10 @@ export const BookingForm = ({ stay }) => {
     const closeInputs = () => {
         setGuestsOpen(false);
         setCalendarOpen({ isStartOpen: false, isEndOpen: false });
+    };
+
+    const clearDate = () => {
+
     };
 
     return (
@@ -91,13 +96,25 @@ export const BookingForm = ({ stay }) => {
                                 isBtnOpen={isStartOpen}
                                 // setCalendarOpen={setCalendarOpen}
                                 openCalendar={openCalendar}
-                                calendarState={{ isStartOpen: true, isEndOpen: false }} />
+                                calendarState={{ isStartOpen: true, isEndOpen: false }}>
+                                {startDate && <span onClick={() => {
+                                    dispatch(setDates({ type: 'stay', dates: { startDate: null, endDate } }));
+                                }}>
+                                    <CloseIcon />
+                                </span>}
+                            </DatesBtn>
 
                             <DatesBtn title="Check-out" date={endDate}
                                 isBtnOpen={isEndOpen}
                                 openCalendar={openCalendar}
                                 // setCalendarOpen={setCalendarOpen}
-                                calendarState={{ isStartOpen: false, isEndOpen: true }} />
+                                calendarState={{ isStartOpen: false, isEndOpen: true }} >
+                                {endDate && <span onClick={() => {
+                                    dispatch(setDates({ type: 'stay', dates: { startDate, endDate: null } }));
+                                }}>
+                                    <CloseIcon />
+                                </span>}
+                            </DatesBtn>
                         </span>
                     </div>
                     <DatePickerRange

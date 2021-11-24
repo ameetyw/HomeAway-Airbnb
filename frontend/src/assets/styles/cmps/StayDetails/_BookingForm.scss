@@ -108,6 +108,10 @@
                 .dates {
                     width: rem(135px);
                 }
+                svg{
+                    height: 12px;
+                    width: 12px;
+                }
             }
             .react-datepicker {
                 margin-bottom: calc(2.125rem + 22px);
