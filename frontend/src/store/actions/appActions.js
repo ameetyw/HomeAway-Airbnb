@@ -33,16 +33,25 @@ export function saveBooking(currBooking) {
     };
 }
 
-export function setDates(dates) {
+export function setSearch(searchInput) {
     return {
-        type: 'SET_DATES',
-        dates
+        type: 'SET_SEARCH_INPUT',
+        searchInput
     };
 }
 
-export function setGuests(guests) {
+// details are {type:'search/stay', dates}
+export function setDates(datesDetails) {
+    return {
+        type: 'SET_DATES',
+        datesDetails
+    };
+}
+
+// details are {type:'search/stay', guests}
+export function setGuests(guestsDetails) {
     return {
         type: 'SET_GUESTS',
-        guests
+        guestsDetails
     };
 }

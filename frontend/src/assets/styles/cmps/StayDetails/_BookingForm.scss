@@ -33,19 +33,27 @@
     }
     .form-input {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1px 1fr;
         border: 1px solid #b0b0b0;
         border-radius: rem(8px);
         margin-bottom: 16px;
         position: relative;
+        .divider {
+            border-left: 1px solid #b0b0b0;
+        }
 
         .dates,
         .guests {
-            width: 100%;
             padding: 10px 12px;
             text-align: start;
             position: relative;
             z-index: 2;
+            white-space: nowrap;
+            overflow: hidden;
+            > span {
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
             .title {
                 text-transform: uppercase;
                 font-size: rem(10px);
@@ -53,22 +61,15 @@
                 font-weight: 400;
                 font-family: AirbnbCereal-Bold;
             }
-            .input {
-                font-size: rem(14px);
-                line-height: rem(18px);
-                &.placeholder {
-                    color: $ligher-font-clr;
-                }
+            .input.placeholder {
+                color: $ligher-font-clr;
             }
+
             &.open {
+                border-top-color: transparent;
                 border: 2px solid $main-font-clr !important;
                 border-radius: 8px !important;
             }
-        }
-
-        .dates:nth-of-type(2) {
-            border-left: 1px solid #b0b0b0;
-            border-radius: 0;
         }
 
         .guests {
@@ -84,11 +85,10 @@
             }
         }
 
-        .calendar-wrapper {
-            display: none;
+        .dates-wrapper {
             position: absolute;
-            right: rem(-35px);
-            top: rem(58px);
+            right: rem(-34px);
+            top: rem(-25px);
             border-radius: 16px;
             padding: 24px 32px 16px;
             box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
@@ -101,6 +101,13 @@
                 margin-top: rem(8px);
                 font-size: rem(14px);
                 color: $ligher-font-clr;
+            }
+            .dates-btns {
+                border: 1px solid #b0b0b0;
+                border-radius: rem(8px);
+                .dates {
+                    width: rem(135px);
+                }
             }
             .react-datepicker {
                 margin-bottom: calc(2.125rem + 22px);
@@ -118,6 +125,26 @@
                     margin-inline-start: 8px;
                 }
             }
+        }
+
+        .guests-wrapper {
+            position: absolute;
+            z-index: 3;
+            right: 0;
+            top: rem(110px);
+            .close-btn-wrapper button {
+                text-decoration: underline;
+                font-family: AirbnbCereal-Med;
+                padding: rem(10px);
+                &:hover {
+                    background-color: $reg-btn-hover-clr;
+                }
+            }
+        }
+
+        .dates-wrapper,
+        .guests-wrapper {
+            display: none;
             &.open {
                 display: initial;
                 z-index: 2;

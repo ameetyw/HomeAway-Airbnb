@@ -1,5 +1,4 @@
 import { importImgs } from '../../services/util.service';
-import { ReactComponent as ArrowIcon } from '../../assets/imgs/icons/general/icon-arrowhead-right.svg';
 
 export const StayAmenities = ({ amenities }) => {
     const amenityIcons = importImgs(require.context('../../assets/imgs/icons/amenities', false, /\.(png|jpe?g|svg)$/));

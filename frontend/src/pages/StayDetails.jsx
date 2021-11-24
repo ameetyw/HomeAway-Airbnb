@@ -14,7 +14,7 @@ export const StayDetails = () => {
     const emptyBooking = {
         stayId,
         stayDates: { startDate: null, endDate: null },
-        stayGuests: {}
+        stayGuests: { adults: 1 }
     };
     const tempStay = {
         "_id": "3a",

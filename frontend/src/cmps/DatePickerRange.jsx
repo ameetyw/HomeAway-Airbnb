@@ -4,43 +4,35 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { setDates } from '../store/actions/appActions';
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
-export const DatePickerRange = ({ isOpen, setIsOpen, excludeDates }) => {
+export const DatePickerRange = ({ isStay, isOpen, setIsOpen, excludeDates }) => {
     const dispatch = useDispatch();
     const { stayDates } = useSelector(state => state.appModule.currBooking);
-    // const [startDate, endDate] = dates;
-    const { startDate, endDate } = stayDates;
-    // const [isStartOpen, isEndOpen] = isOpen;
+    const searchDates = useSelector(state => state.appModule.searchInput.dates);
+    const dates = isStay ? stayDates : searchDates;
+    const { startDate, endDate } = dates;
     const { isStartOpen, isEndOpen } = isOpen;
+    let newDates = { ...dates };
 
     const handleChange = (newDate, btnType) => {
+        console.log('type:',btnType);
         if ((startDate && newDate.getTime() === startDate.getTime()) ||
             (endDate && newDate.getTime() === endDate.getTime())) {
-            // setDates([null, null]);
-            dispatch(setDates({ startDate: null, endDate: null }));
-            // setIsOpen([true, false]);
-            setIsOpen({ isStartOpen: true, isEndOpen: false });
+            newDates = { startDate: null, endDate: null };
         } else if (btnType === 'start') {
-            // if (newDate > endDate) setDates([newDate, null]);
-            if (newDate > endDate) {
-                dispatch(setDates({ startDate: newDate, endDate: null }));
-            }
-            // else setDates([newDate, endDate]);
-            else dispatch(setDates({ startDate: newDate, endDate }));
-            // setIsOpen([false, true]);
+            newDates.startDate = newDate;
+            if (newDate > endDate) newDates.endDate = null;
             setIsOpen({ isStartOpen: false, isEndOpen: true });
         } else {
-            // if (newDate < startDate) setDates([newDate, endDate]);
-            if (newDate < startDate) {
-                dispatch(setDates({ startDate: newDate, endDate }));
-            } else if (!startDate && newDate > endDate) {
-                // else if (!startDate && newDate > endDate) setDates([newDate, null]);
-                dispatch(setDates({ startDate: newDate, endDate: null }));
+            if (startDate && newDate < startDate) newDates.startDate = newDate;
+            else if (!startDate && newDate > endDate) {
+                newDates = { startDate: newDate, endDate: null };
             }
-            // else setDates([startDate, newDate]);
-            else dispatch(setDates({ startDate, endDate: newDate }));
-            // if (!startDate) setIsOpen([true, false]);
-            if (!startDate) setIsOpen({ isStartOpen: true, isEndOpen: false });
+            else newDates.endDate = newDate;
         }
+        
+        if (isStay) dispatch(setDates({ type: 'stay', dates: newDates }));
+        else dispatch(setDates({ type: 'search', dates: newDates }));
+        if (!newDates.startDate) setIsOpen({ isStartOpen: true, isEndOpen: false });
     };
 
     // const handleClick = (btnType) => {

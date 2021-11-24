@@ -1,0 +1,54 @@
+.guests-wrapper {
+    padding: 16px;
+    min-width: 280px;
+    border-radius: rem(4px);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px;
+    background-color: #fff;
+    .guests-picker {
+        margin-bottom: 16px;
+        .by-type {
+            margin: 24px 0;
+            &:first-child {
+                margin-top: 8px;
+            }
+            h3 {
+                text-transform: capitalize;
+                margin-bottom: 4px;
+            }
+            .change-count {
+                gap: 16px;
+                button {
+                    height: rem(32px);
+                    width: rem(32px);
+                    color: $light-btn-border-clr;
+                    border: 1px solid $light-btn-border-clr;
+                    border-radius: 50%;
+                    svg {
+                        height: rem(12px);
+                        width: rem(12px);
+                    }
+                    &:hover:not(.disabled) {
+                        color: $main-font-clr;
+                        border-color: $main-font-clr;
+                    }
+                    &.disabled {
+                        cursor: not-allowed;
+                        color: $dark-btn-hover-clr;
+                        border-color: $dark-btn-hover-clr;
+                    }
+                }
+            }
+        }
+        .bottom {
+            font-size: rem(14px);
+            line-height: rem(18px);
+            margin-bottom: 16px;
+            color: $ligher-font-clr;
+            &.stay {
+                color: $main-font-clr;
+                font-size: rem(12px);
+                line-height: rem(16px);
+            }
+        }
+    }
+}
