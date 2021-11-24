@@ -1,16 +1,13 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { setDates } from '../../store/actions/appActions';
+import { useSelector } from 'react-redux';
 import { RatingReviews } from './RatingReviews';
-import { DatePickerRange } from '../DatePickerRange';
 import { GuestsPicker } from '../GuestsPicker';
 import { DatesBtn } from './DatesBtn';
 import { ReactComponent as ArrowDown } from '../../assets/imgs/icons/general/icon-arrowhead-down.svg';
 import { ReactComponent as ArrowUp } from '../../assets/imgs/icons/general/icon-arrowhead-up.svg';
-import { ReactComponent as CloseIcon } from '../../assets/imgs/icons/general/icon-close.svg';
+import { ExpandedDatesForm } from './ExpandedDatesForm';
 
 export const BookingForm = ({ stay }) => {
-    const dispatch = useDispatch();
     const booking = useSelector(state => state.appModule.currBooking);
     const { stayDates, stayGuests } = booking;
     const { startDate, endDate } = stayDates;
@@ -21,31 +18,9 @@ export const BookingForm = ({ stay }) => {
     const { adults, children, infants, pets } = stayGuests;
     const totalGuests = adults + (children || 0);
 
-    const getDatesHeader = () => {
-        if (!startDate || !endDate) return 'Select dates';
-        const nights = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24));
-        return `${nights} nights`;
-    };
-
-    const getDatesSubheader = () => {
-        if (!startDate || !endDate) return "Add your travel dates for exact pricing";
-        const start = startDate.toLocaleDateString('en-US', { day: "numeric", month: "short", year: "numeric" });
-        const end = endDate.toLocaleDateString('en-US', { day: "numeric", month: "short", year: "numeric" });
-        return `${start} - ${end}`;
-    };
-
-    const openCalendar = (calendarState) => {
-        if (isGuestsOpen) setGuestsOpen(false);
-        setCalendarOpen(calendarState);
-    };
-
     const closeInputs = () => {
         setGuestsOpen(false);
         setCalendarOpen({ isStartOpen: false, isEndOpen: false });
-    };
-
-    const clearDate = () => {
-
     };
 
     return (
@@ -62,17 +37,18 @@ export const BookingForm = ({ stay }) => {
             <div className="form-input">
                 <DatesBtn title="Check-in" date={startDate}
                     isBtnOpen={isStartOpen}
-                    openCalendar={openCalendar}
+                    openCalendar={setCalendarOpen}
                     calendarState={{ isStartOpen: true, isEndOpen: false }} />
 
                 <span className="divider"></span>
 
                 <DatesBtn title="Check-out" date={endDate}
                     isBtnOpen={isEndOpen}
-                    openCalendar={openCalendar}
+                    openCalendar={setCalendarOpen}
                     calendarState={{ isStartOpen: false, isEndOpen: true }} />
 
-                <button className={`guests${isGuestsOpen ? " open" : ""} flex align-center`}
+                <button
+                    className={`guests${isGuestsOpen ? " open" : ""} flex align-center`}
                     onClick={() => setGuestsOpen(!isGuestsOpen)}>
                     <span>
                         <h4 className="title">Guests</h4>
@@ -85,57 +61,12 @@ export const BookingForm = ({ stay }) => {
                     {isGuestsOpen ? <ArrowUp /> : <ArrowDown />}
                 </button>
 
-                <div className={`dates-wrapper${isStartOpen || isEndOpen ? " open" : ""}`} >
-                    <div className="dates-header flex space-between">
-                        <span>
-                            <h2>{getDatesHeader()}</h2>
-                            <p>{getDatesSubheader()}</p>
-                        </span>
-                        <span className="dates-btns flex">
-                            <DatesBtn title="Check-in" date={startDate}
-                                isBtnOpen={isStartOpen}
-                                // setCalendarOpen={setCalendarOpen}
-                                openCalendar={openCalendar}
-                                calendarState={{ isStartOpen: true, isEndOpen: false }}>
-                                {startDate && <span onClick={() => {
-                                    dispatch(setDates({ type: 'stay', dates: { startDate: null, endDate } }));
-                                }}>
-                                    <CloseIcon />
-                                </span>}
-                            </DatesBtn>
+                <ExpandedDatesForm
+                    isCalendarOpen={isCalendarOpen}
+                    setCalendarOpen={setCalendarOpen} />
 
-                            <DatesBtn title="Check-out" date={endDate}
-                                isBtnOpen={isEndOpen}
-                                openCalendar={openCalendar}
-                                // setCalendarOpen={setCalendarOpen}
-                                calendarState={{ isStartOpen: false, isEndOpen: true }} >
-                                {endDate && <span onClick={() => {
-                                    dispatch(setDates({ type: 'stay', dates: { startDate, endDate: null } }));
-                                }}>
-                                    <CloseIcon />
-                                </span>}
-                            </DatesBtn>
-                        </span>
-                    </div>
-                    <DatePickerRange
-                        isStay={true}
-                        isOpen={isCalendarOpen}
-                        setIsOpen={setCalendarOpen}
-                        excludeDates={stay.unavailableDates}
-                    />
-                    <span className="dates-ctrl">
-                        <button className="clear-dates"
-                            onClick={() => dispatch(setDates({ type: 'stay', dates: { startDate: null, endDate: null } }))}>
-                            Clear dates
-                        </button>
-                        <button className="close-dates"
-                            onClick={() => setCalendarOpen({ isStartOpen: false, isEndOpen: false })}>
-                            Close
-                        </button>
-                    </span>
-                </div>
-
-                <div className={`guests-wrapper${isGuestsOpen ? " open" : ""}`} >
+                <div className={`guests-wrapper${isGuestsOpen ? " open" : ""}` +
+                    `${isStartOpen || isEndOpen ? " hide" : ""}`} >
                     <GuestsPicker stay={stay} />
                     <span className="close-btn-wrapper flex justify-end">
                         <button onClick={() => { setGuestsOpen(false); }}>
@@ -144,7 +75,8 @@ export const BookingForm = ({ stay }) => {
                     </span>
                 </div>
 
-                <span className={`screen${isGuestsOpen || isStartOpen || isEndOpen ? " open" : ""}`} onClick={closeInputs}></span>
+                <span className={`screen${isGuestsOpen || isStartOpen || isEndOpen ? " open" : ""}`}
+                    onClick={closeInputs}></span>
             </div>
         </div>
     );

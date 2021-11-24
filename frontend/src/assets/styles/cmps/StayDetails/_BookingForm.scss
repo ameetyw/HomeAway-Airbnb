@@ -85,6 +85,15 @@
             }
         }
 
+        .dates-wrapper,
+        .guests-wrapper {
+            display: none;
+            &.open {
+                display: initial;
+                z-index: 2;
+            }
+        }
+
         .dates-wrapper {
             position: absolute;
             right: rem(-34px);
@@ -108,7 +117,7 @@
                 .dates {
                     width: rem(135px);
                 }
-                svg{
+                svg {
                     height: 12px;
                     width: 12px;
                 }
@@ -144,14 +153,8 @@
                     background-color: $reg-btn-hover-clr;
                 }
             }
-        }
-
-        .dates-wrapper,
-        .guests-wrapper {
-            display: none;
-            &.open {
-                display: initial;
-                z-index: 2;
+            &.hide {
+                display: none;
             }
         }
 
