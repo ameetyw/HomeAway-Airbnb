@@ -14,7 +14,10 @@
         position: relative;
         border-radius: 12px;
         overflow-y: hidden;
-        max-height: calc(60vh - 64px);
+        max-height: calc(100vh - 9rem);
+        @include for-laptop-up {
+            max-height: calc(60vh - 4rem);
+        }
         :first-child {
             grid-column: 1/3;
             grid-row: 1/3;
@@ -67,8 +70,31 @@
         }
     }
 
+    .show-more-btn {
+        text-decoration: underline;
+        gap: 4px;
+        svg {
+            height: rem(12px);
+            width: rem(12px);
+        }
+    }
+
+    .show-all-btn {
+        font-family: AirbnbCereal-Med;
+        padding: 13px 23px;
+        border: 1px solid $main-font-clr;
+        &:hover {
+            text-decoration: underline;
+            background-color: $reg-btn-hover-clr;
+        }
+        @include for-mobile-only {
+            width: 100%;
+        }
+    }
+
     .stay-info-wrapper {
         width: 100%;
+        margin-bottom: 48px;
         @import "../cmps/StayDetails/RatingReviews";
         @import "../cmps/StayDetails/BookingForm";
         @import "../cmps/StayDetails/StayAmenities";
@@ -105,20 +131,16 @@
                     -webkit-box-orient: vertical;
                     margin-bottom: 16px;
                 }
-                .show-more {
-                    text-decoration: underline;
-                    gap: 4px;
-                    svg {
-                        height: rem(12px);
-                        width: rem(12px);
-                    }
-                }
             }
             .select-dates {
                 position: relative;
                 padding-top: 48px;
                 h2 {
-                    margin-bottom: 16px;
+                    line-height: rem(26px);
+                    margin-bottom: 8px;
+                }
+                p {
+                    color: $ligher-font-clr;
                 }
                 .react-datepicker {
                     margin-bottom: calc(2.125rem + 16px);
@@ -147,6 +169,96 @@
             text-decoration: underline;
             &:hover {
                 background-color: $reg-btn-hover-clr;
+            }
+        }
+    }
+
+    .reviews {
+        padding-top: 48px;
+        h2 {
+            margin-bottom: 32px;
+            svg {
+                color: $main-highlight-clr;
+                height: rem(16px);
+                width: rem(16px);
+                margin-inline-end: 8px;
+            }
+        }
+        .rating-sum {
+            margin-bottom: 24px;
+            .review-bar-item {
+                width: 41.6667%;
+                padding-inline-end: 8px;
+                margin-inline-end: 8.3333%;
+                margin-bottom: 16px;
+                .topic {
+                    width: 100%;
+                    text-transform: capitalize;
+                }
+                .rating {
+                    margin-inline-start: 12px;
+                    width: 75%;
+                    .rating-bar-container {
+                        position: relative;
+                        width: 100%;
+                        height: 4px;
+                        border-radius: 2px;
+                        background-color: $header-btn-border-clr;
+                        .rating-bar {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            border-radius: 2px;
+                            background-color: $main-font-clr;
+                        }
+                    }
+                    .rate {
+                        margin-inline-start: 10px;
+                    }
+                }
+            }
+        }
+        .latest-reviews {
+            flex-direction: column;
+            .review-preview {
+                margin-bottom: 40px;
+                .reviewer {
+                    margin-bottom: 12px;
+                    .user-img {
+                        height: 56px;
+                        width: 56px;
+                        border-radius: 50%;
+                        background-color: $header-btn-border-clr;
+                        overflow: hidden;
+                    }
+                    .reviewer-info {
+                        margin-inline-start: 12px;
+                        .date {
+                            color: $ligher-font-clr;
+                        }
+                    }
+                }
+                .review-content {
+                    white-space: pre-line;
+                    line-height: rem(24px);
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                }
+                .show-more-btn {
+                    margin-top: 8px;
+                }
+            }
+            @include for-laptop-up {
+                flex-direction: row;
+                flex-wrap: wrap;
+                .review-preview {
+                    width: 41.6667%;
+                    padding-inline-end: 8px;
+                    margin-inline-end: 8.3333%;
+                }
             }
         }
     }

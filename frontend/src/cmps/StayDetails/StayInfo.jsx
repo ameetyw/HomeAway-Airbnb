@@ -27,6 +27,7 @@ export const StayInfo = ({ stay }) => {
             <StayAmenities amenities={stay.amenities} />
             <section className="select-dates info-section">
                 <h2>{getDatesHeader()}</h2>
+                <p className="fs14">Add your travel dates for exact pricing</p>
                 <DatePickerRange
                     isStay={true}
                     isOpen={calendarOpen}

@@ -6,6 +6,7 @@ import { StayHeader } from '../cmps/StayDetails/StayHeader';
 import { StayInfo } from '../cmps/StayDetails/StayInfo';
 import { BookingForm } from '../cmps/StayDetails/BookingForm';
 import { ReactComponent as MoreIcon } from '../assets/imgs/icons/general/icon-dots.svg';
+import { StayReviews } from '../cmps/StayDetails/StayReviews';
 
 export const StayDetails = () => {
     const dispatch = useDispatch();
@@ -107,10 +108,10 @@ export const StayDetails = () => {
             { "type": "entertainment", "amenity": "TV", "iconName": "tv", "displayScore": 8 },
             { "type": "heating+cooling", "amenity": "Air conditioning", "iconName": "ac", "displayScore": 12 },
             { "type": "heating+cooling", "amenity": "Indoor fireplace", "iconName": "firepit", "displayScore": 16 },
-            // { "type": "home-safety", "amenity": "Carbon monoxide alarm", "iconName": "cmoalarm" },
+            { "type": "home-safety", "amenity": "Carbon monoxide alarm", "iconName": "cmoalarm" },
             { "type": "home-safety", "amenity": "Fire extinguisher", "iconName": "fireext" },
             { "type": "home-safety", "amenity": "First aid kit", "iconName": "firstaid" },
-            // { "type": "home-safety", "amenity": "Smoke alarm", "iconName": "smokealarm" },
+            { "type": "home-safety", "amenity": "Smoke alarm", "iconName": "smokealarm" },
             { "type": "internet+office", "amenity": "Dedicated workspace", "iconName": "workspace", "desc": "A desk or table with a chair and space for a laptop.", "displayScore": 20 },
             { "type": "internet+office", "amenity": "Wifi", "iconName": "wifi", "desc": "Available throughout the listing.", "displayScore": 3 },
             { "type": "kitchen+dining", "amenity": "Barbecue utensils", "iconName": "bbq", "desc": "Grill, charcoal, bamboo skewers/iron skewers, etc." },
@@ -127,7 +128,7 @@ export const StayDetails = () => {
             { "type": "outdoor", "amenity": "Outdoor furniture", "iconName": "outdoordining" },
             { "type": "outdoor", "amenity": "Patio or balcony", "iconName": "patio", "displayScore": 13 },
             { "type": "features+services", "amenity": "Beach access", "iconName": "beach", "desc": "Guests can enjoy a nearby beach.", "displayScore": 1 },
-            { "type": "features+services", "amenity": "Private entrance", "iconName": "home", "desc": "Separate street or building entrance." },
+            { "type": "features+services", "amenity": "Private entrance", "iconName": "door", "desc": "Separate street or building entrance." },
             { "type": "features+services", "amenity": "Elevator", "iconName": "elevator", "desc": "The home or building has an elevator that’s at least 52 inches deep and a doorway at least 32 inches wide.", "displayScore": 9 },
             { "type": "features+services", "amenity": "Free parking", "iconName": "car", "displayScore": 5 },
             { "type": "features+services", "amenity": "Gym", "iconName": "exercise", "displayScore": 22 },
@@ -135,6 +136,8 @@ export const StayDetails = () => {
             { "type": "features+services", "amenity": "Paid parking", "iconName": "car", "displayScore": 24 },
             { "type": "features+services", "amenity": "Pool", "iconName": "pool", "displayScore": 6 },
             { "type": "features+services", "amenity": "Pets allowed", "iconName": "pets", "displayScore": 4 },
+            { "type": "features+services", "amenity": "Self check-in", "iconName": "door", "desc": "Check yourself in with the lockbox." },
+            { "type": "features+services", "amenity": "Entire home", "iconName": "home", "desc": "You'll have the place to yourself." },
         ],
         "unavailableDates": [
             { "from": "2021-11-10", "to": "2021-11-13" },
@@ -142,7 +145,7 @@ export const StayDetails = () => {
         ],
         "host": {
             "_id": "51399391",
-            "firstName": "Meir",
+            "firstName": "Tomer",
             "imgUrl": "https://randomuser.me/api/portraits/men/58.jpg",
         },
         "loc": {
@@ -156,34 +159,149 @@ export const StayDetails = () => {
         },
         "reviews": [
             {
-                "id": "madeId",
-                "txt": "Very helpful hosts. Cooked traditional...",
+                "id": "r101",
+                "txt": "Tomer is a great host. Always available for any questions. \nThe location was perfect, close to the beach. There’s a public parking right by the apartment. \nEverything was perfect! \nThank you Tomer!!",
                 "rate": 4,
+                "createdAt": "2021-08-14T21:00:00.000Z",
                 "by": {
                     "_id": "u102",
-                    "fullname": "user2",
-                    "imgUrl": "/img/img2.jpg"
-                }
+                    "firstName": "Karen",
+                    "imgUrl": "https://randomuser.me/api/portraits/women/93.jpg",
+                },
             },
             {
-                "id": "madeId",
-                "txt": "Was awesome",
+                "id": "r102",
+                "txt": "Tomer is as good as they come. The apartment is great and the location is even better. Tomer is super responsive and fixed any issues that came up immediately. Highly recommend.",
                 "rate": 5,
+                "createdAt": "2021-07-30T21:00:00.000Z",
                 "by": {
                     "_id": "u103",
-                    "fullname": "user3",
-                    "imgUrl": "/img/img2.jpg"
-                }
-            }
+                    "firstName": "Tal",
+                    "imgUrl": "https://randomuser.me/api/portraits/men/98.jpg"
+                },
+            },
+            {
+                "id": "r103",
+                "txt": "We arrive to TLV and Tomer was just great! He helped us with all our questions like where we should eat at night? to Where is the best sunset location!? Tomer was very responsive when we needed (24/7). The apartment was actually 1 min for the beach !! Thanks for helping us having a great time (:",
+                "rate": 4,
+                "createdAt": "2021-07-06T21:00:00.000Z",
+                "by": {
+                    "_id": "u102",
+                    "firstName": "Jordan",
+                    "imgUrl": "https://randomuser.me/api/portraits/men/11.jpg",
+                },
+            },
+            {
+                "id": "r104",
+                "txt": "It was 5 stars! Great location, nice and clean apartment with all the necessary amenities.",
+                "rate": 4,
+                "createdAt": "2021-06-27T21:00:00.000Z",
+                "by": {
+                    "_id": "u102",
+                    "firstName": "Eliana",
+                    "imgUrl": "https://randomuser.me/api/portraits/women/15.jpg",
+                },
+            },
+            {
+                "id": "r105",
+                "txt": "This place is in the best location in Tel Aviv. Very near the sea and the promenade. Also near restaurants and bars. The apartment is dark and the photos appear to have been taken years ago. The apartment is not “luxury” as the furniture, pillows, rugs are old. Does not feel fresh and clean. Tomer is great. Very responsive and nice. The apt. Has all the amenities. Nice, fully equipped kitchen, washer and dryer.",
+                "rate": 4,
+                "createdAt": "2021-06-12T21:00:00.000Z",
+                "by": {
+                    "_id": "u102",
+                    "firstName": "Danielle",
+                },
+            },
+            {
+                "id": "r106",
+                "txt": "The place was spacious and clean and very close to the beach. It had everything we needed and was nicely decorated. Great stay!",
+                "rate": 4,
+                "createdAt": "2021-05-21T21:00:00.000Z",
+                "by": {
+                    "_id": "u102",
+                    "firstName": "Jackie",
+                    "imgUrl": "https://randomuser.me/api/portraits/women/81.jpg",
+                },
+            },
+            {
+                "id": "r107",
+                "txt": "I was very happy to stay at Tomer's apartment. The location is excellent. It's across the street from the beachfront and it easily beats out all the hotels in the neighborhood. You get a much better space and the real estate is just as good. This is one of the best in Tel Aviv.",
+                "rate": 4,
+                "createdAt": "2021-04-14T21:00:00.000Z",
+                "by": {
+                    "_id": "u102",
+                    "firstName": "Tomer",
+                },
+            },
+            {
+                "id": "r107",
+                "txt": "I was very happy to stay at Tomer's apartment. The location is excellent. It's across the street from the beachfront and it easily beats out all the hotels in the neighborhood. You get a much better space and the real estate is just as good. This is one of the best in Tel Aviv.",
+                "rate": 4,
+                "createdAt": "2021-04-14T21:00:00.000Z",
+                "by": {
+                    "_id": "u102",
+                    "firstName": "Tomer",
+                },
+            },
+            {
+                "id": "r107",
+                "txt": "I was very happy to stay at Tomer's apartment. The location is excellent. It's across the street from the beachfront and it easily beats out all the hotels in the neighborhood. You get a much better space and the real estate is just as good. This is one of the best in Tel Aviv.",
+                "rate": 4,
+                "createdAt": "2021-04-14T21:00:00.000Z",
+                "by": {
+                    "_id": "u102",
+                    "firstName": "Tomer",
+                },
+            },
+            {
+                "id": "r107",
+                "txt": "I was very happy to stay at Tomer's apartment. The location is excellent. It's across the street from the beachfront and it easily beats out all the hotels in the neighborhood. You get a much better space and the real estate is just as good. This is one of the best in Tel Aviv.",
+                "rate": 4,
+                "createdAt": "2021-04-14T21:00:00.000Z",
+                "by": {
+                    "_id": "u102",
+                    "firstName": "Tomer",
+                },
+            },
+            {
+                "id": "r107",
+                "txt": "I was very happy to stay at Tomer's apartment. The location is excellent. It's across the street from the beachfront and it easily beats out all the hotels in the neighborhood. You get a much better space and the real estate is just as good. This is one of the best in Tel Aviv.",
+                "rate": 4,
+                "createdAt": "2021-04-14T21:00:00.000Z",
+                "by": {
+                    "_id": "u102",
+                    "firstName": "Tomer",
+                },
+            },
+            {
+                "id": "r107",
+                "txt": "I was very happy to stay at Tomer's apartment. The location is excellent. It's across the street from the beachfront and it easily beats out all the hotels in the neighborhood. You get a much better space and the real estate is just as good. This is one of the best in Tel Aviv.",
+                "rate": 4,
+                "createdAt": "2021-04-14T21:00:00.000Z",
+                "by": {
+                    "_id": "u102",
+                    "firstName": "Tomer",
+                },
+            },
+            {
+                "id": "r107",
+                "txt": "I was very happy to stay at Tomer's apartment. The location is excellent. It's across the street from the beachfront and it easily beats out all the hotels in the neighborhood. You get a much better space and the real estate is just as good. This is one of the best in Tel Aviv.",
+                "rate": 4,
+                "createdAt": "2021-04-14T21:00:00.000Z",
+                "by": {
+                    "_id": "u102",
+                    "firstName": "Tomer",
+                },
+            },
         ],
         "rating": {
-            "total": 4.91,
-            "cleanliness": 5.0,
-            "Communication": 5.0,
-            "Check-in": 5.0,
+            "total": 4.33,
+            "cleanliness": 4.3,
             "accuracy": 4.8,
+            "communication": 4.7,
             "location": 4.9,
-            "value": 4.7
+            "check-in": 4.7,
+            "value": 4.3
         },
     };
 
@@ -217,6 +335,8 @@ export const StayDetails = () => {
                 <StayInfo stay={stay} />
                 <BookingForm stay={stay} />
             </section>
+
+            <StayReviews stay={stay} />
         </section>
     );
 };

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { ReactComponent as ArrowIcon } from '../../assets/imgs/icons/general/icon-arrowhead-right.svg';
+import { ShowMoreBtn } from '../ShowMoreBtn';
 
 export const StayDescription = ({ desc }) => {
 
@@ -33,9 +33,7 @@ export const StayDescription = ({ desc }) => {
         <div className="description info-section">
             <p ref={widthRef} dangerouslySetInnerHTML={{ __html: boldTest }} />
             {/* <p ref={widthRef} dangerouslySetInnerHTML={{ __html: boldedSumm }} /> */}
-            {isDescOverflow && <button className="show-more flex align-center title">
-                Show more
-                <ArrowIcon /></button>}
+            {isDescOverflow && <ShowMoreBtn />}
         </div>
     );
 };

@@ -9,9 +9,6 @@ header {
     transition: height 0.2s ease-in-out;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 0px;
     height: rem(80px);
-    &.stay {
-        position: absolute;
-    }
     &.home-top {
         box-shadow: none;
         background-color: transparent;
@@ -118,5 +115,10 @@ header {
         .mobile-nav {
             display: none;
         }
+    }
+    
+    &.stay {
+        box-shadow: rgba(0, 0, 0, 0.10) 0px 1px 0px;
+        // position: absolute;
     }
 }

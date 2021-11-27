@@ -7,7 +7,7 @@ export const RatingReviews = ({ totalRate, totalReviews }) => {
                 <StarIcon />
                 {totalRate}
             </span>
-            <button className="reviews">({totalReviews} review{totalReviews > 1 && 's'})</button>
+            <button className="review-count">({totalReviews} review{totalReviews > 1 && 's'})</button>
         </>
     );
 };
