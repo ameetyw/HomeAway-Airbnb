@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { isContentOverflown } from '../../services/util.service';
 import { ShowMoreBtn } from '../ShowMoreBtn';
 
 export const StayDescription = ({ desc }) => {
@@ -20,12 +21,8 @@ export const StayDescription = ({ desc }) => {
         window.addEventListener('resize', handleResize);
 
         function handleResize() {
-            const isResizeOverflow = isOverflown(elDesc);
+            const isResizeOverflow = isContentOverflown(elDesc);
             if (isResizeOverflow !== isDescOverflow) setDescOverflow(isResizeOverflow);
-
-            function isOverflown({ clientWidth, clientHeight, scrollWidth, scrollHeight }) {
-                return scrollHeight > clientHeight || scrollWidth > clientWidth;
-            };
         }
     }, [isDescOverflow]);
 

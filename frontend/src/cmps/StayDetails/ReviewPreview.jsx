@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
+import { isContentOverflown } from '../../services/util.service';
 import { ShowMoreBtn } from '../ShowMoreBtn';
 import GenericAvatar from '../../assets/imgs/generic-avatar.png';
 
-export const ReviewPreview = ({ review, isContentOverflown }) => {
+export const ReviewPreview = ({ review }) => {
     const widthRefEl = useRef(null);
     const [isShowMore, setShowMore] = useState(false);
 
     useEffect(() => {
-        if (widthRefEl.current) setShowMore(isContentOverflown(widthRefEl.current))
-    }, [widthRefEl.current])
-
+        if (widthRefEl.current) setShowMore(isContentOverflown(widthRefEl.current));
+    }, [widthRefEl.current]);
 
     return (
         <div className="review-preview flex column">
@@ -24,7 +24,7 @@ export const ReviewPreview = ({ review, isContentOverflown }) => {
                     </p>
                 </span>
             </div>
-            <p ref={widthRefEl} className="review-content">{review.txt}</p>
+            <p ref={widthRefEl} className="review-content clamp-3">{review.txt}</p>
             {isShowMore && <ShowMoreBtn />}
         </div>
     );

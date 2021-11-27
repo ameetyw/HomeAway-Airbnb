@@ -12,3 +12,8 @@ export function importImgs(requireCtx) {
     requireCtx.keys().forEach(item => { images[item.match(/[\w\._-]+(?=[\.])/)[0]] = requireCtx(item); });
     return images;
 }
+
+export function isContentOverflown(elEl) {
+    const { clientWidth, clientHeight, scrollWidth, scrollHeight } = elEl;
+    return scrollHeight > clientHeight || scrollWidth > clientWidth;
+};

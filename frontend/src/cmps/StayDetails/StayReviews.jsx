@@ -1,10 +1,6 @@
-import { ReactComponent as StarIcon } from '../../assets/imgs/icons/general/icon-star.svg';
 import { ReviewPreview } from './ReviewPreview';
+import { ReactComponent as StarIcon } from '../../assets/imgs/icons/general/icon-star.svg';
 
-// "rating": {
-//     "Total": 4.91,
-//     "Cleanliness": 5.0,
-//     "Accuracy": 4.8,
 export const StayReviews = ({ stay }) => {
     const total = stay.rating.total;
     const categoriesRates = { ...stay.rating };
@@ -35,11 +31,6 @@ export const StayReviews = ({ stay }) => {
         return rateBars;
     };
 
-    const isContentOverflown = (elEl) => {
-        const { clientWidth, clientHeight, scrollWidth, scrollHeight } = elEl;
-        return scrollHeight > clientHeight || scrollWidth > clientWidth;
-    };
-
     return (
         <section className="reviews info-section">
             <h2 className="flex align-center">
@@ -53,9 +44,7 @@ export const StayReviews = ({ stay }) => {
 
             <section className="latest-reviews flex">
                 {reviewsToShow.map(review =>
-                    <ReviewPreview key={review.id}
-                        review={review}
-                        isContentOverflown={isContentOverflown} />)}
+                    <ReviewPreview key={review.id} review={review} />)}
             </section>
 
             <button className="show-all-btn">Show all {stay.reviews.length} reviews</button>
