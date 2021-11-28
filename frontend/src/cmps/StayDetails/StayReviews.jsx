@@ -1,11 +1,11 @@
 import { ReviewPreview } from './ReviewPreview';
 import { ReactComponent as StarIcon } from '../../assets/imgs/icons/general/icon-star.svg';
 
-export const StayReviews = ({ stay }) => {
-    const total = stay.rating.total;
-    const categoriesRates = { ...stay.rating };
+export const StayReviews = ({ rates, reviews }) => {
+    const total = rates.total;
+    const categoriesRates = { ...rates };
     delete categoriesRates.total;
-    const reviewsToShow = stay.reviews.slice(0, 6);
+    const reviewsToShow = reviews.slice(0, 6);
 
     const RateBar = ({ category, rating }) => {
         return (
@@ -35,7 +35,7 @@ export const StayReviews = ({ stay }) => {
         <section className="reviews info-section">
             <h2 className="flex align-center">
                 <StarIcon />
-                {total} · 3 reviews
+                {total} · {reviews.length} reviews
             </h2>
 
             <section className="rating-sum flex wrap">
@@ -47,7 +47,7 @@ export const StayReviews = ({ stay }) => {
                     <ReviewPreview key={review.id} review={review} />)}
             </section>
 
-            <button className="show-all-btn">Show all {stay.reviews.length} reviews</button>
+            <button className="show-all-btn">Show all {reviews.length} reviews</button>
 
         </section>
     );

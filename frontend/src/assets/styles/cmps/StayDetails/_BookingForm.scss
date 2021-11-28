@@ -1,11 +1,11 @@
 .booking-form {
     width: 33.33333%;
+    margin: 48px 0 rem(90px);
     margin-inline-start: 8.33333%;
     border-radius: 12px;
     position: sticky;
     align-self: flex-start;
     top: rem(128px);
-    margin-bottom: 48px;
     padding: 24px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
     border: 1px solid $header-btn-border-clr;
@@ -123,17 +123,12 @@
                 }
             }
             .react-datepicker {
-                margin-bottom: calc(2.125rem + 22px);
+                margin-bottom: 22px;
             }
             .dates-ctrl {
-                position: absolute;
-                right: 32px;
-                bottom: 16px;
                 .close-dates {
                     background-color: $main-font-clr;
                     color: white;
-                    font-family: AirbnbCereal-Med;
-                    font-size: rem(14px);
                     padding: rem(8px) rem(16px);
                     margin-inline-start: 8px;
                 }

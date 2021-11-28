@@ -8,6 +8,7 @@ import { BookingForm } from '../cmps/StayDetails/BookingForm';
 import { StayReviews } from '../cmps/StayDetails/StayReviews';
 import { StayLocation } from '../cmps/StayDetails/StayLocation';
 import { ReactComponent as MoreIcon } from '../assets/imgs/icons/general/icon-dots.svg';
+import { HostedBy } from '../cmps/StayDetails/HostedBy';
 
 export const StayDetails = () => {
     const dispatch = useDispatch();
@@ -147,7 +148,13 @@ export const StayDetails = () => {
         "host": {
             "_id": "51399391",
             "firstName": "Tomer",
+            "memberSince": "2013-02-14T21:00:00.000Z",
             "imgUrl": "https://randomuser.me/api/portraits/men/58.jpg",
+            "about": "Hi, my name is Tomer, and welcome to Tel Aviv! It is a beautiful city and I am sure you'll love it! I am more than happy to answer any questions or request you might have and will do so as fast as possible. Looking forward to hearing from you! I wish you a pleasant stay in Tel Aviv :) Tomer",
+            "duringStay": "I commit to help with every request or question you may encounter upon staying at my apartment.",
+            "reviewsCount": 54,
+            "isVerified": true,
+            "isSuperhost": true,
         },
         "loc": {
             "country": "Israel",
@@ -157,8 +164,8 @@ export const StayDetails = () => {
             "zip": "",
             "lat": 32.06196364406076,
             "lng": 34.77239418059386,
-            "desc" : "The apartment is in an excellent location! It is situated in one of the main streets of Tel Aviv, adjacent to Dizengoff Str, at which a variety of supermarkets, gyms, coffee shops, bars, restaurants, convenience stores, banks and ATM's, drugstores, bicycle rentals, hair dressers and much more can be found. It is also just a 1 minute walk away from the beach! Even though the apartment is in the city centre it is situated in a quiet side-street, so the noise levels are not of any annoyance and the nights are peacefully quiet.",
-            "getAround" : "The apartment is only 2 minutes walk from the next Bus station. There are also long distance Bus stations near by, bicycle rentals and taxis."
+            "desc": "The apartment is in an excellent location! It is situated in one of the main streets of Tel Aviv, adjacent to Dizengoff Str, at which a variety of supermarkets, gyms, coffee shops, bars, restaurants, convenience stores, banks and ATM's, drugstores, bicycle rentals, hair dressers and much more can be found. It is also just a 1 minute walk away from the beach! Even though the apartment is in the city centre it is situated in a quiet side-street, so the noise levels are not of any annoyance and the nights are peacefully quiet.",
+            "getAround": "The apartment is only 2 minutes walk from the next Bus station. There are also long distance Bus stations near by, bicycle rentals and taxis."
         },
         "reviews": [
             {
@@ -312,7 +319,7 @@ export const StayDetails = () => {
         if (stay && stay._id === stayId) document.title = `HomeAway: ${stay.title}`;
         else {
             dispatch(setStay(tempStay));
-            dispatch(saveBooking(emptyBooking));
+            // dispatch(saveBooking(emptyBooking));
         }
     }, [stay._id]);
     //useEffect for stayId..
@@ -339,8 +346,10 @@ export const StayDetails = () => {
                 <BookingForm stay={stay} />
             </section>
 
-            <StayReviews stay={stay} />
+            <StayReviews rates={stay.rating} reviews={stay.reviews} />
             <StayLocation location={stay.loc} />
+            <HostedBy host={stay.host} />
+
         </section>
     );
 };

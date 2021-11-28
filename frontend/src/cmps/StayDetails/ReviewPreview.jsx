@@ -24,7 +24,7 @@ export const ReviewPreview = ({ review }) => {
                     </p>
                 </span>
             </div>
-            <p ref={widthRefEl} className="review-content clamp-3">{review.txt}</p>
+            <p ref={widthRefEl} className="review-content clamp-3-lines">{review.txt}</p>
             {isShowMore && <ShowMoreBtn />}
         </div>
     );

@@ -34,11 +34,13 @@ export const StayInfo = ({ stay }) => {
                     setIsOpen={setCalendarOpen}
                     excludeDates={stay.unavailableDates}
                 />
-                <button className="clear-dates"
-                    onClick={() => dispatch(
-                        setDates({ type: 'stay', dates: { startDate: null, endDate: null } }))}>
-                    Clear dates
-                </button>
+                <span className="clear-btn-wrapper flex justify-end">
+                    <button className="clear-dates"
+                        onClick={() => dispatch(
+                            setDates({ type: 'stay', dates: { startDate: null, endDate: null } }))}>
+                        Clear dates
+                    </button>
+                </span>
             </section>
         </section>
     );

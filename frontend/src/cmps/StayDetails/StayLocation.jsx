@@ -30,7 +30,7 @@ export const StayLocation = ({ location }) => {
             <div className="map"></div>
             {location.desc && <>
                 <LocationTitle className="title fs16" />
-                <p ref={widthRefEl} className="location-desc clamp-3">
+                <p ref={widthRefEl} className="location-desc clamp-3-lines">
                     {location.desc}
                 </p>
                 {isShowMore && <ShowMoreBtn />}

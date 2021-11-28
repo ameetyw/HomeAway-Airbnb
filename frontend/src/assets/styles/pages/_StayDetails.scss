@@ -6,7 +6,6 @@
     }
     @import "../cmps/StayDetails/StayHeader";
     .gallery {
-        margin-bottom: 48px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: 1fr 1fr;
@@ -38,7 +37,6 @@
             right: 24px;
             background-color: white;
             border: 1px solid $main-font-clr;
-            // border-radius: 8px;
             gap: 8px;
             padding: 7px 15px;
             font-size: rem(14px);
@@ -52,13 +50,10 @@
                 width: rem(12px);
             }
         }
-        @include for-tablet-portrait-up {
-        }
-        @include for-laptop-up {
-        }
     }
 
     .info-section {
+        padding: 48px 0;
         h2 {
             font-family: AirbnbCereal-Med;
             font-weight: 400;
@@ -81,6 +76,8 @@
     }
 
     .show-all-btn {
+        font-size: rem(16px);
+        line-height: rem(20px);
         font-family: AirbnbCereal-Med;
         padding: 13px 23px;
         border: 1px solid $main-font-clr;
@@ -93,7 +90,7 @@
         }
     }
 
-    .clamp-3 {
+    .clamp-3-lines {
         white-space: pre-line;
         line-height: rem(24px);
         max-height: rem(72px);
@@ -104,9 +101,17 @@
         -webkit-box-orient: vertical;
     }
 
+    .user-img,
+    .host-img {
+        height: rem(56px);
+        width: rem(56px);
+        border-radius: 50%;
+        background-color: $header-btn-border-clr;
+        overflow: hidden;
+    }
+
     .stay-info-wrapper {
         width: 100%;
-        margin-bottom: 48px;
         @import "../cmps/StayDetails/RatingReviews";
         @import "../cmps/StayDetails/BookingForm";
         @import "../cmps/StayDetails/StayAmenities";
@@ -115,11 +120,6 @@
             flex-grow: 1;
             .info-header {
                 padding-bottom: 24px;
-                img {
-                    height: 56px;
-                    width: 56px;
-                    border-radius: 50%;
-                }
                 .info-header-subtitle {
                     p:not(:last-child)::after {
                         content: "·";
@@ -132,21 +132,18 @@
             }
             .description {
                 padding-top: 32px;
-                margin-bottom: 48px;
                 line-height: rem(24px);
-                max-height: rem(224px);
                 p {
                     overflow: hidden;
                     white-space: pre-line;
                     display: -webkit-box;
                     -webkit-line-clamp: 6;
                     -webkit-box-orient: vertical;
-                    margin-bottom: 16px;
+                    margin-bottom: rem(16px);
                 }
             }
             .select-dates {
                 position: relative;
-                padding-top: 48px;
                 h2 {
                     line-height: rem(26px);
                     margin-bottom: 8px;
@@ -155,7 +152,7 @@
                     color: $ligher-font-clr;
                 }
                 .react-datepicker {
-                    margin-bottom: calc(2.125rem + 16px);
+                    margin-bottom: 16px;
                     .react-datepicker__navigation {
                         top: rem(24px);
                     }
@@ -165,11 +162,6 @@
                             display: inline-block;
                         }
                     }
-                }
-                .clear-dates {
-                    position: absolute;
-                    right: 0;
-                    bottom: 0;
                 }
             }
         }
@@ -186,7 +178,6 @@
     }
 
     .reviews {
-        padding: 48px 0;
         h2 {
             margin-bottom: 32px;
             svg {
@@ -212,6 +203,7 @@
                     width: 75%;
                     .rating-bar-container {
                         position: relative;
+                        z-index: -1;
                         width: 100%;
                         height: 4px;
                         border-radius: 2px;
@@ -237,13 +229,6 @@
                 margin-bottom: 40px;
                 .reviewer {
                     margin-bottom: 12px;
-                    .user-img {
-                        height: 56px;
-                        width: 56px;
-                        border-radius: 50%;
-                        background-color: $header-btn-border-clr;
-                        overflow: hidden;
-                    }
                     .reviewer-info {
                         margin-inline-start: 12px;
                         .date {
@@ -268,7 +253,6 @@
     }
 
     .stay-location {
-        padding-top: 48px;
         h2,
         p.no-desc {
             margin-bottom: 24px;
@@ -285,6 +269,78 @@
         }
         .show-more-btn {
             margin-top: 16px;
+        }
+    }
+
+    .hosted-by {
+        .host-header {
+            margin-bottom: 24px;
+            .host-header-info {
+                margin-inline-start: 16px;
+                .date {
+                    padding-top: 8px;
+                    color: $ligher-font-clr;
+                }
+            }
+        }
+        .host-content {
+            gap: 8.3333%;
+            flex-direction: column;
+            max-height: rem(375px);
+            > * {
+                width: 41.6667%;
+            }
+            .host-icons {
+                margin-bottom: 12px;
+                margin-inline-start: -12px;
+                .icon {
+                    display: flex;
+                    align-items: center;
+                    gap: rem(12px);
+                    padding: 0 12px;
+                    margin-bottom: 12px;
+                    svg {
+                        color: $main-highlight-clr;
+                        height: rem(16px);
+                        width: rem(16px);
+                    }
+                }
+            }
+            .info-text {
+                font-size: rem(16px);
+                line-height: rem(24px);
+                > * {
+                    margin-bottom: 24px;
+                }
+                h3 {
+                    margin-bottom: rem(8px);
+                }
+                .about-host {
+                    p {
+                        display: inline;
+                    }
+                    button {
+                        margin-inline-start: rem(-3px);
+                        .read-more {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+            .extra-info {
+                .host-stats {
+                    p:not(:last-of-type) {
+                        margin-bottom: 8px;
+                    }
+                }
+                .contact {
+                    margin-top: 32px;
+                }
+                .warning {
+                    margin-top: 24px;
+                    max-width: 260px;
+                }
+            }
         }
     }
 

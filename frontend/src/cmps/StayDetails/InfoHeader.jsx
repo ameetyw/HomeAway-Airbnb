@@ -10,7 +10,7 @@ export const InfoHeader = ({ stay }) => {
                     <p>{stay.baths}{stay.bathType === "shared" && " shared"} bath{stay.baths > 1 && "s"}</p>
                 </span>
             </span>
-            <img src={stay.host.imgUrl} alt="" />
+            <img className="host-img" src={stay.host.imgUrl} alt="" />
         </div>
     );
 };

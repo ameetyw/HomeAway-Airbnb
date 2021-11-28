@@ -64,7 +64,7 @@ export const ExpandedDatesForm = ({
                 setIsOpen={setCalendarOpen}
                 excludeDates={unavailableDates}
             />
-            <span className="dates-ctrl">
+            <span className="dates-ctrl flex justify-end title fs4">
                 <button className="clear-dates"
                     onClick={() => dispatch(setDates({ type: 'stay', dates: { startDate: null, endDate: null } }))}>
                     Clear dates
