@@ -72,7 +72,7 @@ export const BookingForm = ({ stay }) => {
                     isCalendarOpen={isCalendarOpen}
                     setCalendarOpen={setCalendarOpen} />
 
-                <div className={`guests-wrapper${isGuestsOpen ? " open" : ""}` +
+                <div className={`guests-picker-wrapper${isGuestsOpen ? " open" : ""}` +
                     `${isStartOpen || isEndOpen ? " hide" : ""}`} >
                     <GuestsPicker stay={stay} />
                     <span className="close-btn-wrapper flex justify-end">

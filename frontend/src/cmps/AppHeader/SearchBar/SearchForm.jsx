@@ -3,6 +3,7 @@ import { ReactComponent as MagnifyGlassIcon } from '../../../assets/imgs/icons/h
 import { DynamicSearchBtn } from './DynamicSearchBtn';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSearchExpand } from '../../../store/actions/appActions';
+import { GuestsPicker } from '../../GuestsPicker';
 
 export const SearchForm = ({ isSearchExpand, isHomeTop }) => {
     const dispatch = useDispatch();
@@ -20,7 +21,6 @@ export const SearchForm = ({ isSearchExpand, isHomeTop }) => {
 
     const toggleBtnIsOpen = (ev, type) => {
         ev.stopPropagation();
-        console.log('toggle');
         if (btnTypes.includes(type)) {
             const newIsOpen = { ...isOpen };
             Object.keys(newIsOpen).forEach(key => newIsOpen[key] = false);
@@ -48,6 +48,10 @@ export const SearchForm = ({ isSearchExpand, isHomeTop }) => {
         console.log('search...');
     };
 
+    const stopProp = (ev) => {
+        ev.stopPropagation();
+    };
+
     return (
         <>
             <span className={`form-screen${isOpen.isActive ? " active" : ""}`} onClick={closeAllBtns}>
@@ -66,6 +70,9 @@ export const SearchForm = ({ isSearchExpand, isHomeTop }) => {
                             </span>
                         </button>
                     </DynamicSearchBtn>
+                    {isOpen.guests && <div className="guests-picker-wrapper" onClick={stopProp}>
+                        <GuestsPicker />
+                    </div>}
                 </form>
             </span>
             <span className={`close-search${isSearchExpand ? " active" : ""}${isHomeTop ? " home-top" : ""}`} onClick={closeSearch} />

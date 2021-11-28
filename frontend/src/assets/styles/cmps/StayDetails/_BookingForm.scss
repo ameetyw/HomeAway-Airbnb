@@ -153,6 +153,37 @@
             }
         }
 
+        .guests-picker-wrapper {
+            display: none;
+            position: absolute;
+            z-index: 2;
+            right: 0;
+            top: rem(112px);
+            padding: 16px;
+            border-radius: rem(4px);
+            box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px;
+            &.open {
+                display: initial;
+            }
+            .guests-picker {
+                margin-bottom: 16px;
+            }
+            .by-type {
+                margin: 24px 0;
+                &:first-child {
+                    margin-top: 8px;
+                }
+                .type h3 {
+                    text-transform: capitalize;
+                    margin-bottom: 4px;
+                }
+            }
+            .bottom {
+                font-size: rem(12px);
+                line-height: rem(16px);
+            }
+        }
+
         .screen.open {
             position: fixed;
             top: 0;
@@ -238,6 +269,5 @@
                 width: rem(16px);
             }
         }
-
     }
 }

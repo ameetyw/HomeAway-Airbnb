@@ -25,8 +25,11 @@ export const GuestsPicker = ({ stay }) => {
         if ((type === 'adults' && guests[type] === 1) ||
             (!guests[type])) isMinusDisabled = true;
 
-        const changeCount = (diff) => {
-            if ((isPlusDisabled && diff > 0) || (isMinusDisabled && diff < 0)) return;
+        const changeCount = (diff, ev = null) => {
+            if ((isPlusDisabled && diff > 0) || (isMinusDisabled && diff < 0)) {
+                if (ev) ev.preventDefault();
+                return;
+            }
             const newCount = (guests[type] || 0) + diff;
             const newGuests = { ...guests };
             newGuests[type] = newCount;
@@ -42,7 +45,7 @@ export const GuestsPicker = ({ stay }) => {
                 </span>
                 <span className="change-count flex align-center">
                     <button className={isMinusDisabled ? "disabled" : ""}
-                        onClick={() => changeCount(-1)}>
+                        onClick={(ev) => changeCount(-1, ev)}>
                         <MinusIcon />
                     </button>
                     {guests[type] || 0}

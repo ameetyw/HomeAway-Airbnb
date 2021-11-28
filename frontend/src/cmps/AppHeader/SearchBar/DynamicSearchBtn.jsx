@@ -24,8 +24,8 @@ export const DynamicSearchBtn = ({ type, subtitle, isOpen, children, toggleIsOpe
         default:
             const newType = (type === 'guests') ? type : 'dates';
             return (
-                <span className={`search-sub-btn ${newType} flex align-center`}>
-                    <span className={`flex column${isOpen ? " open" : ""}`} onClick={onToggleBtn}>
+                <span className={`search-sub-btn ${newType}${isOpen ? " open" : ""} flex align-center`}>
+                    <span className={`flex column`} onClick={onToggleBtn}>
                         <h4 className="search-title">{capitalTitle}</h4>
                         <p className="placeholder">{subtitle}</p>
                     </span>

@@ -83,6 +83,7 @@
                 &.guests {
                     flex: 1 0 auto;
                     flex: 1 0 25%;
+                    position: relative;
                     span {
                         flex: 1 0 auto;
                     }
@@ -133,6 +134,31 @@
                 animation: slide-bottom 0.35s;
                 .search-sub-btn {
                     min-height: rem(66px);
+                }
+            }
+            .guests-picker-wrapper {
+                position: absolute;
+                right: 0;
+                top: rem(80px);
+                max-height: calc(100vh - 10rem);
+                overflow: hidden auto;
+                padding: 16px 32px;
+                border-radius: 32px;
+                box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
+                z-index: 2;
+                .guests-picker {
+                    width: rem(330px);
+                    .by-type {
+                        padding: 16px 0;
+                        &:not(:last-of-type) {
+                            border-bottom: 1px solid $dark-btn-hover-clr;
+                        }
+                    }
+                    .bottom {
+                        font-size: rem(14px);
+                        line-height: rem(18px);
+                        margin-top: 8px;
+                    }
                 }
             }
         }
