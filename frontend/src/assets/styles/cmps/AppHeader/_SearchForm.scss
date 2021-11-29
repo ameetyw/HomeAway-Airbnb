@@ -30,22 +30,29 @@
                 cursor: pointer;
                 border-radius: rem(32px);
                 text-overflow: ellipsis;
+                font-family: AirbnbCereal-Med;
                 &:hover {
                     background-color: $dark-btn-hover-clr;
                 }
+                p,
+                input {
+                    font-size: rem(14px);
+                    line-height: rem(18px);
+                    max-height: rem(18px);
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    &.placeholder {
+                        font-family: AirbnbCereal-Reg;
+                        color: $ligher-font-clr;
+                    }
+                }
                 .search-title {
-                    font-family: AirbnbCereal-Med;
                     font-size: rem(12px);
                     line-height: rem(16px);
                     font-weight: 500;
                     letter-spacing: 0.64px;
                     padding-bottom: 2px;
-                }
-                .placeholder {
-                    font-size: rem(14px);
-                    line-height: rem(18px);
-                    color: $ligher-font-clr;
-                    max-height: rem(18px);
                 }
 
                 &:not(.location-wrapper) {
@@ -69,10 +76,6 @@
                         input {
                             background-color: transparent;
                             border: none;
-                            max-height: rem(18px);
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            width: calc(100%);
                             &:focus {
                                 outline: none;
                             }
@@ -129,23 +132,26 @@
             }
 
             &.open {
-                margin: 0 40px 34px;
+                margin: 0 auto 34px;
                 opacity: 1;
                 animation: slide-bottom 0.35s;
                 .search-sub-btn {
                     min-height: rem(66px);
                 }
             }
-            .guests-picker-wrapper {
+
+            .popover {
                 position: absolute;
                 right: 0;
                 top: rem(80px);
-                max-height: calc(100vh - 10rem);
-                overflow: hidden auto;
                 padding: 16px 32px;
                 border-radius: 32px;
                 box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
                 z-index: 2;
+                background-color: #fff;
+            }
+
+            .guests-picker-wrapper {
                 .guests-picker {
                     width: rem(330px);
                     .by-type {
@@ -159,6 +165,12 @@
                         line-height: rem(18px);
                         margin-top: 8px;
                     }
+                }
+            }
+            .date-picker-wrapper {
+                left: 0;
+                .react-datepicker {
+                    margin-bottom: 16px;
                 }
             }
         }

@@ -8,11 +8,14 @@ export const SearchBar = ({ isSearchExpand, isHomeTop }) => {
     return (
         <div className="search-bar center-content">
             <button
-                className={`simple-search-bar flex align-center${!isSearchExpand ? " active" : ""}${isHomeTop ? " home-top" : ""}`}
+                className={"simple-search-bar flex align-center" +
+                    `${!isSearchExpand ? " active" : ""}` +
+                    `${isHomeTop ? " home-top" : ""}`}
                 onClick={() => { dispatch(setSearchExpand(true)); }}>
                 <span className="magnify-glass-wrapper center-content"><MagnifyGlassIcon /></span>
             </button>
-            <span className={`explore${isSearchExpand ? " active" : ""}${isHomeTop ? " home-top" : ""}`}>Explore</span>
+            <span className={`explore${isSearchExpand ? " active" : ""}` +
+                `${isHomeTop ? " home-top" : ""}`}>Explore</span>
 
         </div>
     );

@@ -40,7 +40,7 @@ export const ExpandedDatesForm = ({
                         openCalendar={setCalendarOpen}
                         calendarState={{ isStartOpen: true, isEndOpen: false }}>
                         {startDate && <span onClick={() => {
-                            dispatch(setDates({ type: 'stay', dates: { startDate: null, endDate } }));
+                            dispatch(setDates({ type: 'stay', dates: { startDate: null, endDate: null } }));
                         }}>
                             <CloseIcon />
                         </span>}

@@ -17,3 +17,11 @@ export function isContentOverflown(elEl) {
     const { clientWidth, clientHeight, scrollWidth, scrollHeight } = elEl;
     return scrollHeight > clientHeight || scrollWidth > clientWidth;
 };
+
+export function isEmptyObj(obj) {
+    return !Object.keys(obj).length;
+}
+
+export function stopProp(ev) {
+    ev.stopPropagation();
+};

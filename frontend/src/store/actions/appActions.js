@@ -42,6 +42,7 @@ export function setSearch(searchInput) {
 
 // details are {type:'search/stay', dates}
 export function setDates(datesDetails) {
+    console.log('action:', datesDetails);
     return {
         type: 'SET_DATES',
         datesDetails
@@ -54,4 +55,14 @@ export function setGuests(guestsDetails) {
         type: 'SET_GUESTS',
         guestsDetails
     };
+}
+
+export function getGuestsTitle(guestsDetails) {
+    if (!Object.keys(guestsDetails).length) return 'Add guests';
+    const { adults, children, infants, pets } = guestsDetails;
+    const totalGuests = adults + (children || 0);
+    let guestsTitle = `${totalGuests} guest${totalGuests > 1 ? "s" : ""}`;
+    guestsTitle += infants ? `, ${infants} infant${infants > 1 ? "s" : ""}` : "";
+    guestsTitle += pets ? `, ${pets} pet${pets > 1 ? "s" : ""}` : "";
+    return guestsTitle;
 }

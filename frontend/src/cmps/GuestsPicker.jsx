@@ -22,7 +22,7 @@ export const GuestsPicker = ({ stay }) => {
             if (totalCount === stay.capacity &&
                 (type === 'adults' || type === 'children')) isPlusDisabled = true;
         }
-        if ((type === 'adults' && guests[type] === 1) ||
+        if ((stay && type === 'adults' && guests[type] === 1) ||
             (!guests[type])) isMinusDisabled = true;
 
         const changeCount = (diff, ev = null) => {
@@ -30,9 +30,12 @@ export const GuestsPicker = ({ stay }) => {
                 if (ev) ev.preventDefault();
                 return;
             }
-            const newCount = (guests[type] || 0) + diff;
-            const newGuests = { ...guests };
-            newGuests[type] = newCount;
+            let newGuests = { ...guests };
+            if (diff > 0 && type !== 'adults' && !guests.adults) {
+                newGuests.adults = 1;
+            }
+            newGuests[type] = (newGuests[type] || 0) + diff;
+            if (!newGuests.adults) newGuests = {};
             if (stay) dispatch(setGuests({ type: 'stay', guests: newGuests }));
             else dispatch(setGuests({ type: 'search', guests: newGuests }));
         };

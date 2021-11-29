@@ -1,9 +1,13 @@
 export const DynamicSearchBtn = ({ type, subtitle, isOpen, children, toggleIsOpen }) => {
     const typeToTitle = type.split('-').join(' ');
     const capitalTitle = typeToTitle.charAt(0).toUpperCase() + typeToTitle.slice(1);
+    const isPlaceholder = (!subtitle || subtitle.startsWith('Add') ||
+        subtitle.startsWith('Where')) ? 'placeholder' : '';
 
     const onToggleBtn = (ev) => {
-        if (toggleIsOpen) toggleIsOpen(ev, type);
+        const correctedType = (type === 'check-in') ? 'startDate' :
+            ((type === 'check-out') ? 'endDate' : type);
+        toggleIsOpen(ev, correctedType);
     };
 
     switch (type) {
@@ -14,7 +18,7 @@ export const DynamicSearchBtn = ({ type, subtitle, isOpen, children, toggleIsOpe
                         className={`${type} flex column${isOpen ? " open" : ""}`}
                         onClick={(ev) => toggleIsOpen(ev, type)}>
                         <h4 className="search-title">{capitalTitle}</h4>
-                        <input className="placeholder" value="" type="text"
+                        <input className={isPlaceholder} value="" type="text"
                             id={type} name={type} placeholder={subtitle}
                         // onChange={handleChange} 
                         />
@@ -27,7 +31,7 @@ export const DynamicSearchBtn = ({ type, subtitle, isOpen, children, toggleIsOpe
                 <span className={`search-sub-btn ${newType}${isOpen ? " open" : ""} flex align-center`}>
                     <span className={`flex column`} onClick={onToggleBtn}>
                         <h4 className="search-title">{capitalTitle}</h4>
-                        <p className="placeholder">{subtitle}</p>
+                        <p className={isPlaceholder}>{subtitle}</p>
                     </span>
                     {children}
                 </span>

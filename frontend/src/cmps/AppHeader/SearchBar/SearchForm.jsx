@@ -1,37 +1,62 @@
 import { useState, useEffect } from 'react';
-import { ReactComponent as MagnifyGlassIcon } from '../../../assets/imgs/icons/header/icon-magnify-glass.svg';
-import { DynamicSearchBtn } from './DynamicSearchBtn';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSearchExpand } from '../../../store/actions/appActions';
+import { setSearchExpand, getGuestsTitle } from '../../../store/actions/appActions';
+import { DynamicSearchBtn } from './DynamicSearchBtn';
 import { GuestsPicker } from '../../GuestsPicker';
+import { ReactComponent as MagnifyGlassIcon } from '../../../assets/imgs/icons/header/icon-magnify-glass.svg';
+import { DatePickerRange } from '../../DatePickerRange';
 
 export const SearchForm = ({ isSearchExpand, isHomeTop }) => {
     const dispatch = useDispatch();
+    const searchDates = useSelector(state => state.appModule.searchInput.dates);
+    const searchGuests = useSelector(state => state.appModule.searchInput.guests);
     const [isOpen, setOpen] = useState({
         location: false,
-        dates: false,
+        startDate: false,
+        endDate: false,
         guests: false,
-        isActive: false
+        isFormActive: false
     });
-    const btnTypes = ["location", "dates", "guests"];
 
     useEffect(() => {
         if (!isSearchExpand) closeSearch();
     }, [isSearchExpand]);
 
-    const toggleBtnIsOpen = (ev, type) => {
-        ev.stopPropagation();
-        if (btnTypes.includes(type)) {
-            const newIsOpen = { ...isOpen };
-            Object.keys(newIsOpen).forEach(key => newIsOpen[key] = false);
-            if (type === 'location') newIsOpen.location = true;
-            else newIsOpen[type] = !isOpen[type];
-            newIsOpen.isActive = true;
-            setOpen(newIsOpen);
+    useEffect(() => {
+        if (isOpen.isFormActive) {
+            console.log('on..');
+            window.addEventListener('keydown', isEsc);
         }
+        return () => {
+            console.log('off..');
+            window.removeEventListener('keydown', isEsc);
+        };
+    }, [isOpen.isFormActive]);
+
+    const isEsc = (ev) => {
+        ev.stopPropagation();
+        console.log('keydown in search form');
+        if (ev.key === 'Escape') closeSearch();
     };
 
-    const closeAllBtns = () => {
+    const setCalendarState = (newState) => {
+        const newIsOpen = { ...isOpen };
+        newIsOpen.startDate = newState.isStartOpen;
+        newIsOpen.endDate = newState.isEndOpen;
+        setOpen(newIsOpen);
+    };
+
+    const toggleBtnIsOpen = (ev, type) => {
+        ev.stopPropagation();
+        const newIsOpen = { ...isOpen };
+        Object.keys(newIsOpen).forEach(key => newIsOpen[key] = false);
+        if (type === 'location') newIsOpen.location = true;
+        else newIsOpen[type] = !isOpen[type];
+        newIsOpen.isFormActive = true;
+        setOpen(newIsOpen);
+    };
+
+    const closeAll = () => {
         const newIsOpen = { ...isOpen };
         Object.keys(newIsOpen).forEach(key => newIsOpen[key] = false);
         setOpen(newIsOpen);
@@ -39,7 +64,7 @@ export const SearchForm = ({ isSearchExpand, isHomeTop }) => {
 
     const closeSearch = () => {
         if (!isHomeTop) dispatch(setSearchExpand(false));
-        closeAllBtns();
+        closeAll();
     };
 
     const onSearch = (ev) => {
@@ -48,21 +73,32 @@ export const SearchForm = ({ isSearchExpand, isHomeTop }) => {
         console.log('search...');
     };
 
+    const getDateSubtitle = (date) => {
+        if (!date) return 'Add dates';
+        return date.toLocaleString('en-US', { month: 'short', day: 'numeric' });
+    };
+
     const stopProp = (ev) => {
         ev.stopPropagation();
     };
 
     return (
         <>
-            <span className={`form-screen${isOpen.isActive ? " active" : ""}`} onClick={closeAllBtns}>
+            <span className={`form-screen${isOpen.isFormActive ? " active" : ""}`} onClick={closeAll}>
                 <form className=
-                    {`expanded-search flex align-center${isSearchExpand ? " open" : ""}${isOpen.isActive ? " active" : ""}`}>
+                    {`expanded-search flex align-center${isSearchExpand ? " open" : ""}${isOpen.isFormActive ? " active" : ""}`}>
                     <DynamicSearchBtn type="location" subtitle="Where are you going?" isOpen={isOpen.location} toggleIsOpen={toggleBtnIsOpen} />
-                    <span className={`dates-wrapper flex${isOpen.dates ? " open" : ""}`} onClick={(ev) => toggleBtnIsOpen(ev, 'dates')}>
-                        <DynamicSearchBtn type="check-in" subtitle="Add dates" />
-                        <DynamicSearchBtn type="check-out" subtitle="Add dates" />
+                    <span className="dates-wrapper flex">
+                        <DynamicSearchBtn type="check-in"
+                            subtitle={getDateSubtitle(searchDates.startDate)}
+                            isOpen={isOpen.startDate} toggleIsOpen={toggleBtnIsOpen} />
+                        <DynamicSearchBtn type="check-out"
+                            subtitle={getDateSubtitle(searchDates.endDate)}
+                            isOpen={isOpen.endDate} toggleIsOpen={toggleBtnIsOpen} />
                     </span>
-                    <DynamicSearchBtn type="guests" subtitle="Add guests" isOpen={isOpen.guests} toggleIsOpen={toggleBtnIsOpen}>
+                    <DynamicSearchBtn type="guests"
+                        subtitle={getGuestsTitle(searchGuests)}
+                        isOpen={isOpen.guests} toggleIsOpen={toggleBtnIsOpen}>
                         <button className={`search-btn center-content`} onClick={onSearch}>
                             <span className="btn-content flex align-center">
                                 <MagnifyGlassIcon />
@@ -70,8 +106,13 @@ export const SearchForm = ({ isSearchExpand, isHomeTop }) => {
                             </span>
                         </button>
                     </DynamicSearchBtn>
-                    {isOpen.guests && <div className="guests-picker-wrapper" onClick={stopProp}>
+                    {isOpen.guests && <div className="guests-picker-wrapper popover" onClick={stopProp}>
                         <GuestsPicker />
+                    </div>}
+                    {(isOpen.startDate || isOpen.endDate) && <div className="date-picker-wrapper popover" onClick={stopProp}>
+                        <DatePickerRange isStay={false}
+                            isOpen={{ isStartOpen: isOpen.startDate, isEndOpen: isOpen.endDate }}
+                            setIsOpen={setCalendarState} />
                     </div>}
                 </form>
             </span>

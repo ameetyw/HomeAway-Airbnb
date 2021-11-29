@@ -4,7 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { setDates } from '../store/actions/appActions';
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
-export const DatePickerRange = ({ isStay, isOpen, setIsOpen, excludeDates }) => {
+export const DatePickerRange = ({ isOpen, setIsOpen, isStay, excludeDates }) => {
     const dispatch = useDispatch();
     const { stayDates } = useSelector(state => state.appModule.currBooking);
     const searchDates = useSelector(state => state.appModule.searchInput.dates);
@@ -14,7 +14,6 @@ export const DatePickerRange = ({ isStay, isOpen, setIsOpen, excludeDates }) => 
     let newDates = { ...dates };
 
     const handleChange = (newDate, btnType) => {
-        console.log('type:',btnType);
         if ((startDate && newDate.getTime() === startDate.getTime()) ||
             (endDate && newDate.getTime() === endDate.getTime())) {
             newDates = { startDate: null, endDate: null };
@@ -23,13 +22,11 @@ export const DatePickerRange = ({ isStay, isOpen, setIsOpen, excludeDates }) => 
             if (newDate > endDate) newDates.endDate = null;
             setIsOpen({ isStartOpen: false, isEndOpen: true });
         } else {
-            if (startDate && newDate < startDate) newDates.startDate = newDate;
-            else if (!startDate && newDate > endDate) {
-                newDates = { startDate: newDate, endDate: null };
-            }
+            if (newDate < startDate) newDates.startDate = newDate;
+            // else if (!startDate && endDate && newDate > endDate)x`` {
+            // newDates = { startDate: newDate, endDate: null };
             else newDates.endDate = newDate;
         }
-        
         if (isStay) dispatch(setDates({ type: 'stay', dates: newDates }));
         else dispatch(setDates({ type: 'search', dates: newDates }));
         if (!newDates.startDate) setIsOpen({ isStartOpen: true, isEndOpen: false });

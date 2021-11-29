@@ -1,33 +1,5 @@
-.date-picker-wrapper {
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    height: 100vh;
-    right: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    .date-picker-range {
-        margin-top: 90px;
-        background-color: lavender;
-        padding: 48px;
-        display: flex;
-        .date-btn {
-            background-color: white;
-            color: black;
-            border: 1px solid black;
-            border-radius: 8px;
-            &.open {
-                background-color: black;
-                color: white;
-            }
-        }
-    }
-}
+// General settings
 
-// general settings
 .react-datepicker {
     border: none !important;
     display: grid !important;

@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { getGuestsTitle } from '../../store/actions/appActions';
 import { RatingReviews } from './RatingReviews';
 import { GuestsPicker } from '../GuestsPicker';
 import { DatesBtn } from './DatesBtn';
@@ -16,16 +17,28 @@ export const BookingForm = ({ stay }) => {
     const [isGuestsOpen, setGuestsOpen] = useState(false);
     const [isCalendarOpen, setCalendarOpen] = useState({ isStartOpen: false, isEndOpen: false });
     const { isStartOpen, isEndOpen } = isCalendarOpen;
-    const { adults, children, infants, pets } = stayGuests;
-    const totalGuests = adults + (children || 0);
     const [style, setStyle] = useState({ backgroundPositionX: '50%', backgroundPositionY: '50%' });
 
+    useEffect(() => {
+        if (isGuestsOpen || isStartOpen || isEndOpen) {
+            window.addEventListener('keydown', isEsc);
+        }
+        return () => {
+            window.removeEventListener('keydown', isEsc);
+        };
+    }, [isGuestsOpen, isStartOpen, isEndOpen]);
+    
+    const isEsc = (ev) => {
+        console.log('keydown');
+        if (ev.key === 'Escape') closeInputs();
+    };
+    
     const closeInputs = () => {
         setGuestsOpen(false);
         setCalendarOpen({ isStartOpen: false, isEndOpen: false });
     };
 
-    const mouseOver = (ev) => {
+    const mouseOverBtn = (ev) => {
         const rect = ev.target.getBoundingClientRect();
         const posX = (rect.right - ev.clientX) / rect.width * 100;
         const posY = (rect.bottom - ev.clientY) / rect.height * 100;
@@ -60,14 +73,11 @@ export const BookingForm = ({ stay }) => {
                     <span>
                         <h4 className="title">Guests</h4>
                         <span className="input fs14">
-                            {`${totalGuests} guest${totalGuests > 1 ? "s" : ""}`}
-                            {infants ? `, ${infants} infant${infants > 1 ? "s" : ""}` : ""}
-                            {pets ? `, ${pets} pet${pets > 1 ? "s" : ""}` : ""}
+                            {getGuestsTitle(stayGuests)}
                         </span>
                     </span>
                     {isGuestsOpen ? <ArrowUp /> : <ArrowDown />}
                 </button>
-
                 <ExpandedDatesForm
                     isCalendarOpen={isCalendarOpen}
                     setCalendarOpen={setCalendarOpen} />
@@ -81,14 +91,13 @@ export const BookingForm = ({ stay }) => {
                         </button>
                     </span>
                 </div>
-
                 <span className={`screen${isGuestsOpen || isStartOpen || isEndOpen ? " open" : ""}`}
                     onClick={closeInputs}></span>
             </div>
 
             <button className="reserve-btn title">
                 {!endDate || !startDate ? "Check availability" : "Reserve"}
-                <span onMouseMove={mouseOver} style={style}>
+                <span onMouseMove={mouseOverBtn} style={style}>
                     {!endDate || !startDate ? "Check availability" : "Reserve"}
                 </span>
             </button>

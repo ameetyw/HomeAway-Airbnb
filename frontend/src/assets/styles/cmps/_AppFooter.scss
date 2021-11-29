@@ -6,11 +6,11 @@ footer {
     }
     @include for-tablet-portrait-up {
         background-color: $reg-btn-hover-clr;
-        padding-top: 48px;
+        border-top: 1px solid $header-btn-border-clr;
+        // padding-top: 48px;
         .footer-content {
             flex-direction: column-reverse;
             gap: 16px;
-            border-top: 1px solid $header-btn-border-clr;
             min-height: rem(20px);
             padding: 24px 0;
             a,

@@ -5,22 +5,18 @@ const emptyDates = {
     endDate: null
 };
 
-const emptyGuests = {
-    adults: 1,
-};
-
 const initialState = {
     loggedInUser: userService.getLoggedinUser(),
     isHomeTop: false,
     isSearchExpand: false,
     searchInput: {
         dates: emptyDates,
-        guests: emptyGuests
+        guests: {}
     },
     currStay: {},
     currBooking: {
         stayDates: emptyDates,
-        stayGuests: emptyGuests
+        stayGuests: { adults: 1 }
     },
 };
 
@@ -77,9 +73,10 @@ export function appReducer(state = initialState, action) {
         case 'SET_DATES':
             {
                 if (action.datesDetails.type === 'search') {
+                    // console.log({ ...state.searchInput, searchDates: action.datesDetails.dates });
                     return {
                         ...state,
-                        searchInput: { ...state.searchInput, searchDates: action.datesDetails.dates }
+                        searchInput: { ...state.searchInput, dates: action.datesDetails.dates }
                     };
                 }
                 return {

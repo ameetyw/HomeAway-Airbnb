@@ -1,6 +1,7 @@
-// import { useState } from 'react';
+import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSearchExpand } from '../../store/actions/appActions';
 import { SearchBar } from './SearchBar/SearchBar';
 import { UserMenuBtn } from './UserMenuBtn';
 import WhiteLogo from '../../assets/imgs/logo-white.svg';
@@ -9,9 +10,26 @@ import { SearchForm } from './SearchBar/SearchForm';
 import { MobileSearch } from './SearchBar/MobileSearch';
 
 export const AppHeader = () => {
+    const dispatch = useDispatch();
     const { pathname } = useLocation();
     const layoutType = pathname.includes('/stay/') ? " stay" : (pathname.includes('/explore/') ? " explore" : "");
     const { isHomeTop, isSearchExpand } = useSelector(state => state.appModule);
+
+    useEffect(() => {
+        if (isSearchExpand && !isHomeTop) {
+            console.log('on hdr..');
+            window.addEventListener('keydown', isEsc);
+        }
+        return () => {
+            console.log('off hdr..');
+            window.removeEventListener('keydown', isEsc);
+        };
+    }, [isSearchExpand]);
+
+    const isEsc = (ev) => {
+        console.log('keydown in hdr');
+        if (ev.key === 'Escape') dispatch(setSearchExpand(false));
+    };
 
     return (
         <header className={`content-wrapper${layoutType}${isHomeTop ? " home-top" : ""}${isSearchExpand ? " expanded" : ""}`}>
