@@ -162,8 +162,7 @@ export const StayDetails = () => {
             "city": "Tel Aviv-Yafo",
             "address": "Nahalat Binyamin St 77",
             "zip": "",
-            "lat": 32.06196364406076,
-            "lng": 34.77239418059386,
+            "pos": { "lat": 32.06196364406076, "lng": 34.77239418059386 },
             "desc": "The apartment is in an excellent location! It is situated in one of the main streets of Tel Aviv, adjacent to Dizengoff Str, at which a variety of supermarkets, gyms, coffee shops, bars, restaurants, convenience stores, banks and ATM's, drugstores, bicycle rentals, hair dressers and much more can be found. It is also just a 1 minute walk away from the beach! Even though the apartment is in the city centre it is situated in a quiet side-street, so the noise levels are not of any annoyance and the nights are peacefully quiet.",
             "getAround": "The apartment is only 2 minutes walk from the next Bus station. There are also long distance Bus stations near by, bicycle rentals and taxis."
         },
@@ -349,7 +348,6 @@ export const StayDetails = () => {
             <StayReviews rates={stay.rating} reviews={stay.reviews} />
             <StayLocation location={stay.loc} />
             <HostedBy host={stay.host} />
-
         </section>
     );
 };

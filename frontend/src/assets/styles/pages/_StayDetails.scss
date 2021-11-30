@@ -263,6 +263,11 @@
             margin-bottom: 32px;
             overflow: visible;
             background-color: $header-btn-border-clr;
+            .map-info-window {
+                font-family: AirbnbCereal-Reg;
+                font-size: rem(14px);
+                padding: 4px;
+            }
         }
         p.title {
             margin-bottom: 16px;

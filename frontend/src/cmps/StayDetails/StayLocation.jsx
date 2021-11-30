@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
+import { Wrapper } from "@googlemaps/react-wrapper";
 import { isContentOverflown } from '../../services/util.service';
+import { GoogleMap } from '../GoogleMap';
 import { ShowMoreBtn } from '../ShowMoreBtn';
 
 // "loc": {
@@ -27,7 +29,11 @@ export const StayLocation = ({ location }) => {
         <section className="stay-location info-section">
             <h2>Where you'll be</h2>
             {!location.desc && <LocationTitle className="no-desc fs16" />}
-            <div className="map"></div>
+
+            <Wrapper apiKey="AIzaSyDm1kVff1tOF1Jvd-Uxba4C__Ux4bt3R8I">
+                <GoogleMap center={location.pos} zoom={14} />
+            </Wrapper>
+
             {location.desc && <>
                 <LocationTitle className="title fs16" />
                 <p ref={widthRefEl} className="location-desc clamp-3-lines">
