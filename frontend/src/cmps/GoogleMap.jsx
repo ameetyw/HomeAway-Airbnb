@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export const GoogleMap = ({ zoom, center }) => {
+export const GoogleMap = ({ zoom, center, isMobile }) => {
     const mapRef = useRef(null);
     const [map, setMap] = useState(null);
     let marker = null;
 
     useEffect(() => {
         if (mapRef.current && !map) {
-            setMap(new window.google.maps.Map(mapRef.current, { zoom, center, maxZoom: 17 }));
+            setMap(new window.google.maps.Map(mapRef.current, { zoom, center, maxZoom: 17, mapTypeControl: false }));
         }
         else if (map) {
             const markerOpt = {
@@ -28,6 +28,7 @@ export const GoogleMap = ({ zoom, center }) => {
             };
             marker = new window.google.maps.Marker({ position: center, map });
             marker.setOptions(markerOpt);
+
             const infowindow = new window.google.maps.InfoWindow({
                 content: '<p class="map-info-window">Exact location provided after booking.</p>',
             });
@@ -38,7 +39,7 @@ export const GoogleMap = ({ zoom, center }) => {
                     shouldFocus: false,
                 });
             };
-            openInfo();
+            if (!isMobile) openInfo();
             marker.addListener("click", openInfo);
         }
         return () => {

@@ -1,0 +1,93 @@
+.split-stay-info-wrapper {
+    width: 100%;
+    @import "./RatingReviews";
+    @import "./BookingForm";
+    @import "./StayAmenities";
+
+    @include for-mobile-only {
+        .stay-info {
+            width: 100%;
+            .info-header {
+                h2 {
+                    font-size: rem(16px);
+                    .line-break {
+                        white-space: break-spaces;
+                    }
+                }
+            }
+            .description {
+                padding-bottom: 32px;
+            }
+            .info-header,
+            .select-dates {
+                padding-top: 24px;
+            }
+        }
+    }
+
+    .stay-info {
+        @include for-tablet-portrait-up {
+            width: 58.33333%;
+            flex-grow: 1;
+            .info-header {
+                padding-bottom: 24px;
+                .line-break {
+                    display: none;
+                }
+            }
+        }
+        .info-header {
+            padding-bottom: 24px;
+            .info-header-subtitle {
+                p:not(:last-child)::after {
+                    content: "·";
+                    padding: 0 rem(4px);
+                }
+            }
+        }
+
+        .description {
+            line-height: rem(24px);
+            p {
+                overflow: hidden;
+                white-space: pre-line;
+                display: -webkit-box;
+                -webkit-line-clamp: 6;
+                -webkit-box-orient: vertical;
+                margin-bottom: rem(16px);
+            }
+        }
+        .select-dates {
+            position: relative;
+            h2 {
+                line-height: rem(26px);
+                margin-bottom: 8px;
+            }
+            p {
+                color: $ligher-font-clr;
+            }
+            .react-datepicker {
+                margin-bottom: 16px;
+                .react-datepicker__navigation {
+                    top: rem(24px);
+                }
+                .react-datepicker__month-container:nth-of-type(3) {
+                    display: none;
+                    @include for-laptop-up {
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+    .clear-dates {
+        padding: rem(8px);
+        font-size: rem(14px);
+        line-height: rem(18px);
+        font-family: AirbnbCereal-Med;
+        text-decoration: underline;
+        &:hover {
+            background-color: $reg-btn-hover-clr;
+        }
+    }
+}

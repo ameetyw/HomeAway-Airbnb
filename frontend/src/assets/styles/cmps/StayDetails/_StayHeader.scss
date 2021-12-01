@@ -1,28 +1,20 @@
 .stay-header {
-    margin-bottom: 16px;
-    .title {
-        font-weight: 400;
-        font-size: rem(26px);
-        font-family: AirbnbCereal-Med;
-        margin-bottom: 4px;
-    }
-    .sub-header {
-        font-size: rem(14px);
-        line-height: rem(20px);
-        font-family: AirbnbCereal-Med;
-        .info {
-            gap: rem(4px);
-            @import "./RatingReviews";
-            .sep {
-                padding: 0 4px;
+    @include for-mobile-only {
+        padding: 24px 0;
+        border-bottom: 1px solid $header-btn-border-clr;
+        .sub-header {
+            .actions {
+                display: none;
             }
-            .location {
-                color: $ligher-font-clr;
-                overflow: clip;
-                text-overflow: ellipsis;
+            .info {
+                flex-wrap: wrap;
             }
         }
-        .actions {
+    }
+    
+    @include for-tablet-portrait-up {
+        margin-bottom: 16px;
+        .sub-header .actions {
             gap: 4px;
             > * {
                 gap: 8px;
@@ -39,6 +31,34 @@
                 &:hover {
                     background-color: $reg-btn-hover-clr;
                 }
+            }
+        }
+    }
+
+    .title {
+        font-weight: 400;
+        font-size: rem(26px);
+        font-family: AirbnbCereal-Med;
+        margin-bottom: 4px;
+    }
+
+    .sub-header {
+        font-size: rem(14px);
+        line-height: rem(20px);
+        font-family: AirbnbCereal-Med;
+        .info {
+            gap: rem(4px);
+            @import "./RatingReviews";
+            .rate-rev {
+                gap: rem(4px);
+            }
+            .sep {
+                padding: 0 4px;
+            }
+            .location {
+                color: $ligher-font-clr;
+                overflow: clip;
+                text-overflow: ellipsis;
             }
         }
     }

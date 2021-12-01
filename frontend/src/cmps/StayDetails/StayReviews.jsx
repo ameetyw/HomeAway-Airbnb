@@ -38,7 +38,7 @@ export const StayReviews = ({ rates, reviews }) => {
                 {total} · {reviews.length} reviews
             </h2>
 
-            <section className="rating-sum flex wrap">
+            <section className="rating-sum">
                 {getCategoriesRateBars()}
             </section>
 

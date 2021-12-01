@@ -1,5 +1,5 @@
 import { ReactComponent as MagnifyGlassIcon } from '../../../assets/imgs/icons/header/icon-magnify-glass.svg';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setSearchExpand } from '../../../store/actions/appActions';
 
 export const SearchBar = ({ isSearchExpand, isHomeTop }) => {

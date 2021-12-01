@@ -12,6 +12,13 @@ export function setSearchExpand(isSearchExpand) {
     };
 }
 
+export function setCurrScreenSize(currScreenSize) {
+    return {
+        type: 'SET_SCREEN_SIZE',
+        currScreenSize
+    };
+}
+
 export function setUser(loggedInUser) {
     return {
         type: 'SET_USER',

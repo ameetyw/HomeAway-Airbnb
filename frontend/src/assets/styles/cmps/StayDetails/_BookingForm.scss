@@ -1,206 +1,20 @@
 .booking-form {
-    width: 33.33333%;
-    margin: 48px 0 rem(90px);
-    margin-inline-start: 8.33333%;
-    border-radius: 12px;
-    position: sticky;
-    align-self: flex-start;
-    top: rem(128px);
-    padding: 24px;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
-    border: 1px solid $header-btn-border-clr;
     .form-header {
-        margin-bottom: 24px;
         flex-direction: column;
-        gap: 8px;
         .night-price span {
             font-family: AirbnbCereal-Med;
-            font-size: rem(22px);
         }
         .info-sum {
             gap: 4px;
-            padding-bottom: rem(2px);
-            .rating svg {
-                height: rem(12px);
-                width: rem(12px);
-            }
-        }
-        @include for-tablet-landscape-up {
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-    }
-    .form-input {
-        display: grid;
-        grid-template-columns: 1fr 1px 1fr;
-        border: 1px solid #b0b0b0;
-        border-radius: rem(8px);
-        margin-bottom: 16px;
-        position: relative;
-        .divider {
-            border-left: 1px solid #b0b0b0;
-        }
-
-        .dates,
-        .guests {
-            padding: 10px 12px;
-            text-align: start;
-            position: relative;
-            z-index: 2;
-            white-space: nowrap;
-            overflow: hidden;
-            > span {
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            .title {
-                text-transform: uppercase;
-                font-size: rem(10px);
-                line-height: rem(12px);
-                font-weight: 400;
-                font-family: AirbnbCereal-Bold;
-            }
-            .input.placeholder {
-                color: $ligher-font-clr;
-            }
-
-            &.open {
-                border-top-color: transparent;
-                border: 2px solid $main-font-clr !important;
-                border-radius: 8px !important;
-            }
-        }
-
-        .guests {
-            grid-column: -1/1;
-            border-top: 1px solid #b0b0b0;
-            border-radius: 0;
-            span {
-                flex-grow: 1;
-            }
-            svg {
-                height: rem(16px);
-                width: rem(16px);
-            }
-        }
-
-        .dates-wrapper,
-        .guests-wrapper {
-            display: none;
-            &.open {
-                display: initial;
-                z-index: 2;
-            }
-        }
-
-        .dates-wrapper {
-            position: absolute;
-            right: rem(-34px);
-            top: rem(-25px);
-            border-radius: 16px;
-            padding: 24px 32px 16px;
-            box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
-            width: 660px;
-            background-color: #fff;
-            h2 {
-                font-size: rem(22px);
-            }
-            p {
-                margin-top: rem(8px);
-                font-size: rem(14px);
-                color: $ligher-font-clr;
-            }
-            .dates-btns {
-                border: 1px solid #b0b0b0;
-                border-radius: rem(8px);
-                .dates {
-                    width: rem(135px);
-                }
-                svg {
-                    height: 12px;
-                    width: 12px;
-                }
-            }
-            .react-datepicker {
-                margin-bottom: 22px;
-            }
-            .dates-ctrl {
-                .close-dates {
-                    background-color: $main-font-clr;
-                    color: white;
-                    padding: rem(8px) rem(16px);
-                    margin-inline-start: 8px;
-                }
-            }
-        }
-
-        .guests-wrapper {
-            position: absolute;
-            z-index: 3;
-            right: 0;
-            top: rem(110px);
-            .close-btn-wrapper button {
-                text-decoration: underline;
-                font-family: AirbnbCereal-Med;
-                padding: rem(10px);
-                &:hover {
-                    background-color: $reg-btn-hover-clr;
-                }
-            }
-            &.hide {
-                display: none;
-            }
-        }
-
-        .guests-picker-wrapper {
-            display: none;
-            position: absolute;
-            z-index: 2;
-            right: 0;
-            top: rem(112px);
-            padding: 16px;
-            border-radius: rem(4px);
-            box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px;
-            &.open {
-                display: initial;
-            }
-            .guests-picker {
-                margin-bottom: 16px;
-            }
-            .by-type {
-                margin: 24px 0;
-                &:first-child {
-                    margin-top: 8px;
-                }
-                .type h3 {
-                    text-transform: capitalize;
-                    margin-bottom: 4px;
-                }
-            }
-            .bottom {
-                font-size: rem(12px);
-                line-height: rem(16px);
-            }
-        }
-
-        .screen.open {
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            z-index: 1;
         }
     }
 
     .reserve-btn {
         background: linear-gradient(to right, #e61e4d 0%, #e31c5f 50%, #d70466 100%);
         color: white;
-        // padding: 14px 24px;
-        width: 100%;
-        height: rem(48px);
+        min-height: rem(48px);
         position: relative;
+        padding: 14px 24px;
         span {
             position: absolute;
             opacity: 0;
@@ -209,6 +23,7 @@
             bottom: 0;
             right: 0;
             left: 0;
+            padding: 14px 24px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -230,43 +45,288 @@
             }
         }
     }
-    .stay-pricing {
-        p {
-            margin: 16px auto 24px;
-            text-align: center;
-        }
-        .sub-price {
-            margin-bottom: 12px;
-            &:not(:last-of-type) .price-title {
-                text-decoration: underline;
-            }
-            &:last-of-type {
-                font-family: AirbnbCereal-Med;
-                margin-bottom: 0;
-            }
-        }
-        .sep {
-            display: block;
-            margin: 4px 0 16px;
-            border-bottom: 1px solid $header-btn-border-clr;
-            height: 1px;
-            width: 100%;
-        }
-    }
-    .report {
-        position: absolute;
+
+    @include for-mobile-only {
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
         bottom: 0;
         right: 0;
-        width: 100%;
-        margin-bottom: -40px;
-        .report-btn {
-            margin: 0 auto;
-            color: $ligher-font-clr;
-            text-decoration: underline;
-            gap: rem(16px);
-            svg {
-                height: rem(16px);
-                width: rem(16px);
+        left: 0;
+        max-height: 80px;
+        padding: 16px 24px;
+        border-top: 1px solid $header-btn-border-clr;
+        .form-input,
+        .stay-pricing,
+        .report {
+            display: none;
+        }
+        .form-header {
+            justify-content: center;
+            .night-price {
+                font-size: rem(14px);
+                span {
+                    font-size: rem(18px);
+                    line-height: rem(24px);
+                }
+            }
+            .info-sum {
+                > * {
+                    font-size: rem(12px);
+                }
+                .dates {
+                    font-family: AirbnbCereal-Med;
+                    font-size: rem(14px);
+                    text-decoration: underline;
+                }
+                .rating svg {
+                    height: rem(10px);
+                    width: rem(10px);
+                }
+            }
+        }
+    }
+
+    @include for-tablet-portrait-up {
+        position: sticky;
+        align-self: flex-start;
+        top: rem(128px);
+        width: 33.33333%;
+        border: 1px solid $header-btn-border-clr;
+        border-radius: 12px;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+        padding: 24px;
+        margin: 48px 0 rem(90px);
+        margin-inline-start: 8.33333%;
+        .form-header {
+            margin-bottom: 24px;
+            gap: 8px;
+            .night-price {
+                font-size: rem(14px);
+                span {
+                    font-size: rem(22px);
+                }
+            }
+            .info-sum {
+                padding-bottom: rem(2px);
+                font-size: rem(14px);
+                .rating svg {
+                    height: rem(12px);
+                    width: rem(12px);
+                }
+            }
+            @include for-tablet-landscape-up {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-end;
+            }
+        }
+        .form-input {
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr;
+            border: 1px solid #b0b0b0;
+            border-radius: rem(8px);
+            margin-bottom: 16px;
+            position: relative;
+            .divider {
+                border-left: 1px solid #b0b0b0;
+            }
+
+            .dates,
+            .guests {
+                padding: 10px 12px;
+                text-align: start;
+                position: relative;
+                z-index: 2;
+                white-space: nowrap;
+                overflow: hidden;
+                > span {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                .title {
+                    text-transform: uppercase;
+                    font-size: rem(10px);
+                    line-height: rem(12px);
+                    font-weight: 400;
+                    font-family: AirbnbCereal-Bold;
+                }
+                .input.placeholder {
+                    color: $ligher-font-clr;
+                }
+
+                &.open {
+                    border-top-color: transparent;
+                    border: 2px solid $main-font-clr !important;
+                    border-radius: 8px !important;
+                }
+            }
+
+            .guests {
+                grid-column: -1/1;
+                border-top: 1px solid #b0b0b0;
+                border-radius: 0;
+                span {
+                    flex-grow: 1;
+                }
+                svg {
+                    height: rem(16px);
+                    width: rem(16px);
+                }
+            }
+
+            .dates-wrapper,
+            .guests-wrapper {
+                display: none;
+                &.open {
+                    display: initial;
+                    z-index: 2;
+                }
+            }
+
+            .dates-wrapper {
+                position: absolute;
+                right: rem(-34px);
+                top: rem(-25px);
+                border-radius: 16px;
+                padding: 24px 32px 16px;
+                box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
+                width: 660px;
+                background-color: #fff;
+                h2 {
+                    font-size: rem(22px);
+                }
+                p {
+                    margin-top: rem(8px);
+                    font-size: rem(14px);
+                    color: $ligher-font-clr;
+                }
+                .dates-btns {
+                    border: 1px solid #b0b0b0;
+                    border-radius: rem(8px);
+                    .dates {
+                        width: rem(135px);
+                    }
+                    svg {
+                        height: 12px;
+                        width: 12px;
+                    }
+                }
+                .react-datepicker {
+                    margin-bottom: 22px;
+                }
+                .dates-ctrl {
+                    .close-dates {
+                        background-color: $main-font-clr;
+                        color: white;
+                        padding: rem(8px) rem(16px);
+                        margin-inline-start: 8px;
+                    }
+                }
+            }
+
+            .guests-wrapper {
+                position: absolute;
+                z-index: 3;
+                right: 0;
+                top: rem(110px);
+                .close-btn-wrapper button {
+                    text-decoration: underline;
+                    font-family: AirbnbCereal-Med;
+                    padding: rem(10px);
+                    &:hover {
+                        background-color: $reg-btn-hover-clr;
+                    }
+                }
+                &.hide {
+                    display: none;
+                }
+            }
+
+            .guests-picker-wrapper {
+                display: none;
+                position: absolute;
+                z-index: 2;
+                right: 0;
+                top: rem(112px);
+                padding: 16px;
+                border-radius: rem(4px);
+                box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px;
+                &.open {
+                    display: initial;
+                }
+                .guests-picker {
+                    margin-bottom: 16px;
+                }
+                .by-type {
+                    margin: 24px 0;
+                    &:first-child {
+                        margin-top: 8px;
+                    }
+                    .type h3 {
+                        text-transform: capitalize;
+                        margin-bottom: 4px;
+                    }
+                }
+                .bottom {
+                    font-size: rem(12px);
+                    line-height: rem(16px);
+                }
+            }
+
+            .screen.open {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                z-index: 1;
+            }
+        }
+        .reserve-btn {
+            width: 100%;
+        }
+        .stay-pricing {
+            display: initial;
+            p {
+                margin: 16px auto 24px;
+                text-align: center;
+            }
+            .sub-price {
+                margin-bottom: 12px;
+                &:not(:last-of-type) .price-title {
+                    text-decoration: underline;
+                }
+                &:last-of-type {
+                    font-family: AirbnbCereal-Med;
+                    margin-bottom: 0;
+                }
+            }
+            .sep {
+                display: block;
+                margin: 4px 0 16px;
+                border-bottom: 1px solid $header-btn-border-clr;
+                height: 1px;
+                width: 100%;
+            }
+        }
+        .report {
+            display: initial;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            margin-bottom: -40px;
+            .report-btn {
+                margin: 0 auto;
+                color: $ligher-font-clr;
+                text-decoration: underline;
+                gap: rem(16px);
+                svg {
+                    height: rem(16px);
+                    width: rem(16px);
+                }
             }
         }
     }

@@ -5,6 +5,10 @@ footer {
         }
     }
     @include for-tablet-portrait-up {
+        &::before {
+            height: 80px;
+            background-color: khaki;
+        }
         background-color: $reg-btn-hover-clr;
         border-top: 1px solid $header-btn-border-clr;
         // padding-top: 48px;

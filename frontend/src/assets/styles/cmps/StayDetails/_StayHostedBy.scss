@@ -1,0 +1,96 @@
+.hosted-by {
+    .host-header {
+        margin-bottom: 24px;
+        .host-img {
+            overflow: hidden;
+        }
+        .host-header-info {
+            .date {
+                padding-top: 8px;
+                color: $ligher-font-clr;
+            }
+        }
+    }
+
+    .host-content {
+        .host-icons {
+            margin-bottom: 12px;
+            margin-inline-start: -12px;
+            .icon {
+                display: flex;
+                align-items: center;
+                gap: rem(12px);
+                padding: 0 12px;
+                margin-bottom: 12px;
+                svg {
+                    color: $main-highlight-clr;
+                    height: rem(16px);
+                    width: rem(16px);
+                }
+            }
+        }
+        .info-text {
+            font-size: rem(16px);
+            line-height: rem(24px);
+            > * {
+                margin-bottom: 24px;
+            }
+            h3 {
+                margin-bottom: rem(8px);
+            }
+            .about-host {
+                p {
+                    display: inline;
+                }
+                button {
+                    margin-inline-start: rem(-3px);
+                    .read-more {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+        .extra-info {
+            .host-stats {
+                p:not(:last-of-type) {
+                    margin-bottom: 8px;
+                }
+            }
+            .contact {
+                margin-top: 32px;
+            }
+            .warning {
+                margin-top: 24px;
+                max-width: 260px;
+            }
+        }
+    }
+
+    @include for-mobile-only {
+        padding-bottom: 32px;
+        .host-header {
+            justify-content: space-between;
+            .host-img {
+                order: 1;
+            }
+        }
+        .host-content > * {
+            width: 100%;
+        }
+    }
+
+    @include for-tablet-portrait-up {
+        .host-header-info {
+            margin-inline-start: 16px;
+        }
+
+        .host-content {
+            gap: 8.3333%;
+            flex-direction: column;
+            max-height: rem(375px);
+            > * {
+                width: 41.6667%;
+            }
+        }
+    }
+}

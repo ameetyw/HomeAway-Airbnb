@@ -1,3 +1,5 @@
+import { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { ReactComponent as StarIcon } from '../../assets/imgs/icons/general/icon-star.svg';
 import { ReactComponent as VerifiedIcon } from '../../assets/imgs/icons/general/icon-verified.svg';
 import { ReactComponent as SuperIcon } from '../../assets/imgs/icons/general/icon-medal.svg';
@@ -16,6 +18,16 @@ import GenericAvatar from '../../assets/imgs/generic-avatar.png';
 // }
 
 export const HostedBy = ({ host }) => {
+    const { currScreenSize } = useSelector(state => state.appModule);
+    const heightRef = useRef(null);
+    const [style, setStyle] = useState({});
+
+    useEffect(() => {
+        if (heightRef.current) {
+            const { scrollHeight, clientHeight } = heightRef.current;
+            setStyle({ marginBottom: `${scrollHeight - clientHeight}px` });
+        }
+    }, [heightRef.current, currScreenSize]);
 
     const AboutHost = ({ about }) => {
         const aboutHost = [<p>{about.substring(0, 180)}</p>];
@@ -41,7 +53,7 @@ export const HostedBy = ({ host }) => {
                 </span>
             </div>
 
-            <div className="host-content flex wrap">
+            <div ref={heightRef} className="host-content flex wrap" style={style}>
                 <div>
                     <div className="host-icons flex wrap align-center">
                         {host.reviewsCount &&

@@ -22,23 +22,6 @@ export const SearchForm = ({ isSearchExpand, isHomeTop }) => {
         if (!isSearchExpand) closeSearch();
     }, [isSearchExpand]);
 
-    useEffect(() => {
-        if (isOpen.isFormActive) {
-            console.log('on..');
-            window.addEventListener('keydown', isEsc);
-        }
-        return () => {
-            console.log('off..');
-            window.removeEventListener('keydown', isEsc);
-        };
-    }, [isOpen.isFormActive]);
-
-    const isEsc = (ev) => {
-        ev.stopPropagation();
-        console.log('keydown in search form');
-        if (ev.key === 'Escape') closeSearch();
-    };
-
     const setCalendarState = (newState) => {
         const newIsOpen = { ...isOpen };
         newIsOpen.startDate = newState.isStartOpen;

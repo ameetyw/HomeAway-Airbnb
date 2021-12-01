@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { isContentOverflown } from '../../services/util.service';
 import { ShowMoreBtn } from '../ShowMoreBtn';
 
@@ -8,6 +9,7 @@ export const StayDescription = ({ desc }) => {
     const boldedDesc = desc.replace(boldSep, '<span class="title">$1</span>');
     const widthRef = useRef(null);
     const [isDescOverflow, setDescOverflow] = useState(false);
+    const { currScreenSize } = useSelector(state => state.appModule);
 
     const test = `Experience living in a typical TLV building, in a newly furnished, top design, comfortable and friendly apartment.
 
@@ -17,14 +19,10 @@ export const StayDescription = ({ desc }) => {
 
     useEffect(() => {
         const elDesc = widthRef.current;
-        handleResize();
-        window.addEventListener('resize', handleResize);
-
-        function handleResize() {
-            const isResizeOverflow = isContentOverflown(elDesc);
-            if (isResizeOverflow !== isDescOverflow) setDescOverflow(isResizeOverflow);
-        }
-    }, [isDescOverflow]);
+        if (elDesc && isContentOverflown(elDesc)) {
+            if (!isDescOverflow) setDescOverflow(true);
+        } else if (isDescOverflow) setDescOverflow(false);
+    }, [widthRef.current, currScreenSize]);
 
     return (
         <div className="description info-section">

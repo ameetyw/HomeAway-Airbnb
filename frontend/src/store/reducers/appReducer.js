@@ -9,6 +9,7 @@ const initialState = {
     loggedInUser: userService.getLoggedinUser(),
     isHomeTop: false,
     isSearchExpand: false,
+    currScreenSize: null,
     searchInput: {
         dates: emptyDates,
         guests: {}
@@ -49,6 +50,11 @@ export function appReducer(state = initialState, action) {
             return {
                 ...state,
                 isSearchExpand: action.isSearchExpand
+            };
+        case 'SET_SCREEN_SIZE':
+            return {
+                ...state,
+                currScreenSize: action.currScreenSize
             };
         case 'SET_SEARCH_INPUT':
             return {

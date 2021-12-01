@@ -1,0 +1,90 @@
+.reviews {
+    h2 {
+        margin-bottom: 32px;
+        svg {
+            color: $main-highlight-clr;
+            height: rem(16px);
+            width: rem(16px);
+            margin-inline-end: 8px;
+        }
+    }
+
+    .rating-sum {
+        display: none;
+    }
+
+    .latest-reviews {
+        flex-direction: column;
+        .review-preview {
+            margin-bottom: 40px;
+            .reviewer {
+                margin-bottom: 12px;
+                .user-img {
+                    overflow: hidden;
+                }
+                .reviewer-info {
+                    margin-inline-start: 12px;
+                    .date {
+                        color: $ligher-font-clr;
+                    }
+                }
+            }
+            .show-more-btn {
+                margin-top: 8px;
+            }
+        }
+    }
+
+    @include for-tablet-portrait-up {
+        .rating-sum {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+            .review-bar-item {
+                width: 41.6667%;
+                padding-inline-end: 8px;
+                margin-inline-end: 8.3333%;
+                margin-bottom: 16px;
+                .topic {
+                    width: 100%;
+                    text-transform: capitalize;
+                }
+                .rating {
+                    margin-inline-start: 12px;
+                    width: 75%;
+                    .rating-bar-container {
+                        position: relative;
+                        z-index: -1;
+                        width: 100%;
+                        height: 4px;
+                        border-radius: 2px;
+                        background-color: $header-btn-border-clr;
+                        .rating-bar {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            border-radius: 2px;
+                            background-color: $main-font-clr;
+                        }
+                    }
+                    .rate {
+                        margin-inline-start: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    @include for-laptop-up {
+        .latest-reviews {
+            flex-direction: row;
+            flex-wrap: wrap;
+            .review-preview {
+                width: 41.6667%;
+                padding-inline-end: 8px;
+                margin-inline-end: 8.3333%;
+            }
+        }
+    }
+}

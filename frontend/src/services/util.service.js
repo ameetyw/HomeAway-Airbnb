@@ -9,14 +9,14 @@ export function makeId(length = 8) {
 
 export function importImgs(requireCtx) {
     let images = {};
-    requireCtx.keys().forEach(item => { images[item.match(/[\w\._-]+(?=[\.])/)[0]] = requireCtx(item); });
+    requireCtx.keys().forEach(item => { images[item.match(/[\w._-]+(?=[.])/)[0]] = requireCtx(item); });
     return images;
 }
 
-export function isContentOverflown(elEl) {
-    const { clientWidth, clientHeight, scrollWidth, scrollHeight } = elEl;
+export function isContentOverflown(el) {
+    const { clientWidth, clientHeight, scrollWidth, scrollHeight } = el;
     return scrollHeight > clientHeight || scrollWidth > clientWidth;
-};
+}
 
 export function isEmptyObj(obj) {
     return !Object.keys(obj).length;
@@ -24,4 +24,4 @@ export function isEmptyObj(obj) {
 
 export function stopProp(ev) {
     ev.stopPropagation();
-};
+}

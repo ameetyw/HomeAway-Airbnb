@@ -7,9 +7,9 @@ export const StayHeader = ({ stay }) => {
         <section className="stay-header flex column">
             <h1 className="title">{stay.title}</h1>
             <span className="sub-header flex align-center space-between">
-                <div className="info flex">
-                    <RatingReviews totalRate={stay.rating.total} totalReviews={stay.reviews.length} />
-                    <span className="sep">·</span>
+                <div className="info flex align-center">
+                    <span className="rate-rev flex align-center"><RatingReviews totalRate={stay.rating.total} totalReviews={stay.reviews.length} />
+                    <span className="sep">·</span></span>
                     <span className="location">{stay.loc.city}, {stay.loc.country}</span>
                 </div>
                 <div className="actions flex align-center">

@@ -1,59 +1,29 @@
 .stay-details {
-    margin-top: 24px;
-    padding-top: rem(80px);
+    margin-top: rem(80px);
     > * {
         width: 100%;
     }
-    @import "../cmps/StayDetails/StayHeader";
-    .gallery {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: 1fr 1fr;
-        gap: 8px;
-        position: relative;
-        border-radius: 12px;
-        overflow-y: hidden;
-        max-height: calc(100vh - 9rem);
-        @include for-laptop-up {
-            max-height: calc(60vh - 4rem);
+    @include for-mobile-only {
+        .gallery {
+            grid-row: 1/2;
         }
-        :first-child {
-            grid-column: 1/3;
-            grid-row: 1/3;
+        .form-bottom {
+            display: block;
+            height: rem(80px);
         }
-        > *:not(.show-all) {
-            @include aspect-ratio(1, 1);
-            filter: brightness(100%);
-            transition: filter 0.2s ease-in;
-            &:not(.show-all):hover {
-                filter: brightness(85%);
-            }
-            background-color: $header-btn-border-clr;
+        .info-section {
+            padding: 32px 0 24px;
         }
-        .show-all {
-            position: absolute;
-            z-index: 1;
-            bottom: 24px;
-            right: 24px;
-            background-color: white;
-            border: 1px solid $main-font-clr;
-            gap: 8px;
-            padding: 7px 15px;
-            font-size: rem(14px);
-            line-height: rem(18px);
-            font-family: AirbnbCereal-Med;
-            &:hover {
-                background-color: $reg-btn-hover-clr;
-            }
-            svg {
-                height: rem(12px);
-                width: rem(12px);
-            }
+    }
+
+    @include for-tablet-portrait-up {
+        padding-top: 24px;
+        .info-section {
+            padding: 48px 0;
         }
     }
 
     .info-section {
-        padding: 48px 0;
         h2 {
             font-family: AirbnbCereal-Med;
             font-weight: 400;
@@ -107,150 +77,14 @@
         width: rem(56px);
         border-radius: 50%;
         background-color: $header-btn-border-clr;
-        overflow: hidden;
+        // overflow: hidden;
     }
 
-    .stay-info-wrapper {
-        width: 100%;
-        @import "../cmps/StayDetails/RatingReviews";
-        @import "../cmps/StayDetails/BookingForm";
-        @import "../cmps/StayDetails/StayAmenities";
-        .stay-info {
-            width: 58.33333%;
-            flex-grow: 1;
-            .info-header {
-                padding-bottom: 24px;
-                .info-header-subtitle {
-                    p:not(:last-child)::after {
-                        content: "·";
-                        padding: 0 rem(4px);
-                    }
-                }
-            }
-            .features {
-                padding: 32px 0;
-            }
-            .description {
-                padding-top: 32px;
-                line-height: rem(24px);
-                p {
-                    overflow: hidden;
-                    white-space: pre-line;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 6;
-                    -webkit-box-orient: vertical;
-                    margin-bottom: rem(16px);
-                }
-            }
-            .select-dates {
-                position: relative;
-                h2 {
-                    line-height: rem(26px);
-                    margin-bottom: 8px;
-                }
-                p {
-                    color: $ligher-font-clr;
-                }
-                .react-datepicker {
-                    margin-bottom: 16px;
-                    .react-datepicker__navigation {
-                        top: rem(24px);
-                    }
-                    .react-datepicker__month-container:nth-of-type(3) {
-                        display: none;
-                        @include for-laptop-up {
-                            display: inline-block;
-                        }
-                    }
-                }
-            }
-        }
-        .clear-dates {
-            padding: rem(8px);
-            font-size: rem(14px);
-            line-height: rem(18px);
-            font-family: AirbnbCereal-Med;
-            text-decoration: underline;
-            &:hover {
-                background-color: $reg-btn-hover-clr;
-            }
-        }
-    }
-
-    .reviews {
-        h2 {
-            margin-bottom: 32px;
-            svg {
-                color: $main-highlight-clr;
-                height: rem(16px);
-                width: rem(16px);
-                margin-inline-end: 8px;
-            }
-        }
-        .rating-sum {
-            margin-bottom: 24px;
-            .review-bar-item {
-                width: 41.6667%;
-                padding-inline-end: 8px;
-                margin-inline-end: 8.3333%;
-                margin-bottom: 16px;
-                .topic {
-                    width: 100%;
-                    text-transform: capitalize;
-                }
-                .rating {
-                    margin-inline-start: 12px;
-                    width: 75%;
-                    .rating-bar-container {
-                        position: relative;
-                        z-index: -1;
-                        width: 100%;
-                        height: 4px;
-                        border-radius: 2px;
-                        background-color: $header-btn-border-clr;
-                        .rating-bar {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            bottom: 0;
-                            border-radius: 2px;
-                            background-color: $main-font-clr;
-                        }
-                    }
-                    .rate {
-                        margin-inline-start: 10px;
-                    }
-                }
-            }
-        }
-        .latest-reviews {
-            flex-direction: column;
-            .review-preview {
-                margin-bottom: 40px;
-                .reviewer {
-                    margin-bottom: 12px;
-                    .reviewer-info {
-                        margin-inline-start: 12px;
-                        .date {
-                            color: $ligher-font-clr;
-                        }
-                    }
-                }
-                .show-more-btn {
-                    margin-top: 8px;
-                }
-            }
-            @include for-laptop-up {
-                flex-direction: row;
-                flex-wrap: wrap;
-                .review-preview {
-                    width: 41.6667%;
-                    padding-inline-end: 8px;
-                    margin-inline-end: 8.3333%;
-                }
-            }
-        }
-    }
+    @import "../cmps/StayDetails/StayHeader";
+    @import "../cmps/StayDetails/StayGallery";
+    @import "../cmps/StayDetails/SplitStayInfoWrapper";
+    @import "../cmps/StayDetails/StayReviews";
+    @import "../cmps/StayDetails/StayHostedBy";
 
     .stay-location {
         h2,
@@ -258,95 +92,28 @@
             margin-bottom: 24px;
         }
         .map {
-            height: 480px;
+            @include for-mobile-only {
+                height: rem(218px);
+                border-radius: rem(12px);
+            }
+            @include for-tablet-portrait-up {
+                height: 480px;
+                .map-info-window {
+                    font-family: AirbnbCereal-Reg;
+                    font-size: rem(14px);
+                    padding: 4px;
+                }
+            }
             width: 100%;
             margin-bottom: 32px;
-            overflow: visible;
+            // overflow: visible;
             background-color: $header-btn-border-clr;
-            .map-info-window {
-                font-family: AirbnbCereal-Reg;
-                font-size: rem(14px);
-                padding: 4px;
-            }
         }
         p.title {
             margin-bottom: 16px;
         }
         .show-more-btn {
             margin-top: 16px;
-        }
-    }
-
-    .hosted-by {
-        margin-bottom: 48px;
-        .host-header {
-            margin-bottom: 24px;
-            .host-header-info {
-                margin-inline-start: 16px;
-                .date {
-                    padding-top: 8px;
-                    color: $ligher-font-clr;
-                }
-            }
-        }
-        .host-content {
-            gap: 8.3333%;
-            flex-direction: column;
-            max-height: rem(375px);
-            > * {
-                width: 41.6667%;
-            }
-            .host-icons {
-                margin-bottom: 12px;
-                margin-inline-start: -12px;
-                .icon {
-                    display: flex;
-                    align-items: center;
-                    gap: rem(12px);
-                    padding: 0 12px;
-                    margin-bottom: 12px;
-                    svg {
-                        color: $main-highlight-clr;
-                        height: rem(16px);
-                        width: rem(16px);
-                    }
-                }
-            }
-            .info-text {
-                font-size: rem(16px);
-                line-height: rem(24px);
-                > * {
-                    margin-bottom: 24px;
-                }
-                h3 {
-                    margin-bottom: rem(8px);
-                }
-                .about-host {
-                    p {
-                        display: inline;
-                    }
-                    button {
-                        margin-inline-start: rem(-3px);
-                        .read-more {
-                            text-decoration: underline;
-                        }
-                    }
-                }
-            }
-            .extra-info {
-                .host-stats {
-                    p:not(:last-of-type) {
-                        margin-bottom: 8px;
-                    }
-                }
-                .contact {
-                    margin-top: 32px;
-                }
-                .warning {
-                    margin-top: 24px;
-                    max-width: 260px;
-                }
-            }
         }
     }
 }

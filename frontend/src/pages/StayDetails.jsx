@@ -1,19 +1,23 @@
-import { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setStay, saveBooking } from '../store/actions/appActions';
+import { setStay, setCurrScreenSize } from '../store/actions/appActions';
 import { StayHeader } from '../cmps/StayDetails/StayHeader';
+import { StayGalleryPreview } from '../cmps/StayDetails/StayGalleryPreview';
 import { StayInfo } from '../cmps/StayDetails/StayInfo';
 import { BookingForm } from '../cmps/StayDetails/BookingForm';
 import { StayReviews } from '../cmps/StayDetails/StayReviews';
 import { StayLocation } from '../cmps/StayDetails/StayLocation';
-import { ReactComponent as MoreIcon } from '../assets/imgs/icons/general/icon-dots.svg';
 import { HostedBy } from '../cmps/StayDetails/HostedBy';
 
 export const StayDetails = () => {
     const dispatch = useDispatch();
     const stayId = useParams().id;
     const stay = useSelector(state => state.appModule.currStay);
+    const { currScreenSize } = useSelector(state => state.appModule);
+    const [isMobile, setIsMobile] = useState(false);
+    const mobileBreakpoint = 727;
+
     const emptyBooking = {
         stayId,
         stayDates: { startDate: null, endDate: null },
@@ -315,7 +319,16 @@ export const StayDetails = () => {
     };
 
     useEffect(() => {
-        if (stay && stay._id === stayId) document.title = `HomeAway: ${stay.title}`;
+        if (stay && stay._id === stayId) {
+            document.title = `HomeAway: ${stay.title}`;
+            checkScreenSize();
+            window.addEventListener('resize', checkScreenSize);
+            console.log('resize listener on in stay details');
+            return () => {
+                window.removeEventListener('resize', checkScreenSize);
+                console.log('resize listener off in stay details');
+            };
+        }
         else {
             dispatch(setStay(tempStay));
             // dispatch(saveBooking(emptyBooking));
@@ -323,31 +336,36 @@ export const StayDetails = () => {
     }, [stay._id]);
     //useEffect for stayId..
 
+    useEffect(() => {
+        if (currScreenSize && currScreenSize < mobileBreakpoint) {
+            if (!isMobile) setIsMobile(true);
+        }
+        else if (isMobile) setIsMobile(false);
+    }, [currScreenSize]);
+
+    const checkScreenSize = () => {
+        const screenWidth = window.screen.width;
+        const innerWidth = window.innerWidth;
+        dispatch(setCurrScreenSize(screenWidth < innerWidth ? screenWidth : innerWidth));
+    };
+
     if (stay._id !== stayId) return <div className="loading">loading...</div>;
 
-    const galleryUrls = stay.imgUrls.slice(0, 5);
     return (
         <section className="stay stay-details content-wrapper">
             <StayHeader stay={stay} />
 
-            <section className="gallery">
-                {galleryUrls.map((imgUrl, idx) => (
-                    <Link key={`img${idx + 1}`} to=""><img src={imgUrl} alt="" /></Link>
-                ))}
-                <button className="show-all flex align-center">
-                    <MoreIcon />
-                    Show all photos
-                </button>
-            </section>
+            <StayGalleryPreview stayImgUrls={stay.imgUrls} isMobile={isMobile} />
 
-            <section className="stay-info-wrapper flex space-between">
-                <StayInfo stay={stay} />
-                <BookingForm stay={stay} />
+            <section className="split-stay-info-wrapper flex space-between">
+                <StayInfo stay={stay} isMobile={isMobile} />
+                <BookingForm stay={stay} isMobile={isMobile} />
             </section>
 
             <StayReviews rates={stay.rating} reviews={stay.reviews} />
-            <StayLocation location={stay.loc} />
+            {!isMobile && <StayLocation location={stay.loc} />}
             <HostedBy host={stay.host} />
+            {isMobile && <span className="form-bottom"></span>}
         </section>
     );
 };

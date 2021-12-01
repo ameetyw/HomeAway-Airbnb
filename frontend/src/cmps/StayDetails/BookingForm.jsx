@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getGuestsTitle } from '../../store/actions/appActions';
 import { RatingReviews } from './RatingReviews';
@@ -10,7 +10,7 @@ import { ReactComponent as ArrowDown } from '../../assets/imgs/icons/general/ico
 import { ReactComponent as ArrowUp } from '../../assets/imgs/icons/general/icon-arrowhead-up.svg';
 import { ReactComponent as FlagIcon } from '../../assets/imgs/icons/general/icon-flag.svg';
 
-export const BookingForm = ({ stay }) => {
+export const BookingForm = ({ stay, isMobile }) => {
     const { stayDates, stayGuests } = useSelector(state => state.appModule.currBooking);
     const { startDate, endDate } = stayDates;
 
@@ -22,17 +22,16 @@ export const BookingForm = ({ stay }) => {
     useEffect(() => {
         if (isGuestsOpen || isStartOpen || isEndOpen) {
             window.addEventListener('keydown', isEsc);
+            console.log('keydown listener on in booking form');
         }
         return () => {
             window.removeEventListener('keydown', isEsc);
+            console.log('keydown listener off in booking form');
         };
     }, [isGuestsOpen, isStartOpen, isEndOpen]);
-    
-    const isEsc = (ev) => {
-        console.log('keydown');
-        if (ev.key === 'Escape') closeInputs();
-    };
-    
+
+    const isEsc = (ev) => { if (ev.key === 'Escape') closeInputs(); };
+
     const closeInputs = () => {
         setGuestsOpen(false);
         setCalendarOpen({ isStartOpen: false, isEndOpen: false });
@@ -45,6 +44,10 @@ export const BookingForm = ({ stay }) => {
         setStyle({ backgroundPositionX: `${posX}%`, backgroundPositionY: `${posY}%` });
     };
 
+    const getFormattedDate = (date) => {
+        return date.toLocaleString('en-US', { month: 'short', day: 'numeric' });
+    };
+
     return (
         <div className="booking-form">
             <div className="form-header flex">
@@ -52,7 +55,10 @@ export const BookingForm = ({ stay }) => {
                     <span>${stay.price}</span> / night
                 </div>
                 <div className="info-sum flex">
-                    <RatingReviews totalRate={stay.rating.total} totalReviews={stay.reviews.length} />
+                    {isMobile && startDate && endDate ?
+                        <p className="dates">{getFormattedDate(startDate)} – {getFormattedDate(endDate)}</p> :
+                        <RatingReviews totalRate={stay.rating.total} totalReviews={stay.reviews.length} />
+                    }
                 </div>
             </div>
 
@@ -101,6 +107,7 @@ export const BookingForm = ({ stay }) => {
                     {!endDate || !startDate ? "Check availability" : "Reserve"}
                 </span>
             </button>
+
             {(startDate && endDate) &&
                 <StayFormPricing nightPrice={stay.price}
                     nightCount={(endDate - startDate) / (1000 * 60 * 60 * 24)}

@@ -17,12 +17,12 @@ export const AppHeader = () => {
 
     useEffect(() => {
         if (isSearchExpand && !isHomeTop) {
-            console.log('on hdr..');
             window.addEventListener('keydown', isEsc);
+            console.log('keydown listener on in header');
         }
         return () => {
-            console.log('off hdr..');
             window.removeEventListener('keydown', isEsc);
+            console.log('keydown listener off in header');
         };
     }, [isSearchExpand]);
 

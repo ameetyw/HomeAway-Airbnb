@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Wrapper } from "@googlemaps/react-wrapper";
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { isContentOverflown } from '../../services/util.service';
 import { GoogleMap } from '../GoogleMap';
 import { ShowMoreBtn } from '../ShowMoreBtn';
@@ -13,7 +13,7 @@ import { ShowMoreBtn } from '../ShowMoreBtn';
 //     "lat": 32.06196364406076,
 //     "lng": 34.77239418059386
 // }
-export const StayLocation = ({ location }) => {
+export const StayLocation = ({ location, isMobile }) => {
     const widthRefEl = useRef(null);
     const [isShowMore, setShowMore] = useState(false);
 
@@ -29,9 +29,10 @@ export const StayLocation = ({ location }) => {
         <section className="stay-location info-section">
             <h2>Where you'll be</h2>
             {!location.desc && <LocationTitle className="no-desc fs16" />}
-
+            
+            {/* something about status... */}
             <Wrapper apiKey="AIzaSyDm1kVff1tOF1Jvd-Uxba4C__Ux4bt3R8I">
-                <GoogleMap center={location.pos} zoom={14} />
+                <GoogleMap center={location.pos} zoom={14} isMobile={isMobile} />
             </Wrapper>
 
             {location.desc && <>
