@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
+
+const API_KEY = 'AIzaSyDm1kVff1tOF1Jvd-Uxba4C__Ux4bt3R8I';
 
 export const GoogleMap = ({ zoom, center, isMobile }) => {
     const mapRef = useRef(null);
@@ -50,5 +53,8 @@ export const GoogleMap = ({ zoom, center, isMobile }) => {
         };
     }, [mapRef, map]);
 
-    return <div className="map" ref={mapRef} />;
+    {/* something about status... */ }
+    return <Wrapper apiKey={API_KEY}>
+        <div className="map" ref={mapRef} />;
+    </Wrapper>;
 };

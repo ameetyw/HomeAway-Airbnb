@@ -4,6 +4,7 @@ import { setHomeTop, setSearchExpand } from '../store/actions/appActions';
 import { Popular } from '../cmps/HomePage/Popular';
 import { Anywhere } from '../cmps/HomePage/Anywhere';
 import HostImg from '../assets/imgs/HomePage/host.jpg';
+import { PlacesAutocomplete } from '../cmps/PlacesAutocomplete';
 
 export const HomePage = () => {
     const dispatch = useDispatch();

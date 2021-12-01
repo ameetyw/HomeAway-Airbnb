@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { isContentOverflown } from '../../services/util.service';
 import { GoogleMap } from '../GoogleMap';
 import { ShowMoreBtn } from '../ShowMoreBtn';
@@ -29,11 +28,8 @@ export const StayLocation = ({ location, isMobile }) => {
         <section className="stay-location info-section">
             <h2>Where you'll be</h2>
             {!location.desc && <LocationTitle className="no-desc fs16" />}
-            
-            {/* something about status... */}
-            <Wrapper apiKey="AIzaSyDm1kVff1tOF1Jvd-Uxba4C__Ux4bt3R8I">
-                <GoogleMap center={location.pos} zoom={14} isMobile={isMobile} />
-            </Wrapper>
+
+            <GoogleMap center={location.pos} zoom={14} isMobile={isMobile} />
 
             {location.desc && <>
                 <LocationTitle className="title fs16" />

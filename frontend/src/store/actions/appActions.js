@@ -64,6 +64,13 @@ export function setGuests(guestsDetails) {
     };
 }
 
+export function setDestination(destination) {
+    return {
+        type: 'SET_DESTINATION',
+        destination
+    };
+}
+
 export function getGuestsTitle(guestsDetails) {
     if (!Object.keys(guestsDetails).length) return 'Add guests';
     const { adults, children, infants, pets } = guestsDetails;

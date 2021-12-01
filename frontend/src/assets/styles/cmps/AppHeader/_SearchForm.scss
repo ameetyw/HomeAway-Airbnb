@@ -73,12 +73,11 @@
                         cursor: pointer;
                         padding: 14px 32px;
                         width: 100%;
-                        input {
-                            background-color: transparent;
-                            border: none;
-                            &:focus {
-                                outline: none;
-                            }
+                        position: relative;
+                        .location-clear-btn {
+                            position: absolute;
+                            right: 20px;
+                            top: 20px;
                         }
                     }
                 }

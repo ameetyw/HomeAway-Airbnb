@@ -1,0 +1,77 @@
+.location-search-input {
+    background-color: transparent;
+    border: none;
+    &:focus {
+        outline: none;
+    }
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.location-clear-btn {
+    z-index: 3;
+    border-radius: 50%;
+    color: $main-font-clr;
+    background-color: $dark-btn-hover-clr;
+    height: rem(24px);
+    width: rem(24px);
+    svg {
+        height: rem(11px);
+        width: rem(11px);
+        stroke-width: 4;
+        position: relative;
+        left: rem(-0.5px);
+    }
+    &:hover {
+        color: black;
+        background-color: $header-btn-border-clr;
+    }
+}
+
+.pac-container.pac-logo {
+    margin-top: 12px;
+    padding: 16px 0;
+    border-radius: 32px;
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 6px 20px;
+    &::after {
+        display: none;
+    }
+    font-family: AirbnbCereal-Reg;
+    * {
+        color: $main-font-clr;
+        font-weight: 400;
+        font-size: rem(16px);
+    }
+    width: 500px !important;
+    .pac-item {
+        padding: 8px 32px;
+        // padding: 8px 16px 8px 32px;
+        display: flex;
+        align-items: center;
+        border: none;
+        .pac-item-query::after {
+            content: ",";
+        }
+        .pac-icon {
+            background-color: $reg-btn-hover-clr;
+            border: 1px solid #b0b0b033;
+            border-radius: rem(8px);
+            height: rem(48px);
+            width: rem(48px);
+            margin-inline-end: 16px;
+            margin-top: 0;
+            position: relative;
+            color: $main-font-clr;
+            background-image: none;
+            &::after {
+                content: url(../../imgs/icons/general/icon-pin.svg);
+                height: rem(22px);
+                width: rem(22px);
+                // background-image: url(../../imgs/icons/general/icon-pin-filled.svg);
+                position: absolute;
+                top: rem(13px);
+                left: rem(13px);
+            }
+        }
+    }
+}

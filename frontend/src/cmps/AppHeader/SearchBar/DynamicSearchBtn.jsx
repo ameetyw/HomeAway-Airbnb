@@ -1,3 +1,5 @@
+import { PlacesAutocomplete } from "../../PlacesAutocomplete";
+
 export const DynamicSearchBtn = ({ type, subtitle, isOpen, children, toggleIsOpen }) => {
     const typeToTitle = type.split('-').join(' ');
     const capitalTitle = typeToTitle.charAt(0).toUpperCase() + typeToTitle.slice(1);
@@ -14,14 +16,15 @@ export const DynamicSearchBtn = ({ type, subtitle, isOpen, children, toggleIsOpe
         case 'location':
             return (
                 <span className={`search-sub-btn ${type}-wrapper flex align-center`}>
-                    <label htmlFor={type}
+                    <label htmlFor="location-input"
                         className={`${type} flex column${isOpen ? " open" : ""}`}
                         onClick={(ev) => toggleIsOpen(ev, type)}>
                         <h4 className="search-title">{capitalTitle}</h4>
-                        <input className={isPlaceholder} value="" type="text"
+                        <PlacesAutocomplete />
+                        {/* <input className={isPlaceholder} value="" type="text"
                             id={type} name={type} placeholder={subtitle}
-                        // onChange={handleChange} 
-                        />
+                        onChange={handleChange} 
+                        /> */}
                     </label>
                 </span>
             );

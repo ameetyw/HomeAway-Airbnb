@@ -108,6 +108,13 @@ export function appReducer(state = initialState, action) {
                     currBooking: { ...state.currBooking, stayGuests: action.guestsDetails.guests }
                 };
             }
+        case 'SET_DESTINATION':
+            {
+                return {
+                    ...state,
+                    searchInput: { ...state.searchInput, destination: action.destination }
+                };
+            }
         default:
             return state;
     }
