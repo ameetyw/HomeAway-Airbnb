@@ -8,8 +8,7 @@ export const StayHeader = ({ stay }) => {
             <h1 className="title">{stay.title}</h1>
             <span className="sub-header flex align-center space-between">
                 <div className="info flex align-center">
-                    <span className="rate-rev flex align-center"><RatingReviews totalRate={stay.rating.total} totalReviews={stay.reviews.length} />
-                    <span className="sep">·</span></span>
+                    <RatingReviews totalRate={stay.rating.total} totalReviews={stay.reviews.length} />
                     <span className="location">{stay.loc.city}, {stay.loc.country}</span>
                 </div>
                 <div className="actions flex align-center">

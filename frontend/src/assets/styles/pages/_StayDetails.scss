@@ -11,30 +11,19 @@
             display: block;
             height: rem(80px);
         }
-        .info-section {
+        .sub-section {
             padding: 32px 0 24px;
         }
     }
 
     @include for-tablet-portrait-up {
         padding-top: 24px;
-        .info-section {
+        .sub-section {
             padding: 48px 0;
         }
     }
 
-    .info-section {
-        h2 {
-            font-family: AirbnbCereal-Med;
-            font-weight: 400;
-            font-size: rem(22px);
-            margin-bottom: rem(8px);
-        }
-        line-height: rem(20px);
-        &:not(:first-child) {
-            border-top: 1px solid $header-btn-border-clr;
-        }
-    }
+    
 
     .show-more-btn {
         text-decoration: underline;

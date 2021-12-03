@@ -48,13 +48,12 @@
         font-family: AirbnbCereal-Med;
         .info {
             gap: rem(4px);
-            @import "./RatingReviews";
-            .rate-rev {
-                gap: rem(4px);
-            }
-            .sep {
-                padding: 0 4px;
-            }
+            // @import "./RatingReviews";
+            .rate-rev::after {
+                    content:"·";
+                    padding: 0 4px;
+                }
+            
             .location {
                 color: $ligher-font-clr;
                 overflow: clip;

@@ -21,10 +21,6 @@ export const DynamicSearchBtn = ({ type, subtitle, isOpen, children, toggleIsOpe
                         onClick={(ev) => toggleIsOpen(ev, type)}>
                         <h4 className="search-title">{capitalTitle}</h4>
                         <PlacesAutocomplete />
-                        {/* <input className={isPlaceholder} value="" type="text"
-                            id={type} name={type} placeholder={subtitle}
-                        onChange={handleChange} 
-                        /> */}
                     </label>
                 </span>
             );

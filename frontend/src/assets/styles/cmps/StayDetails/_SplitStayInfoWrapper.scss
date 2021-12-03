@@ -1,6 +1,6 @@
 .split-stay-info-wrapper {
     width: 100%;
-    @import "./RatingReviews";
+    // @import "./RatingReviews";
     @import "./BookingForm";
     @import "./StayAmenities";
 
@@ -38,12 +38,6 @@
         }
         .info-header {
             padding-bottom: 24px;
-            .info-header-subtitle {
-                p:not(:last-child)::after {
-                    content: "·";
-                    padding: 0 rem(4px);
-                }
-            }
         }
 
         .description {

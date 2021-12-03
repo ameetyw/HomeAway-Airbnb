@@ -1,18 +1,21 @@
-.rating {
-    font-size: rem(14px);
-    line-height: rem(18px);
-    font-family: AirbnbCereal-Med;
-    color: $main-font-clr;
+.rate-rev {
     gap: rem(4px);
-    svg {
-        height: rem(14px);
-        width: rem(14px);
-        color: $main-highlight-clr;
+    .rating {
+        font-size: rem(14px);
+        line-height: rem(18px);
+        font-family: AirbnbCereal-Med;
+        color: $main-font-clr;
+        gap: rem(4px);
+        svg {
+            height: rem(14px);
+            width: rem(14px);
+            color: $main-highlight-clr;
+        }
     }
-}
-.review-count {
-    color: $ligher-font-clr;
-    text-decoration: underline;
-    font-size: rem(14px);
-    font-family: AirbnbCereal-Med;
+    .review-count {
+        color: $ligher-font-clr;
+        text-decoration: underline;
+        font-size: rem(14px);
+        font-family: AirbnbCereal-Med;
+    }
 }

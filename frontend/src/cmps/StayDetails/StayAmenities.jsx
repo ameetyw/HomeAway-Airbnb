@@ -10,7 +10,7 @@ export const StayAmenities = ({ amenities }) => {
     }
 
     return (
-        <div className="amenities info-section">
+        <div className="amenities sub-section">
             <h2 className="title">What this place offers</h2>
             <div className="amenities-list">
                 {amenitiesForDisplay.map((amenity, idx) => (

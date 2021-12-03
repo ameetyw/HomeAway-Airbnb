@@ -40,7 +40,7 @@ export const HostedBy = ({ host }) => {
     };
 
     return (
-        <section className="hosted-by info-section">
+        <section className="hosted-by sub-section">
             <div className="host-header flex align-center">
                 <span className="host-img">
                     <img className="full-size" src={host.imgUrl || GenericAvatar} alt="" />

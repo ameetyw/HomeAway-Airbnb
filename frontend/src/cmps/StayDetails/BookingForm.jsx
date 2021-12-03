@@ -54,12 +54,10 @@ export const BookingForm = ({ stay, isMobile }) => {
                 <div className="night-price">
                     <span>${stay.price}</span> / night
                 </div>
-                <div className="info-sum flex">
-                    {isMobile && startDate && endDate ?
-                        <p className="dates">{getFormattedDate(startDate)} – {getFormattedDate(endDate)}</p> :
-                        <RatingReviews totalRate={stay.rating.total} totalReviews={stay.reviews.length} />
-                    }
-                </div>
+                {isMobile && startDate && endDate ?
+                    <p className="dates">{getFormattedDate(startDate)} – {getFormattedDate(endDate)}</p> :
+                    <RatingReviews totalRate={stay.rating.total} totalReviews={stay.reviews.length} />
+                }
             </div>
 
             <div className="form-input">

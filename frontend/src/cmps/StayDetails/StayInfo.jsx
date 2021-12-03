@@ -8,7 +8,7 @@ export const StayInfo = ({ stay, isMobile }) => {
     return (
         <section className="stay-info flex column">
             <InfoHeader stay={stay} />
-            <div className="features info-section">features</div>
+            <div className="features sub-section">features</div>
             <StayDescription desc={stay.description} />
             <StayAmenities amenities={stay.amenities} />
             {isMobile && <StayLocation location={stay.loc} isMobile={true} />}

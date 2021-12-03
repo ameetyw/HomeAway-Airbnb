@@ -25,7 +25,7 @@ export const StayDescription = ({ desc }) => {
     }, [widthRef.current, currScreenSize]);
 
     return (
-        <div className="description info-section">
+        <div className="description sub-section">
             <p ref={widthRef} dangerouslySetInnerHTML={{ __html: boldTest }} />
             {/* <p ref={widthRef} dangerouslySetInnerHTML={{ __html: boldedSumm }} /> */}
             {isDescOverflow && <ShowMoreBtn />}

@@ -25,19 +25,19 @@ export const StayLocation = ({ location, isMobile }) => {
     };
 
     return (
-        <section className="stay-location info-section">
+        <section className="stay-location sub-section">
             <h2>Where you'll be</h2>
             {!location.desc && <LocationTitle className="no-desc fs16" />}
 
             <GoogleMap center={location.pos} zoom={14} isMobile={isMobile} />
-
-            {location.desc && <>
+            
+            {location.desc ? <>
                 <LocationTitle className="title fs16" />
                 <p ref={widthRefEl} className="location-desc clamp-3-lines">
                     {location.desc}
                 </p>
                 {isShowMore && <ShowMoreBtn />}
-            </>}
+            </> : ''}
         </section>
     );
 

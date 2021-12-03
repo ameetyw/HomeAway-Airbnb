@@ -17,7 +17,7 @@ export const StayDates = ({ stay }) => {
     };
 
     return (
-        <section className="select-dates info-section">
+        <section className="select-dates sub-section">
             <h2>{getDatesHeader()}</h2>
             <p className="fs14">Add your travel dates for exact pricing</p>
             <DatePickerRange

@@ -25,6 +25,7 @@ export const StayDetails = () => {
     };
     const tempStay = {
         "_id": "3a",
+        // "_id": "61a8dfacc9866ab3dd55f213",
         "title": "Private Balcony Room ❤ 1m walk from Rothschild Blv",
         "imgUrls": [
             "https://a0.muscache.com/im/pictures/17e9d170-5dee-414b-a605-c5c69ab8b01c.jpg?im_w=960",

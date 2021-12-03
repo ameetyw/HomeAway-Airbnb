@@ -71,14 +71,16 @@
                     line-height: rem(24px);
                 }
             }
-            .info-sum {
+
+            .dates {
+                font-family: AirbnbCereal-Med;
+                font-size: rem(14px);
+                text-decoration: underline;
+            }
+
+            .rate-rev {
                 > * {
                     font-size: rem(12px);
-                }
-                .dates {
-                    font-family: AirbnbCereal-Med;
-                    font-size: rem(14px);
-                    text-decoration: underline;
                 }
                 .rating svg {
                     height: rem(10px);
@@ -108,7 +110,7 @@
                     font-size: rem(22px);
                 }
             }
-            .info-sum {
+            .rate-rev {
                 padding-bottom: rem(2px);
                 font-size: rem(14px);
                 .rating svg {

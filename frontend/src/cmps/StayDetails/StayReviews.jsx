@@ -32,7 +32,7 @@ export const StayReviews = ({ rates, reviews }) => {
     };
 
     return (
-        <section className="reviews info-section">
+        <section className="reviews sub-section">
             <h2 className="flex align-center">
                 <StarIcon />
                 {total} · {reviews.length} reviews
