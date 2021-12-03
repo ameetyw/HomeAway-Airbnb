@@ -19,6 +19,7 @@
 }
 .fs18 {
     font-size: rem(18px);
+    line-height: rem(24px);
 }
 .fs20 {
     font-size: rem(20px);
@@ -120,5 +121,31 @@
     padding: 8px 16px;
     &:hover {
         border-color: $main-font-clr;
+    }
+}
+
+// sub-section font + divider
+
+.sub-section {
+    h2 {
+        font-family: AirbnbCereal-Med;
+        font-weight: 400;
+        font-size: rem(22px);
+        margin-bottom: rem(8px);
+    }
+    line-height: rem(20px);
+    &:not(:first-child) {
+        border-top: 1px solid $header-btn-border-clr;
+    }
+}
+
+// flex dot-seperated subheader section
+.sep-subheader {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    p:not(:last-child)::after {
+        content: "·";
+        padding: 0 rem(4px);
     }
 }

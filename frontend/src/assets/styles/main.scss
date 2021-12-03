@@ -6,14 +6,16 @@
 @import "./setup/helpers";
 @import "./setup/layout";
 
-// Pages
-@import "./pages/HomePage";
-@import "./pages/ExplorePlaces";
-@import "./pages/StayDetails";
-
 // Components
 @import "./cmps/AppHeader";
 @import "./cmps/AppFooter";
 @import "./cmps/DatePickerRange";
 @import "./cmps/GuestsPicker";
 @import "./cmps/PlacesAutocomplete";
+@import "./cmps/StayDetails/RatingReviews";
+
+// Pages
+@import "./pages/HomePage";
+@import "./pages/StayDetails";
+@import "./pages/ExplorePlaces";
+@import "./pages/ExplorePlaces-layout";

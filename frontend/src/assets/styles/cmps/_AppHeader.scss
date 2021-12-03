@@ -7,7 +7,6 @@ header {
     z-index: 2;
     background-color: #fff;
     transition: height 0.2s ease-in-out;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 0px;
     height: rem(80px);
     &.home-top {
         box-shadow: none;
@@ -40,8 +39,16 @@ header {
         }
     }
 
+    &:not(.explore) {
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 0px;
+        &:not(.stay) {
+            @include for-tablet-portrait-up {
+                box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
+            }
+        }
+    }
+
     @include for-tablet-portrait-up {
-        box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
         .header-content {
             .top {
                 justify-content: space-between;
@@ -115,10 +122,5 @@ header {
         .mobile-nav {
             display: none;
         }
-    }
-    
-    &.stay {
-        box-shadow: rgba(0, 0, 0, 0.10) 0px 1px 0px;
-        // position: absolute;
     }
 }

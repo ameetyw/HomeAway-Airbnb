@@ -1,0 +1,67 @@
+.explore.main-content {
+    .explore-header-wrapper {
+        top: rem(80px);
+        position: fixed;
+        width: 100%;
+        height: rem(68px);
+        border-bottom: 1px solid #0000001a;
+        background-color: #fff;
+        z-index: 1;
+        .explore-header {
+            position: absolute;
+            left: 24px;
+            right: 24px;
+            height: 100%;
+        }
+    }
+
+    .explore-content {
+        position: relative;
+        top: rem(148px);
+        width: 100%;
+        .explore-listings {
+            display: none;
+            height: 200vh;
+        }
+        .explore-map {
+            position: fixed;
+            right: 0;
+            left:0;
+            height: calc(100vh - 9.25rem);
+            background-color: wheat;
+            display: none;
+        }
+        .active {
+            width: 100%;
+            display: block;
+        }
+        .switch-view {
+            display: flex;
+        }
+    }
+
+    @include for-laptop-up {
+        > * {
+            grid-column: 1 /-1;
+        }
+        .explore-content {
+            .explore-listings {
+                display: block;
+                width: 58vw;
+                max-width: 840px;
+                padding: 0 24px;
+            }
+            .explore-map {
+                display: block;
+                left: unset;
+                width: calc(100% - 840px);
+                min-width: 42vw;
+
+                background-color: rgb(182, 175, 175);
+            }
+            .switch-view {
+                display: none;
+            }
+        }
+    }
+}
