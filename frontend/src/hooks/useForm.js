@@ -9,8 +9,14 @@ export const useForm = (initialFields, cb = () => { }) => {
   }, [fields]);
 
   const handleChange = ({ target }) => {
-    var field = target.name;
-    var value = target.type === 'number' ? +target.value : target.value;
+    const field = target.name || target.id;
+    let value = target.type === 'number' ? +target.value : target.value;
+    if (typeof fields[field] === 'object') {
+      const objCopy = Array.isArray(fields[field]) ? [...fields[field]] : { ...fields[field] };
+      const key = target.dataset.key;
+      objCopy[key] = value;
+      value = objCopy;
+    }
     setFields(prevFields => ({ ...prevFields, [field]: value }));
   };
 
