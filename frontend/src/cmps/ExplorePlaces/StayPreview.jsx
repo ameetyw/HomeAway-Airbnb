@@ -27,7 +27,7 @@ export const StayPreview = ({ stay }) => {
                 </div>
 
                 <div className="bottom-info flex space-between">
-                    <RatingReviews totalRate={stay.rating.total} totalReviews={stay.reviews.length} />
+                    <RatingReviews totalRate={stay.rating.total} totalReviews={stay.reviewsCount} />
                     <div className="night-price fs18">
                         <span className="title">${stay.price}</span> / night
                     </div>

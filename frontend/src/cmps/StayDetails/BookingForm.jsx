@@ -56,7 +56,7 @@ export const BookingForm = ({ stay, isMobile }) => {
                 </div>
                 {isMobile && startDate && endDate ?
                     <p className="dates">{getFormattedDate(startDate)} – {getFormattedDate(endDate)}</p> :
-                    <RatingReviews totalRate={stay.rating.total} totalReviews={stay.reviews.length} />
+                    <RatingReviews totalRate={stay.rating.total} totalReviews={stay.reviewsCount} />
                 }
             </div>
 
