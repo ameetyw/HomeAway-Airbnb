@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { setHomeTop, setSearchExpand } from '../store/actions/appActions';
+import { showErrorMsg, showSuccessMsg, showUserMsg } from '../services/event-bus.service';
 import { Popular } from '../cmps/HomePage/Popular';
 import { Anywhere } from '../cmps/HomePage/Anywhere';
 import HostImg from '../assets/imgs/HomePage/host.jpg';
-import { PlacesAutocomplete } from '../cmps/PlacesAutocomplete';
+import { ReactComponent as HeartIcon } from '../assets/imgs/icons/general/icon-heart.svg';
 
 export const HomePage = () => {
     const dispatch = useDispatch();
@@ -13,6 +14,9 @@ export const HomePage = () => {
     let winScroll;
 
     useEffect(() => {
+        // <p className="flex align-center" style={{ gap: '7px' }}>
+        //     <HeartIcon style={{ height: '18px', width: '18px', fill:'#ff385c' }} />
+        //     Saved to your saving test wishlist</p>
         window.scrollTo({
             top: 0,
             behavior: 'smooth'

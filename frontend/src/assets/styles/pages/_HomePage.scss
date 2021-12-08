@@ -10,7 +10,7 @@
         padding: 24px;
         background: url(../../imgs/HomePage/hero.jpg) no-repeat center;
         background-size: cover;
-        margin-bottom: 35px;
+        // margin-bottom: 35px;
         .welcome-msg {
             position: relative;
             bottom: 7%;
@@ -52,8 +52,9 @@
             }
         }
     }
+
     .host {
-        margin: 35px 0 96px;
+        margin: 48px 0 96px;
         position: relative;
         min-height: 300px;
         max-height: 600px;
@@ -112,25 +113,32 @@
     @include for-tablet-portrait-up {
         &::before {
             background-color: black;
-            min-height: rem(180px);
+            height: rem(180px);
             grid-column: 1 /-1;
             width: 100%;
             content: "";
         }
         .hero {
+            height: calc(100vh - 11.25rem);
+        }
+    }
+
+    @include for-laptop-up {
+        .hero {
             grid-column: 2/3;
             border-radius: 15px;
-            top: rem(180px);
-            height: calc(100vh - 11.25rem);
+            margin-bottom: 55px;
             .backdrop {
                 position: absolute;
-                top: rem(80px);
+                top: 0;
                 left: 0;
                 right: 0;
                 width: 100%;
-                height: 107vh;
+                height: calc(100vh + 55px);
                 z-index: -1;
-                background: linear-gradient(to bottom, #000000 0%, #000000 50%, #ffffff 50%, #ffffff 100%);
+                background-color: black;
+                // height: 107vh;
+                // background: linear-gradient(to bottom, #000000 0%, #000000 50%, #ffffff 50%, #ffffff 100%);
             }
         }
     }
