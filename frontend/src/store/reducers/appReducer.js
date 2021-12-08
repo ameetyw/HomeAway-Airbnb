@@ -1,4 +1,4 @@
-import { userService } from '../../services/user.service';
+// import { userService } from '../../services/user.service';
 
 const emptyDates = {
     startDate: null,
@@ -6,7 +6,7 @@ const emptyDates = {
 };
 
 const initialState = {
-    loggedInUser: userService.getLoggedinUser(),
+    // loggedInUser: userService.getLoggedinUser(),
     isHomeTop: false,
     isSearchExpand: false,
     currScreenSize: null,
@@ -20,19 +20,6 @@ const initialState = {
         stayGuests: { adults: 1 }
     },
 };
-
-// currBooking = {
-//     stayId, only if 
-//     userId, 
-//     stayDates, [start,end]
-//     stayGuests, {adults, children, infants, pets}
-//     price
-// }
-// searchInput = {
-//     destination,
-//     dates,
-//     guests
-// }
 
 export function appReducer(state = initialState, action) {
     switch (action.type) {
@@ -71,50 +58,31 @@ export function appReducer(state = initialState, action) {
                 ...state,
                 currBooking: action.currBooking
             };
-        // case 'SET_DATES':
-        //     return {
-        //         ...state,
-        //         currBooking: { ...state.currBooking, stayDates: action.dates }
-        //     };
         case 'SET_DATES':
-            {
-                if (action.datesDetails.type === 'search') {
-                    // console.log({ ...state.searchInput, searchDates: action.datesDetails.dates });
-                    return {
-                        ...state,
-                        searchInput: { ...state.searchInput, dates: action.datesDetails.dates }
-                    };
-                }
+            if (action.datesDetails.type === 'search') {
                 return {
                     ...state,
-                    currBooking: { ...state.currBooking, stayDates: action.datesDetails.dates }
+                    searchInput: { ...state.searchInput, dates: action.datesDetails.dates }
                 };
-            }
-        // case 'SET_GUESTS':
-        //     return {
-        //         ...state,
-        //         currBooking: { ...state.currBooking, stayGuests: action.guests }
-        //     };
+            } else return {
+                ...state,
+                currBooking: { ...state.currBooking, stayDates: action.datesDetails.dates }
+            };
         case 'SET_GUESTS':
-            {
-                if (action.guestsDetails.type === 'search') {
-                    return {
-                        ...state,
-                        searchInput: { ...state.searchInput, guests: action.guestsDetails.guests }
-                    };
-                }
+            if (action.guestsDetails.type === 'search') {
                 return {
                     ...state,
-                    currBooking: { ...state.currBooking, stayGuests: action.guestsDetails.guests }
+                    searchInput: { ...state.searchInput, guests: action.guestsDetails.guests }
                 };
-            }
+            } else return {
+                ...state,
+                currBooking: { ...state.currBooking, stayGuests: action.guestsDetails.guests }
+            };
         case 'SET_DESTINATION':
-            {
-                return {
-                    ...state,
-                    searchInput: { ...state.searchInput, destination: action.destination }
-                };
-            }
+            return {
+                ...state,
+                searchInput: { ...state.searchInput, destination: action.destination }
+            };
         default:
             return state;
     }

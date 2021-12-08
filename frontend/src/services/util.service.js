@@ -47,7 +47,3 @@ export function makeId(length = 8) {
 export function isEmptyObj(obj) {
     return !Object.keys(obj).length;
 }
-
-export function stopProp(ev) {
-    ev.stopPropagation();
-}
