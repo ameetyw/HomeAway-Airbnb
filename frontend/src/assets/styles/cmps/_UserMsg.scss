@@ -1,0 +1,101 @@
+.user-msg {
+    position: fixed;
+    left: 20px;
+    bottom: 24px;
+    min-width: 245px;
+    width: fit-content;
+    max-width: 400px;
+    gap: rem(12px);
+    background-color: #fff;
+    padding: 12px;
+    padding-inline-end: 10px;
+    border: 1px solid $header-btn-border-clr;
+    border-radius: rem(12px);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
+    font-size: rem(14px);
+    line-height: rem(18px);
+    .msg-wrapper {
+        max-width: 300px;
+        white-space: pre-line;
+        .error {
+            height: rem(30px);
+            width: rem(30px);
+            fill: #d75a4a;
+            margin-inline-start: rem(-5px);
+            margin-inline-end: rem(4px);
+        }
+        .success {
+            height: rem(22px);
+            width: rem(22px);
+            fill: #25ae88;
+            margin: rem(5px);
+            margin-inline-start: rem(-1px);
+            margin-inline-end: rem(8px);
+        }
+    }
+    button {
+        color: $main-font-clr;
+        height: rem(20px);
+        width: rem(20px);
+        border-radius: 50%;
+        &:hover {
+            background-color: $header-btn-border-clr;
+        }
+        svg {
+            height: rem(12px);
+            width: rem(12px);
+        }
+    }
+}
+
+.error-page {
+    align-items: center;
+    margin: 0 auto;
+    margin-top: rem(112px);
+    margin-bottom: 48px;
+    color: #484848;
+    gap: 24px;
+    h1 {
+        font-family: AirbnbCereal-Bold;
+        font-size: rem(60px);
+    }
+    h3 {
+        font-size: rem(22px);
+        margin-top: 18px;
+        margin-bottom: 15px;
+        font-family: AirbnbCereal-Reg;
+    }
+    img {
+        max-height: calc(100vh - 10rem);
+        width: 40%;
+    }
+    @include for-mobile-only {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+    }
+
+    @include for-tablet-portrait-up {
+        h1 {
+            font-size: rem(100px);
+        }
+    }
+
+    @include for-tablet-landscape-up {
+        .error-txt {
+            min-width: 60%;
+            h1 {
+                margin-inline-start: rem(-6px);
+                line-height: 1.1;
+                font-size: rem(145px);
+            }
+            h3 {
+                margin-top: 25px;
+                font-size: rem(32px);
+            }
+        }
+        img {
+            width: unset;
+        }
+    }
+}

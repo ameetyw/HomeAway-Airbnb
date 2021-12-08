@@ -7,7 +7,8 @@ import { UserMenuBtn } from './UserMenuBtn';
 import WhiteLogo from '../../assets/imgs/logo-white.svg';
 import RedLogo from '../../assets/imgs/logo-red.svg';
 import { SearchForm } from './SearchBar/SearchForm';
-import { MobileSearch } from './SearchBar/MobileSearch';
+// import { MobileSearch } from './SearchBar/MobileSearch';
+import { UserMsg } from '../UserMsg';
 
 export const AppHeader = () => {
     const dispatch = useDispatch();
@@ -54,6 +55,8 @@ export const AppHeader = () => {
             {/* <nav className="mobile-nav flex align-center">
                 <p>I am mobile nav</p>
             </nav> */}
+
+            <UserMsg />
         </header>
     );
 };
