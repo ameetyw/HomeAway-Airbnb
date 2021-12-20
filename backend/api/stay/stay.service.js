@@ -1,6 +1,6 @@
 const dbService = require('../../services/db.service');
 const ObjectId = require('mongodb').ObjectId;
-const logger = require('../../services/logger.service')
+const logger = require('../../services/logger.service');
 // const asyncLocalStorage = require('../../services/als.service');
 
 async function query(filterBy = {}) {
@@ -100,9 +100,36 @@ async function save(stay) {
 //     }
 // }
 
+
 function _buildCriteria(filterBy) {
+    // filterBy = {
+    //     type: ['1-entire', '2-private','3-hotel','4-shared'],
+    //     minPrice, 
+    //     maxPrice,
+    //     superhost: true,
+    //     amenities: ['dryer','wifi','dedicated workspace'],
+    //     propertyType: ['loft','condo','rental unit'],
+    //     unique: ['tree house','camper/RV','tent','tiny house'],
+    // }
     const criteria = {};
+    if (filterBy.type && filterBy.type.length) {
+        const typeCriteria = filterBy.type.map(type => new RegExp(type, 'i'));
+        criteria.type = { $in: typeCriteria };
+    }
+    if (filterBy.amenities && filterBy.amenities.length) {
+        const amenitiesCriteria = filterBy.amenities.map(amenity => new RegExp(amenity, 'i'));
+        criteria['amenities.amenity'] = { $all: amenitiesCriteria };
+    }
+    // console.log(criteria)
     return criteria;
+    //to build criteria..
+    //type:   specific regex .find({type: { $regex: /private/, $options: 'i'}})
+    // get stays that are private or shared- 
+    // .find({type: { $in: [/private/i, /shared/i]} })
+    // has both pool + shampoo:
+    // .find({ 'amenities.amenity': { $all: [/shampoo/i, /pool/i] } });
+    // .find({'type': { '$in': [ /entire place/i ]}, 
+    //        'amenities.amenity':{'$all':[/wifi/i, /smoke alarm/i]}})
 }
 
 module.exports = {
