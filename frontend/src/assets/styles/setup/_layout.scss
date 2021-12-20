@@ -23,17 +23,7 @@
 
     &:not(.explore) {
         @include for-tablet-portrait-up {
-            grid-template-columns:
-                minmax($md-margin, 1fr)
-                minmax(auto, max-content-width(($tablet-landscape-startpoint - 1), $md-margin))
-                minmax($md-margin, 1fr);
-        }
-
-        @include for-tablet-landscape-up {
-            grid-template-columns:
-                minmax($md-margin, 1fr)
-                minmax(auto, max-content-width(($laptop-startpoint - 1), $md-margin))
-                minmax($md-margin, 1fr);
+            grid-template-columns: $md-margin auto $md-margin
         }
 
         @include for-laptop-up {

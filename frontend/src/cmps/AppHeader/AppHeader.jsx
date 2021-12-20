@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSearchExpand } from '../../store/actions/appActions';
+import { loadScript } from '../../services/util.service';
+import { setSearchExpand, setGoogleScriptLoad } from '../../store/actions/appActions';
 import { SearchBar } from './SearchBar/SearchBar';
 import { UserMenuBtn } from './UserMenuBtn';
 import WhiteLogo from '../../assets/imgs/logo-white.svg';
@@ -10,11 +11,22 @@ import { SearchForm } from './SearchBar/SearchForm';
 // import { MobileSearch } from './SearchBar/MobileSearch';
 import { UserMsg } from '../UserMsg';
 
+const GOOGLE_KEY = 'AIzaSyDm1kVff1tOF1Jvd-Uxba4C__Ux4bt3R8I';
+const scriptUrl = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_KEY}&libraries=places`;
+
 export const AppHeader = () => {
     const dispatch = useDispatch();
     const { pathname } = useLocation();
     const layoutType = pathname.includes('/stay/') ? " stay" : (pathname.includes('/explore/') ? " explore" : "");
-    const { isHomeTop, isSearchExpand } = useSelector(state => state.appModule);
+    const { isHomeTop, isSearchExpand, isGoogleScriptLoaded } = useSelector(state => state.appModule);
+
+    useEffect(() => {
+        if (!isGoogleScriptLoaded) loadScript('google-maps',scriptUrl, {
+            async: true, 
+            // defer: true,
+            callback: () => { dispatch(setGoogleScriptLoad(true)); }
+        });
+    }, [isGoogleScriptLoaded]);
 
     useEffect(() => {
         if (isSearchExpand && !isHomeTop) {

@@ -90,7 +90,8 @@ export const BookingForm = ({ stay, isMobile }) => {
                     `${isStartOpen || isEndOpen ? " hide" : ""}`} >
                     <GuestsPicker stay={stay} />
                     <span className="close-btn-wrapper flex justify-end">
-                        <button onClick={() => { setGuestsOpen(false); }}>
+                        <button className="clear-btn large"
+                            onClick={() => { setGuestsOpen(false); }}>
                             Close
                         </button>
                     </span>

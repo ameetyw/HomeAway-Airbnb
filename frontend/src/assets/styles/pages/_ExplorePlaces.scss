@@ -1,8 +1,125 @@
 .explore.main-content {
     .explore-header {
+        @import "../cmps//ExplorePlaces/HeaderBtnPopover";
+        .header-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 4px 0;
+            margin-inline-end: 8px;
+            border: 1px solid $header-btn-border-clr;
+            border-radius: rem(30px);
+            padding: 10px 16px;
+            height: rem(40px);
+            font-size: rem(14px);
+            line-height: rem(18px);
+            white-space: nowrap;
+            &.selected {
+                background-color: $reg-btn-hover-clr;
+                border-color: $main-font-clr;
+            }
+            &:hover {
+                border-color: $main-font-clr;
+            }
+        }
+        .left {
+            .btn-wrapper {
+                position: relative;
+                .header-btn {
+                    gap: 9.5px;
+                    svg {
+                        height: rem(11px);
+                        width: rem(11px);
+                    }
+                }
+                .select-type {
+                    h3 {
+                        font-family: unset;
+                    }
+                    .types-wrapper {
+                        padding: 20px;
+                        .stay-type {
+                            padding: 12px 20px;
+                            gap: 16px;
+                            input {
+                                min-height: rem(24px);
+                                min-width: rem(24px);
+                                border-color: $light-btn-border-clr;
+                                &:hover {
+                                    border-color: $main-font-clr;
+                                }
+                            }
+                            label {
+                                gap: 4px;
+                                .type-desc {
+                                    color: $ligher-font-clr;
+                                }
+                            }
+                        }
+                    }
+                    .ctrl-btns {
+                        padding: 12px 14px;
+                        border-top: 1px solid $dark-btn-hover-clr;
+                    }
+                }
+            }
+            &::after {
+                content: "";
+                height: rem(20px);
+                width: 1px;
+                border-right: 1px solid $header-btn-border-clr;
+                margin: 0 8px;
+            }
+            .screen {
+                display: none;
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                &.open {
+                    display: initial;
+                }
+            }
+        }
+        .right {
+            margin-inline-start: 8px;
+            overflow: hidden;
+            .filters-btns {
+                row-gap: rem(10px);
+                margin-top: rem(9.5px);
+                justify-content: space-evenly;
+                span {
+                    padding: 0 2px;
+                }
+            }
+            .filter-btn {
+                position: relative;
+                align-self: center;
+                gap: 6px;
+                svg {
+                    height: rem(16px);
+                    width: rem(16px);
+                }
+                .filter-count {
+                    position: absolute;
+                    top: rem(-2px);
+                    right: rem(-2px);
+                    font-family: AirbnbCereal-Bold;
+                    font-size: rem(10px);
+                    line-height: rem(12px);
+                    border-radius: 50%;
+                    background-color: $main-font-clr;
+                    color: white;
+                    border: 2px solid white;
+                    text-align: center;
+                    width: rem(18px);
+                    height: rem(18px);
+                }
+            }
+        }
     }
     .explore-content {
-        overflow: hidden;
         .explore-listings {
             .stay-preview {
                 padding: 24px 0;
@@ -84,9 +201,25 @@
                     }
                 }
             }
+            .no-stays {
+                margin: 40px 0;
+                p {
+                    margin: 24px 0;
+                }
+            }
+            .remove-filter {
+                align-self: flex-start;
+                padding: 12px 16px;
+                border: 1px solid $light-btn-border-clr;
+                border-radius: rem(8px);
+                &:hover {
+                    border-color: $main-font-clr;
+                }
+            }
         }
 
-        .explore-map {
+        .explore-map .map {
+            width: 100%;
         }
 
         .switch-view {

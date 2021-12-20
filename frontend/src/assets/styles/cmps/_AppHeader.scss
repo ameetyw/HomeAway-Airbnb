@@ -29,17 +29,6 @@ header {
                 hsla(0, 0%, 100%, 0) 0
             );
         }
-        @include for-tablet-portrait-up {
-            .top {
-                color: white;
-                .logo-wrapper .name {
-                    color: white;
-                }
-                .user-nav > a:hover {
-                    background-color: #ffffff26;
-                }
-            }
-        }
     }
 
     // @include for-tablet-portrait-up {
@@ -125,17 +114,17 @@ header {
             }
         }
 
-        // &.home-top {
-        //     .top {
-        //         color: white;
-        //         .logo-wrapper .name {
-        //             color: white;
-        //         }
-        //         .user-nav > a:hover {
-        //             background-color: #ffffff26;
-        //         }
-        //     }
-        // }
+        &.home-top {
+            .top {
+                color: white;
+                .logo-wrapper .name {
+                    color: white;
+                }
+                .user-nav > a:hover {
+                    background-color: #ffffff26;
+                }
+            }
+        }
 
         .mobile-nav {
             display: none;

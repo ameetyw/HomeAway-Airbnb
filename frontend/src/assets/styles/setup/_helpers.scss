@@ -149,3 +149,36 @@
         padding: 0 rem(4px);
     }
 }
+
+.clear-btn {
+    padding: rem(8px);
+    font-size: rem(14px);
+    line-height: rem(18px);
+    font-family: AirbnbCereal-Med;
+    text-decoration: underline;
+    &.large {
+        padding: rem(10px);
+        font-size: rem(16px);
+    }
+    &:not(.disabled):hover {
+        background-color: $reg-btn-hover-clr;
+    }
+    &.disabled {
+        cursor: not-allowed;
+        color: $header-btn-border-clr;
+    }
+}
+
+.dark-btn {
+    background-color: $main-font-clr;
+    color: white;
+    padding: rem(8px) rem(16px);
+    margin-inline-start: 8px;
+    &:hover {
+        background-color: black;
+    }
+}
+
+.capitalize::first-letter {
+        text-transform: capitalize;
+}

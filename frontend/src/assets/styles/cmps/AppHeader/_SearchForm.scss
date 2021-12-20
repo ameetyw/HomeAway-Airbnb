@@ -2,10 +2,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    &.active {
-        top: 0;
-        bottom: 0;
-    }
+    
     .expanded-search {
         position: relative;
         justify-content: space-evenly;
@@ -88,6 +85,10 @@
                     position: relative;
                     span {
                         flex: 1 0 auto;
+                    }
+                    .guests-wrapper {
+                        max-width: 100%;
+                        transition: max-width 0.3s ease-in-out;
                     }
                 }
 
@@ -189,6 +190,14 @@
                     }
                 }
             }
+        }
+    }
+
+    &.active {
+        top: 0;
+        bottom: 0;
+        .search-sub-btn.guests .guests-wrapper {
+            max-width: calc(100% - 6.9375rem - 9px);
         }
     }
 }

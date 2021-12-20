@@ -1,10 +1,22 @@
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
-import { GoogleMapObj } from "./GoogleMapObj";
+import { useState, useEffect, useRef, Children, cloneElement } from 'react';
 
-const API_KEY = 'AIzaSyDm1kVff1tOF1Jvd-Uxba4C__Ux4bt3R8I';
+export const GoogleMap = ({ zoom, center, children }) => {
+    const mapRef = useRef(null);
+    const [map, setMap] = useState(null);
 
-export const GoogleMap = ({ zoom, center, isMobile }) => {
-    return <Wrapper apiKey={API_KEY}>
-        <GoogleMapObj center={center} zoom={zoom} isMobile={isMobile} />
-    </Wrapper>;
+    useEffect(() => {
+        if (mapRef.current && !map) {
+            setMap(new window.google.maps.Map(mapRef.current, {
+                zoom,
+                center,
+                maxZoom: 17,
+                mapTypeControl: false
+            }));
+        }
+    }, [mapRef.current]);
+
+    return <>
+        <div className="map" ref={mapRef} />
+        {Children.map(children, child => cloneElement(child, { map }))}
+    </>;
 };

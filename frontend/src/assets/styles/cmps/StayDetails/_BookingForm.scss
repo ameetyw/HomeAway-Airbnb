@@ -218,14 +218,6 @@
                 .react-datepicker {
                     margin-bottom: 22px;
                 }
-                .dates-ctrl {
-                    .close-dates {
-                        background-color: $main-font-clr;
-                        color: white;
-                        padding: rem(8px) rem(16px);
-                        margin-inline-start: 8px;
-                    }
-                }
             }
 
             .guests-wrapper {
@@ -233,14 +225,6 @@
                 z-index: 3;
                 right: 0;
                 top: rem(110px);
-                .close-btn-wrapper button {
-                    text-decoration: underline;
-                    font-family: AirbnbCereal-Med;
-                    padding: rem(10px);
-                    &:hover {
-                        background-color: $reg-btn-hover-clr;
-                    }
-                }
                 &.hide {
                     display: none;
                 }

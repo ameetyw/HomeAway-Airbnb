@@ -1,29 +1,70 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import queryString from 'query-string';
 import { stayService } from '../services/stay.service';
 import { StayPreview } from '../cmps/ExplorePlaces/StayPreview';
 import { ReactComponent as MapIcon } from '../assets/imgs/icons/general/icon-map.svg';
 import { ReactComponent as ListIcon } from '../assets/imgs/icons/general/icon-list.svg';
+import { ExploreHeader } from '../cmps/ExplorePlaces/ExploreHeader';
+import { GoogleMap } from '../cmps/GoogleMap';
+import { GoogleMapMarker } from '../cmps/GoogleMapMarker';
+// import { ReactGoogleMap } from '../cmps/ReactGoogleMap';
+// import { MapCmp } from '../cmps/MapCmp';
+
+// const KEY = 'AIzaSyDm1kVff1tOF1Jvd-Uxba4C__Ux4bt3R8I';
 
 export const ExplorePlaces = () => {
-    const searchUrl = useLocation().search;
-    const searchParams = queryString.parse(searchUrl);
+    const searchUrl = useLocation();
+    // const searchParams = queryString.parse(searchUrl);
     // const searchParams = new URLSearchParams(searchUrl);
-    // console.log('searchUrl:', searchUrl);
-
+    console.log('searchUrl:', searchUrl);
+    const { isGoogleScriptLoaded } = useSelector(state => state.appModule);
+    const [filterBy, setFilter] = useState({});
     const [isListView, setListView] = useState(true);
     const [stays, setStays] = useState([]);
     const listRef = useRef(null);
     const mapRef = useRef(null);
 
-    useEffect(async () => {
+    // filterBy = {
+    //     type: ['entire place', 'private room','hotel room','shared room'],
+    //     minPrice, 
+    //     maxPrice,
+    //     superhost: true,
+    //     amenities: ['dryer','wifi','dedicated workspace'],
+    //     propertyType: ['loft','condo','rental unit'],
+    //     unique: ['tree house','camper/RV','tent','tiny house'],
+    // }
+
+    const StayMarker = (stay) => {
+        const markerOpts = {
+            position: stay.loc.pos,
+            label: {
+                text: `$${Math.round(stay.price)}`,
+                color: '#000',
+                fontSize: '0.875rem',
+                lineHeight: '1.125rem',
+                fontFamily: 'AirbnbCereal-Bold'
+            },
+            icon: {
+                path: window.google.maps.SymbolPath.CIRCLE,
+                scale: 9,
+                strokeColor: '#fff',
+                strokeWeight: 20,
+            }
+        };
+        const targetUrl = `http://localhost:3000/stay/${stay._id}`;
+        return <GoogleMapMarker key={stay._id} options={markerOpts} targetUrl={targetUrl} />;
+    };
+
+    useEffect(() => {
         document.title = "HomeAway: Explore stays";
-        console.log('searchParams:', searchParams);
-        const queryStays = await stayService.query();
-        setStays(queryStays);
-    }, []);
+        // console.log('searchParams:', searchParams);
+        (async () => {
+            const queryStays = await stayService.query(filterBy);
+            setStays(queryStays);
+        })();
+    }, [filterBy]);
 
     const toggleView = () => {
         listRef.current.classList.toggle('active');
@@ -34,18 +75,30 @@ export const ExplorePlaces = () => {
     return (
         <section className="explore main-content content-wrapper">
             <div className="explore-header-wrapper">
-                <section className="explore-header">
-                    <h2>header</h2>
-                </section>
+                <ExploreHeader filterBy={filterBy} setFilter={setFilter} />
             </div>
 
             <section className="explore-content flex">
                 <section ref={listRef} className="explore-listings active">
-                    {stays.map(stay => <StayPreview key={stay._id} stay={stay} />)}
+                    {stays && stays.length ?
+                        stays.map(stay => <StayPreview key={stay._id} stay={stay} />) :
+                        <span className="no-stays">
+                            <h3 className="fs22">No results</h3>
+                            <p>Try adjusting your search by changing your dates, removing
+                                filters, or zooming out on the map</p>
+                        </span>
+                    }
+                    <button className="remove-filter title fs14"
+                        onClick={() => setFilter({})}>Remove all filters</button>
+
                 </section>
 
                 <section ref={mapRef} className="explore-map">
-                    <h2>map</h2>
+                    {isGoogleScriptLoaded ?
+                        <GoogleMap zoom={12} center={{ lat: 32.07440344333568, lng: 34.77544709894273 }}>
+                            {stays.map(stay => StayMarker(stay))}
+                        </GoogleMap>
+                        : <div>Loading...</div>}
                 </section>
 
                 <button className="switch-view fs14 flex align-center"

@@ -4,14 +4,14 @@
     @return ($remSize) * 1rem;
 }
 
-@function max-content-width($maxWidth, $marginWidth) {
-    @return ($maxWidth - ($marginWidth * 2));
-}
+// @function max-content-width($maxWidth, $marginWidth) {
+//     @return ($maxWidth - ($marginWidth * 2));
+// }
 
 // Layout mixins
 
 @mixin for-mobile-only {
-    @media (max-width: ($tablet-portrait-startpoint - 1)) {
+    @media (max-width: $tablet-portrait-startpoint) {
         @content;
     }
 }
@@ -40,26 +40,14 @@
     }
 }
 
-@mixin header-nav-btn {
-    @media (max-width: ($header-nav-width - 1)) {
-        @content;
-    }
-}
-
-@mixin full-header-nav {
-    @media (min-width: $header-nav-width) {
-        @content;
-    }
-}
-
-@mixin aspect-ratio($width, $height) {
+@mixin aspect-ratio($rel-width, $rel-height) {
     position: relative;
     overflow: hidden;
     &::before {
       display: block;
       content: "";
       width: 100%;
-      padding-top: ($height / $width) * 100%;
+      padding-top: ($rel-height / $rel-width) * 100%;
     }
     > * {
       position: absolute;

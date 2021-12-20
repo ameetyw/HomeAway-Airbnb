@@ -9,7 +9,10 @@ const initialState = {
     // loggedInUser: userService.getLoggedinUser(),
     isHomeTop: false,
     isSearchExpand: false,
+    isGoogleScriptLoaded: false,
+
     currScreenSize: null,
+
     searchInput: {
         dates: emptyDates,
         guests: {}
@@ -37,6 +40,11 @@ export function appReducer(state = initialState, action) {
             return {
                 ...state,
                 isSearchExpand: action.isSearchExpand
+            };
+        case 'SET_GOOGLE_LOAD':
+            return {
+                ...state,
+                isGoogleScriptLoaded: action.isLoaded
             };
         case 'SET_SCREEN_SIZE':
             return {

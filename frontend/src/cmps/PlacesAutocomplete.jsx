@@ -1,19 +1,19 @@
 import { useState, useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { setDestination } from '../store/actions/appActions';
-import { loadScript } from '../services/util.service';
+// import { loadScript } from '../services/util.service';
 import { ReactComponent as CloseIcon } from '../assets/imgs/icons/general/icon-close.svg';
 
-const API_KEY = 'AIzaSyDm1kVff1tOF1Jvd-Uxba4C__Ux4bt3R8I';
-const scriptUrl = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`;
+// const API_KEY = 'AIzaSyDm1kVff1tOF1Jvd-Uxba4C__Ux4bt3R8I';
+// const scriptUrl = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`;
 
 export const PlacesAutocomplete = () => {
     const dispatch = useDispatch();
-    const [loaded, setLoaded] = useState(false);
+    // const [loaded, setLoaded] = useState(false);
+    const { isGoogleScriptLoaded } = useSelector(state => state.appModule);
     const [sessionToken, setSessionToken] = useState(null);
     const [query, setQuery] = useState('');
     const [isShowBtn, setShowBtn] = useState(false);
-
     const autoCompleteRef = useRef(null);
     let autoComplete = null;
     const autoCompleteOptions = {
@@ -23,19 +23,21 @@ export const PlacesAutocomplete = () => {
     };
 
     useEffect(() => {
-        if (!loaded) {
-            loadScript('google-places', scriptUrl, {
-                async: true, defer: true,
-                callback: () => { setLoaded(true); }
-            });
-        } else if (!autoComplete) {
+        // if (!loaded) {
+        //     loadScript('google-places', scriptUrl, {
+        //         async: true, defer: true,
+        //         callback: () => { setLoaded(true); }
+        //     });
+        // } else 
+        if (isGoogleScriptLoaded && !autoComplete) {
             autoComplete = new window.google.maps.places.Autocomplete(
                 autoCompleteRef.current,
                 autoCompleteOptions
             );
             autoComplete.addListener('place_changed', handlePlaceSelect);
         }
-    }, [loaded]);
+    }, [isGoogleScriptLoaded]);
+    // }, [loaded]);
 
     useEffect(() => {
         if (query) setShowBtn(true);

@@ -47,6 +47,13 @@ export function setSearch(searchInput) {
     };
 }
 
+export function setGoogleScriptLoad(isLoaded) {
+    return {
+        type: 'SET_GOOGLE_LOAD',
+        isLoaded
+    };
+}
+
 // details are {type:'search/stay', dates}
 export function setDates(datesDetails) {
     console.log('action:', datesDetails);

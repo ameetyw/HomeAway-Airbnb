@@ -13,7 +13,7 @@ export function loadScript(elementId, scriptSrc, options) {
     const existingScript = document.getElementById(elementId);
     if (!existingScript) {
         const script = document.createElement('script');
-        script.type = 'text/javascript';
+        // script.type = 'text/javascript';
         script.src = scriptSrc;
         script.id = elementId;
         if (options && options.async) script.async = options.async;
@@ -25,8 +25,7 @@ export function loadScript(elementId, scriptSrc, options) {
         script.onerror = () => {
             console.log(`${elementId} script load error`);;
         };
-    }
-    else if (existingScript && options && options.callback) {
+    } else if (existingScript && options && options.callback) {
         options.callback();
     }
 }

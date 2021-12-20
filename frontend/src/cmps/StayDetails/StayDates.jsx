@@ -27,7 +27,7 @@ export const StayDates = ({ stay }) => {
                 excludeDates={stay.unavailableDates}
             />
             <span className="clear-btn-wrapper flex justify-end">
-                <button className="clear-dates"
+                <button className="clear-btn"
                     onClick={() => dispatch(
                         setDates({ type: 'stay', dates: { startDate: null, endDate: null } }))}>
                     Clear dates

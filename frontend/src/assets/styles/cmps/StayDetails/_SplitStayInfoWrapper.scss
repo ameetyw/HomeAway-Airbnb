@@ -74,14 +74,4 @@
             }
         }
     }
-    .clear-dates {
-        padding: rem(8px);
-        font-size: rem(14px);
-        line-height: rem(18px);
-        font-family: AirbnbCereal-Med;
-        text-decoration: underline;
-        &:hover {
-            background-color: $reg-btn-hover-clr;
-        }
-    }
 }

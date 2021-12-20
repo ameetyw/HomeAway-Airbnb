@@ -48,8 +48,8 @@ export const StayDetails = () => {
                 // dispatch(saveBooking(emptyBooking));
             } catch (err) {
                 console.log('had issue getting stay:', err);
-                navigate('/oops');
                 showErrorMsg(err.message);
+                navigate('/oops');
             }
         }
     }, [stay._id]);
