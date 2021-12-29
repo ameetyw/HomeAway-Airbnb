@@ -9,14 +9,12 @@ export const UserMsg = () => {
   let removeListener;
 
   useEffect(() => {
-    console.log('listening to "show-user-msg"');
     removeListener = eventBusService.on('show-user-msg', msg => {
       setMsg(msg);
       setTimeout(() => { setMsg(null); }, 4000);
     });
     return () => {
       removeListener();
-      console.log('removed listen to "show-user-msg"');
     };
   }, []);
 

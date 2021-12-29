@@ -1,15 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setDestination } from '../store/actions/appActions';
-// import { loadScript } from '../services/util.service';
 import { ReactComponent as CloseIcon } from '../assets/imgs/icons/general/icon-close.svg';
-
-// const API_KEY = 'AIzaSyDm1kVff1tOF1Jvd-Uxba4C__Ux4bt3R8I';
-// const scriptUrl = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places`;
 
 export const PlacesAutocomplete = () => {
     const dispatch = useDispatch();
-    // const [loaded, setLoaded] = useState(false);
     const { isGoogleScriptLoaded } = useSelector(state => state.appModule);
     const [sessionToken, setSessionToken] = useState(null);
     const [query, setQuery] = useState('');
@@ -23,12 +18,6 @@ export const PlacesAutocomplete = () => {
     };
 
     useEffect(() => {
-        // if (!loaded) {
-        //     loadScript('google-places', scriptUrl, {
-        //         async: true, defer: true,
-        //         callback: () => { setLoaded(true); }
-        //     });
-        // } else 
         if (isGoogleScriptLoaded && !autoComplete) {
             autoComplete = new window.google.maps.places.Autocomplete(
                 autoCompleteRef.current,
@@ -37,7 +26,6 @@ export const PlacesAutocomplete = () => {
             autoComplete.addListener('place_changed', handlePlaceSelect);
         }
     }, [isGoogleScriptLoaded]);
-    // }, [loaded]);
 
     useEffect(() => {
         if (query) setShowBtn(true);
@@ -72,7 +60,6 @@ export const PlacesAutocomplete = () => {
 
     return (
         <>
-            {/* <div className="location-search"> */}
             <input
                 ref={autoCompleteRef}
                 type="text"
@@ -83,10 +70,8 @@ export const PlacesAutocomplete = () => {
                 value={query}
                 onChange={onChangeQuery}
                 onFocus={() => { if (query) setShowBtn(true); }}
-            // onBlur={() => { setShowBtn(false); }}
             />
             {isShowBtn ? <button className="location-clear-btn center-content" onClick={deleteSession}><CloseIcon /></button> : ''}
-            {/* </div> */}
         </>
     );
 };

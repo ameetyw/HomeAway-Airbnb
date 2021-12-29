@@ -7,43 +7,8 @@ async function query(filterBy = {}) {
     try {
         const criteria = _buildCriteria(filterBy);
         const collection = await dbService.getCollection('stays');
-        const stays = await collection.find(criteria).toArray();
-        // let stays = await collection.aggregate([
-        //     {
-        //         $match: criteria
-        //     },
-        //     {
-        //         $lookup:
-        //         {
-        //             localField: 'byUserId',
-        //             from: 'user',
-        //             foreignField: '_id',
-        //             as: 'byUser'
-        //         }
-        //     },
-        //     {
-        //         $unwind: '$byUser'
-        //     },
-        //     {
-        //         $lookup:
-        //         {
-        //             localField: 'aboutUserId',
-        //             from: 'user',
-        //             foreignField: '_id',
-        //             as: 'aboutUser'
-        //         }
-        //     },
-        //     {
-        //         $unwind: '$aboutUser'
-        //     }
-        // ]).toArray()
-        // stays = stays.map(stay => {
-        //     review.byUser = { _id: review.byUser._id, fullname: review.byUser.fullname }
-        //     review.aboutUser = { _id: review.aboutUser._id, fullname: review.aboutUser.fullname }
-        //     delete review.byUserId
-        //     delete review.aboutUserId
-        //     return review
-        // })
+        const stays = await collection.find({}).toArray();
+        // const stays = await collection.find(criteria).toArray();
         return stays;
     } catch (err) {
         logger.error('cannot get stays', err);
@@ -64,12 +29,6 @@ async function getById(stayId) {
 
 async function save(stay) {
     try {
-        // peek only updatable fields!
-        // const reviewToAdd = {
-        //     byUserId: ObjectId(review.byUserId),
-        //     aboutUserId: ObjectId(review.aboutUserId),
-        //     txt: review.txt
-        // };
         const collection = await dbService.getCollection('stays');
         if (stay._id) {
             console.log('stay._id in update stay:', stay._id);
@@ -85,32 +44,7 @@ async function save(stay) {
     }
 }
 
-// async function remove(reviewId) {
-//     try {
-//         const store = asyncLocalStorage.getStore()
-//         const { userId, isAdmin } = store
-//         const collection = await dbService.getCollection('review')
-//         // remove only if user is owner/admin
-//         const criteria = { _id: ObjectId(reviewId) }
-//         if (!isAdmin) criteria.byUserId = ObjectId(userId)
-//         await collection.deleteOne(criteria)
-//     } catch (err) {
-//         logger.error(`cannot remove review ${reviewId}`, err)
-//         throw err
-//     }
-// }
-
-
 function _buildCriteria(filterBy) {
-    // filterBy = {
-    //     type: ['1-entire', '2-private','3-hotel','4-shared'],
-    //     minPrice, 
-    //     maxPrice,
-    //     superhost: true,
-    //     amenities: ['dryer','wifi','dedicated workspace'],
-    //     propertyType: ['loft','condo','rental unit'],
-    //     unique: ['tree house','camper/RV','tent','tiny house'],
-    // }
     const criteria = {};
     if (filterBy.type && filterBy.type.length) {
         const typeCriteria = filterBy.type.map(type => new RegExp(type, 'i'));
@@ -120,21 +54,11 @@ function _buildCriteria(filterBy) {
         const amenitiesCriteria = filterBy.amenities.map(amenity => new RegExp(amenity, 'i'));
         criteria['amenities.amenity'] = { $all: amenitiesCriteria };
     }
-    // console.log(criteria)
     return criteria;
-    //to build criteria..
-    //type:   specific regex .find({type: { $regex: /private/, $options: 'i'}})
-    // get stays that are private or shared- 
-    // .find({type: { $in: [/private/i, /shared/i]} })
-    // has both pool + shampoo:
-    // .find({ 'amenities.amenity': { $all: [/shampoo/i, /pool/i] } });
-    // .find({'type': { '$in': [ /entire place/i ]}, 
-    //        'amenities.amenity':{'$all':[/wifi/i, /smoke alarm/i]}})
 }
 
 module.exports = {
     query,
     getById,
     save,
-    // remove,
 };

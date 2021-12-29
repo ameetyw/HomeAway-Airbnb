@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-// import queryString from 'query-string';
 import { stayService } from '../services/stay.service';
 import { StayPreview } from '../cmps/ExplorePlaces/StayPreview';
 import { ReactComponent as MapIcon } from '../assets/imgs/icons/general/icon-map.svg';
@@ -9,16 +7,8 @@ import { ReactComponent as ListIcon } from '../assets/imgs/icons/general/icon-li
 import { ExploreHeader } from '../cmps/ExplorePlaces/ExploreHeader';
 import { GoogleMap } from '../cmps/GoogleMap';
 import { GoogleMapMarker } from '../cmps/GoogleMapMarker';
-// import { ReactGoogleMap } from '../cmps/ReactGoogleMap';
-// import { MapCmp } from '../cmps/MapCmp';
-
-// const KEY = 'AIzaSyDm1kVff1tOF1Jvd-Uxba4C__Ux4bt3R8I';
 
 export const ExplorePlaces = () => {
-    const searchUrl = useLocation();
-    // const searchParams = queryString.parse(searchUrl);
-    // const searchParams = new URLSearchParams(searchUrl);
-    console.log('searchUrl:', searchUrl);
     const { isGoogleScriptLoaded } = useSelector(state => state.appModule);
     const [filterBy, setFilter] = useState({});
     const [isListView, setListView] = useState(true);
@@ -59,7 +49,6 @@ export const ExplorePlaces = () => {
 
     useEffect(() => {
         document.title = "HomeAway: Explore stays";
-        // console.log('searchParams:', searchParams);
         (async () => {
             const queryStays = await stayService.query(filterBy);
             setStays(queryStays);

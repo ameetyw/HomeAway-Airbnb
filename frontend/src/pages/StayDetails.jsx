@@ -22,30 +22,19 @@ export const StayDetails = () => {
     const [isMobile, setIsMobile] = useState(false);
     const mobileBreakpoint = 727;
 
-    // const emptyBooking = {
-    //     stayId,
-    //     stayDates: { startDate: null, endDate: null },
-    //     stayGuests: { adults: 1 }
-    // };
-
     useEffect(async () => {
-        // if (Object.keys(stay).length) {
         if (Object.keys(stay).length && stay._id === stayId) {
             document.title = `HomeAway: ${stay.title}`;
             checkScreenSize();
             window.addEventListener('resize', checkScreenSize);
-            console.log('resize listener on in stay details');
             return () => {
                 window.removeEventListener('resize', checkScreenSize);
-                console.log('resize listener off in stay details');
             };
         }
         else {
             try {
                 const newStay = await stayService.getById(stayId);
-                // console.log('newStay', newStay);
                 dispatch(setStay(newStay));
-                // dispatch(saveBooking(emptyBooking));
             } catch (err) {
                 console.log('had issue getting stay:', err);
                 showErrorMsg(err.message);
