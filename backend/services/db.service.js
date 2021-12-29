@@ -1,12 +1,11 @@
 const MongoClient = require('mongodb').MongoClient;
 
-const config = require('../config');
-
 module.exports = {
     getCollection
 };
 
-const dbName = 'HomeAway';
+const dbURL='mongodb+srv://myHomeAwayDB:PTqZcesylgwoL85f@myhomeaway.ta5wr.mongodb.net/myHomeAway?retryWrites=true&w=majority'
+const dbName = 'myHomeAwayDB';
 let dbConn = null;
 
 async function getCollection(collectionName) {
@@ -23,7 +22,7 @@ async function getCollection(collectionName) {
 async function _connect() {
     if (dbConn) return dbConn;
     try {
-        const client = await MongoClient.connect(config.dbURL, { useNewUrlParser: true, useUnifiedTopology: true });
+        const client = await MongoClient.connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true });
         const db = client.db(dbName);
         dbConn = db;
         return db;
