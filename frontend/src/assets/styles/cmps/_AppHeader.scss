@@ -109,7 +109,7 @@ header {
                     background-color: rgba(0, 0, 0, 0.05);
                 }
                 &.home-top {
-                    opacity: 0;
+                    display: none;
                 }
             }
         }
