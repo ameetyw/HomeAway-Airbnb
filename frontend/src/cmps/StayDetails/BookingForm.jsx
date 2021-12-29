@@ -22,11 +22,9 @@ export const BookingForm = ({ stay, isMobile }) => {
     useEffect(() => {
         if (isGuestsOpen || isStartOpen || isEndOpen) {
             window.addEventListener('keydown', isEsc);
-            console.log('keydown listener on in booking form');
         }
         return () => {
             window.removeEventListener('keydown', isEsc);
-            console.log('keydown listener off in booking form');
         };
     }, [isGuestsOpen, isStartOpen, isEndOpen]);
 

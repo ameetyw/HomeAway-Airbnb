@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSearchExpand, getGuestsTitle } from '../../../store/actions/appActions';
 import { DynamicSearchBtn } from './DynamicSearchBtn';
@@ -50,12 +51,6 @@ export const SearchForm = ({ isSearchExpand, isHomeTop }) => {
         closeAll();
     };
 
-    const onSearch = (ev) => {
-        ev.preventDefault();
-        // ev.stopPropagation();
-        console.log('search...');
-    };
-
     const getDateSubtitle = (date) => {
         if (!date) return 'Add dates';
         return date.toLocaleString('en-US', { month: 'short', day: 'numeric' });
@@ -82,12 +77,15 @@ export const SearchForm = ({ isSearchExpand, isHomeTop }) => {
                     <DynamicSearchBtn type="guests"
                         subtitle={getGuestsTitle(searchGuests)}
                         isOpen={isOpen.guests} toggleIsOpen={toggleBtnIsOpen}>
-                        <button className={`search-btn center-content`} onClick={onSearch}>
-                            <span className="btn-content flex align-center">
-                                <MagnifyGlassIcon />
-                                <span className="open">Search</span>
-                            </span>
-                        </button>
+                        <Link to="/explore">
+                            {/* <button className={`search-btn center-content`} onClick={onSearch}> */}
+                            <button className={`search-btn center-content`}>
+                                <span className="btn-content flex align-center">
+                                    <MagnifyGlassIcon />
+                                    <span className="open">Search</span>
+                                </span>
+                            </button>
+                        </Link>
                     </DynamicSearchBtn>
                     {isOpen.guests && <div className="guests-picker-wrapper popover" onClick={stopProp}>
                         <GuestsPicker />

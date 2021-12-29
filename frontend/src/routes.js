@@ -4,14 +4,13 @@ import { StayDetails } from './pages/StayDetails';
 import { SaveStay } from './pages/SaveStay';
 import { ErrorPage } from './pages/ErrorPage';
 
-
 export const routes = [
     {
         path: '/stay/:id',
         element: <StayDetails />,
     },
     {
-        path: '/explore',
+        path: '/explore*',
         element: <ExplorePlaces />,
     },
     {

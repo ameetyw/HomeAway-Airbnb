@@ -15,7 +15,7 @@ export const Anywhere = () => {
             <h2>Live anywhere</h2>
             <div className="dest-list">
                 {places.map(place => (
-                    <Link to="/explore/" key={place.imgName} className="dest-item">
+                    <Link to={`/explore/${place.title.split(' ').join('-')}`} key={place.imgName} className="dest-item">
                         <img src={images[place.imgName].default} alt="" />
                         <h4 className="title">{place.title}</h4>
                     </Link>

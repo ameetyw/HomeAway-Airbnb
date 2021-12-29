@@ -19,7 +19,7 @@ export const Popular = () => {
             <h2 className="title">Popular Destinations</h2>
             <div className="dest-list">
                 {destinations.map((destination, idx) => (
-                    <Link to={`/search/${destination.city.split(' ').join('-')}/homes`} key={destination.city} className="dest-item flex">
+                    <Link to={`/explore/${destination.city.split(' ').join('-')}`} key={destination.city} className="dest-item flex">
                         <img src={images[`${idx+1}`].default} alt="" />
                         <span className="name">
                             <h4 className="city title">{destination.city}</h4>
