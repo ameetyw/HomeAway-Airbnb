@@ -1,11 +1,10 @@
 # HomeAway Airbnb Clone App
 
-An Airbnb clone app created with the latest React v17, React Router v6, Redux v7.2, Thunk v2.4.
+An Airbnb clone app: https://myhomeaway.herokuapp.com/
 
-https://myhomeaway.herokuapp.com/
-
+Created with the latest React v17, React Router v6, Redux v7.2, Thunk v2.4.
 Frontend: Hooks, Flux State Management, SCSS, Axios
-Backend: Node.js Express server, MongoDB database
+Backend: Node.js Express.js server, MongoDB database
 
 ## How to get started?
 
