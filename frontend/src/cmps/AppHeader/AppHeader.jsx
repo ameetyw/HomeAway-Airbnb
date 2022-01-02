@@ -25,27 +25,27 @@ export const AppHeader = () => {
             dispatch(setHomeTop(false));
             dispatch(setSearchExpand(false));
         }
-    }, [pageType, isHomeTop]);
+    }, [pageType, isHomeTop, dispatch]);
 
     useEffect(() => {
         if (!isGoogleScriptLoaded) loadScript('google-maps', scriptUrl, {
             async: true,
             callback: () => { dispatch(setGoogleScriptLoad(true)); }
         });
-    }, [isGoogleScriptLoaded]);
+    }, [isGoogleScriptLoaded, dispatch]);
 
     useEffect(() => {
         if (isSearchExpand && !isHomeTop) {
             window.addEventListener('keydown', isEsc);
         }
         return () => {
-            window.removeEventListener('keydown', isEsc);
+            window.removeEventListener('keydown', ev => ev);
         };
-    }, [isSearchExpand]);
 
-    const isEsc = (ev) => {
-        if (ev.key === 'Escape') dispatch(setSearchExpand(false));
-    };
+        function isEsc(ev) {
+            if (ev.key === 'Escape') dispatch(setSearchExpand(false));
+        };
+    }, [isSearchExpand, isHomeTop, dispatch]);
 
     const isScrollTop = () => {
         if (!pageType) window.scrollTo({ top: 0, behavior: 'smooth' });

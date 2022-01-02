@@ -12,6 +12,7 @@ import { BookingForm } from '../cmps/StayDetails/BookingForm';
 import { StayReviews } from '../cmps/StayDetails/StayReviews';
 import { StayLocation } from '../cmps/StayDetails/StayLocation';
 import { HostedBy } from '../cmps/StayDetails/HostedBy';
+import { Loader } from '../cmps/Loader';
 
 export const StayDetails = () => {
     const navigate = useNavigate();
@@ -56,7 +57,7 @@ export const StayDetails = () => {
         dispatch(setCurrScreenSize(screenWidth < innerWidth ? screenWidth : innerWidth));
     };
 
-    if (stay._id !== stayId) return <div className="loading">loading...</div>;
+    if (stay._id !== stayId) return <Loader />;
 
     return (
         <section className="stay stay-details content-wrapper">

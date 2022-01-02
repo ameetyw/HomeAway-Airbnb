@@ -17,7 +17,7 @@ export const AppFooter = () => {
                         <span className="sep">·</span>
                     </span>
                     <span className="links flex align-center">
-                        <Link to="">About</Link>
+                        <a href="https://www.linkedin.com/in/amiteew" target="_blank">About</a>
                         <span className="sep">·</span>
                         <Link to="">Login</Link>
                         <span className="sep">·</span>
@@ -35,8 +35,8 @@ export const AppFooter = () => {
                     </button>
                     <span className="social flex align-center">
                         <Link to=""><FacebookIcon /></Link>
-                        <Link to=""><LinkedinIcon /></Link>
-                        <Link to=""><GithubIcon /></Link>
+                        <a href="https://www.linkedin.com/in/amiteew" target="_blank"><LinkedinIcon /></a>
+                        <a href="https://github.com/amiteew/HomeAway" target="_blank"><GithubIcon /></a>
                     </span>
                 </span>
             </div>

@@ -10,7 +10,7 @@ export const routes = [
         element: <StayDetails />,
     },
     {
-        path: '/explore*',
+        path: '/explore/*',
         element: <ExplorePlaces />,
     },
     {

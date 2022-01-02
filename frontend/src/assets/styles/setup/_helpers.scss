@@ -92,6 +92,14 @@
     width: 100%;
 }
 
+.full-screen {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
 .text-center {
     text-align: center;
 }
@@ -124,8 +132,14 @@
     }
 }
 
-// sub-section font + divider
+// GENERAL
 
+.loader {
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 5;
+}
+
+// sub-section font + divider
 .sub-section {
     h2 {
         font-family: AirbnbCereal-Med;
@@ -180,5 +194,5 @@
 }
 
 .capitalize::first-letter {
-        text-transform: capitalize;
+    text-transform: capitalize;
 }

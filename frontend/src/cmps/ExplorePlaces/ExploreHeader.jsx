@@ -12,7 +12,7 @@ export const ExploreHeader = ({ filterBy, setFilter }) => {
     });
     const isAnyOpen = (isBtnOpen.price || isBtnOpen.type);
 
-    const [isBtnSelected, setBtnSelected] = useState([
+    const initialBtnSelected = [
         { type: 'free cancellation', isSelected: false },
         { type: 'beach access', isSelected: false },
         { type: 'wifi', isSelected: false },
@@ -25,10 +25,14 @@ export const ExploreHeader = ({ filterBy, setFilter }) => {
         { type: 'self check-in', isSelected: false },
         { type: 'dedicated workspace', isSelected: false },
         { type: 'gym', isSelected: false }
-    ]);
+    ];
+    const [isBtnSelected, setBtnSelected] = useState(initialBtnSelected);
 
     useEffect(() => {
-        const count = getFilterCount();
+        let count = 0;
+        if (!Object.keys(filterBy).length) {
+            setBtnSelected(initialBtnSelected);
+        } else count = getFilterCount();
         setFilterCount(count);
 
         function getFilterCount() {
@@ -118,7 +122,7 @@ export const ExploreHeader = ({ filterBy, setFilter }) => {
                     {isBtnOpen.type &&
                         <PlaceType filterBy={filterBy} setFilter={setFilter} setBtnOpen={setBtnOpen} />}
                 </LeftBtn>
-                <span className={`screen${isAnyOpen ? " open" : ""}`}
+                <span className={`screen full-screen${isAnyOpen ? " open" : ""}`}
                     onClick={closeBtns}></span>
             </section>
 

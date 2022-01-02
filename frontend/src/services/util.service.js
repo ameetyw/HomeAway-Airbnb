@@ -13,7 +13,7 @@ export function loadScript(elementId, scriptSrc, options) {
     const existingScript = document.getElementById(elementId);
     if (!existingScript) {
         const script = document.createElement('script');
-        // script.type = 'text/javascript';
+        script.type = 'text/javascript';
         script.src = scriptSrc;
         script.id = elementId;
         if (options && options.async) script.async = options.async;
@@ -37,12 +37,4 @@ export function makeId(length = 8) {
         id += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
     }
     return id;
-}
-
-
-
-
-
-export function isEmptyObj(obj) {
-    return !Object.keys(obj).length;
 }

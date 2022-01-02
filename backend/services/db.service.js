@@ -1,11 +1,12 @@
 const MongoClient = require('mongodb').MongoClient;
+const logger = require('./logger.service');
 
 module.exports = {
     getCollection
 };
 
-const dbURL='mongodb+srv://myHomeAwayDB:PTqZcesylgwoL85f@myhomeaway.ta5wr.mongodb.net/myHomeAway?retryWrites=true&w=majority'
-const dbName = 'myHomeAwayDB';
+const dbURL = 'mongodb+srv://myHomeAwayDB:PTqZcesylgwoL85f@myhomeaway.ta5wr.mongodb.net/myHomeAway?retryWrites=true&w=majority';
+const dbName = 'myHomeAway';
 let dbConn = null;
 
 async function getCollection(collectionName) {

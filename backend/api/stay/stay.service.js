@@ -7,8 +7,7 @@ async function query(filterBy = {}) {
     try {
         const criteria = _buildCriteria(filterBy);
         const collection = await dbService.getCollection('stays');
-        const stays = await collection.find({}).toArray();
-        // const stays = await collection.find(criteria).toArray();
+        const stays = await collection.find(criteria).toArray();
         return stays;
     } catch (err) {
         logger.error('cannot get stays', err);
@@ -31,7 +30,6 @@ async function save(stay) {
     try {
         const collection = await dbService.getCollection('stays');
         if (stay._id) {
-            console.log('stay._id in update stay:', stay._id);
             await collection.updateOne({ '_id': stay._id }, { $set: { ...stay } });
         } else {
             const { insertedId } = await collection.insertOne(stay);

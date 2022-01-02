@@ -19,17 +19,14 @@ export const SearchForm = ({ isSearchExpand, isHomeTop }) => {
         isFormActive: false
     });
 
-    useEffect(() => {
-        if (!isSearchExpand) closeSearch();
-    }, [isSearchExpand]);
-
+    
     const setCalendarState = (newState) => {
         const newIsOpen = { ...isOpen };
         newIsOpen.startDate = newState.isStartOpen;
         newIsOpen.endDate = newState.isEndOpen;
         setOpen(newIsOpen);
     };
-
+    
     const toggleBtnIsOpen = (ev, type) => {
         ev.stopPropagation();
         const newIsOpen = { ...isOpen };
@@ -39,27 +36,31 @@ export const SearchForm = ({ isSearchExpand, isHomeTop }) => {
         newIsOpen.isFormActive = true;
         setOpen(newIsOpen);
     };
-
+    
     const closeAll = () => {
         const newIsOpen = { ...isOpen };
         Object.keys(newIsOpen).forEach(key => newIsOpen[key] = false);
         setOpen(newIsOpen);
     };
-
+    
     const closeSearch = () => {
         if (!isHomeTop) dispatch(setSearchExpand(false));
         closeAll();
     };
-
+    
     const getDateSubtitle = (date) => {
         if (!date) return 'Add dates';
         return date.toLocaleString('en-US', { month: 'short', day: 'numeric' });
     };
-
+    
     const stopProp = (ev) => {
         ev.stopPropagation();
     };
-
+    
+    useEffect(() => {
+        if (!isSearchExpand) closeSearch();
+    }, [isSearchExpand]);
+    
     return (
         <>
             <span className={`form-screen${isOpen.isFormActive ? " active" : ""}`} onClick={closeAll}>

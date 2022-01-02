@@ -4,6 +4,7 @@ import { isContentOverflown } from '../../services/util.service';
 import { GoogleMap } from '../GoogleMap';
 import { GoogleMapMarker } from '../GoogleMapMarker';
 import { ShowMoreBtn } from '../ShowMoreBtn';
+import { Loader } from '../Loader';
 
 // "loc": {
 //     "country": "Israel",
@@ -55,8 +56,8 @@ export const StayLocation = ({ location }) => {
                 <GoogleMapMarker
                     options={mapMarkerOptions}
                     info={'<p class="map-info-window">Exact location provided after booking.</p>'} />
-            </GoogleMap> : <div>Loading...</div> }
-
+            </GoogleMap> : <Loader /> }
+            
             {location.desc ? <>
                 <LocationTitle className="title fs16" />
                 <p ref={widthRefEl} className="location-desc clamp-3-lines">

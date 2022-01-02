@@ -1,18 +1,19 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { stayService } from '../services/stay.service';
-import { StayPreview } from '../cmps/ExplorePlaces/StayPreview';
-import { ReactComponent as MapIcon } from '../assets/imgs/icons/general/icon-map.svg';
-import { ReactComponent as ListIcon } from '../assets/imgs/icons/general/icon-list.svg';
-import { ExploreHeader } from '../cmps/ExplorePlaces/ExploreHeader';
 import { GoogleMap } from '../cmps/GoogleMap';
 import { GoogleMapMarker } from '../cmps/GoogleMapMarker';
+import { Loader } from '../cmps/Loader';
+import { StayPreview } from '../cmps/ExplorePlaces/StayPreview';
+import { ExploreHeader } from '../cmps/ExplorePlaces/ExploreHeader';
+import { ReactComponent as MapIcon } from '../assets/imgs/icons/general/icon-map.svg';
+import { ReactComponent as ListIcon } from '../assets/imgs/icons/general/icon-list.svg';
 
 export const ExplorePlaces = () => {
     const { isGoogleScriptLoaded } = useSelector(state => state.appModule);
     const [filterBy, setFilter] = useState({});
     const [isListView, setListView] = useState(true);
-    const [stays, setStays] = useState([]);
+    const [stays, setStays] = useState(null);
     const listRef = useRef(null);
     const mapRef = useRef(null);
 
@@ -61,6 +62,8 @@ export const ExplorePlaces = () => {
         setListView(prevState => !prevState);
     };
 
+    if (!stays) return <Loader />
+
     return (
         <section className="explore main-content content-wrapper">
             <div className="explore-header-wrapper">
@@ -69,7 +72,7 @@ export const ExplorePlaces = () => {
 
             <section className="explore-content flex">
                 <section ref={listRef} className="explore-listings active">
-                    {stays && stays.length ?
+                    {stays.length ?
                         stays.map(stay => <StayPreview key={stay._id} stay={stay} />) :
                         <span className="no-stays">
                             <h3 className="fs22">No results</h3>
@@ -77,8 +80,10 @@ export const ExplorePlaces = () => {
                                 filters, or zooming out on the map</p>
                         </span>
                     }
-                    <button className="remove-filter title fs14"
-                        onClick={() => setFilter({})}>Remove all filters</button>
+                    {Object.keys(filterBy).length ?
+                        <button className="remove-filter title fs14"
+                            onClick={() => setFilter({})}>Remove all filters</button>
+                        : ''}
 
                 </section>
 
@@ -87,7 +92,7 @@ export const ExplorePlaces = () => {
                         <GoogleMap zoom={12} center={{ lat: 32.07440344333568, lng: 34.77544709894273 }}>
                             {stays.map(stay => StayMarker(stay))}
                         </GoogleMap>
-                        : <div>Loading...</div>}
+                        : <Loader />}
                 </section>
 
                 <button className="switch-view fs14 flex align-center"
