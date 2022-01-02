@@ -15,8 +15,8 @@ https://myhomeaway.herokuapp.com/
 2. Access each folder in a command-line
 3. Run "npm i" in both to install node dependencies
 4. Run "npm start" in both
+5. The app is running at [http://localhost:3000](http://localhost:3000)
 
-The app is running at [http://localhost:3000](http://localhost:3000)
 Have fun!! :)
 
 ** This project is still a work in progress... **
