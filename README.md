@@ -3,7 +3,7 @@
 https://myhomeaway.herokuapp.com/
 
 * Created with the latest React v17, React Router v6, Redux v7.2, Thunk v2.4.
-* Frontend: Hooks, Flux State Management, SCSS, Axios
+* Frontend: Hooks, Flux State Management, SCSS, Axios, Google Maps and Google Places
 * Backend: Node.js Express.js server, MongoDB database
 
 ## How to get started?
