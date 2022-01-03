@@ -16,7 +16,7 @@ https://myhomeaway.herokuapp.com/
 3. Run "npm i" in both to install node dependencies
 4. Run "npm start" in both
 5. The app is running at [http://localhost:3000](http://localhost:3000)
-* Enter your Google Maps and Places API key at "const GOOGLE_KEY" in 'frontend/src/cmps/AppHeader/AppHeader.jsx'
+* Enter your Google Maps and Places API key at 'const GOOGLE_KEY' in 'frontend/src/cmps/AppHeader/AppHeader.jsx'
 
 Have fun!! :)
 
