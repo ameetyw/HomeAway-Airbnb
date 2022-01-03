@@ -11,7 +11,7 @@ import { SearchForm } from './SearchBar/SearchForm';
 // import { MobileSearch } from './SearchBar/MobileSearch';
 import { UserMsg } from '../UserMsg';
 
-const GOOGLE_KEY = 'AIzaSyDm1kVff1tOF1Jvd-Uxba4C__Ux4bt3R8I';
+const GOOGLE_KEY = 'YOUR_KEY';
 const scriptUrl = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_KEY}&libraries=places`;
 
 export const AppHeader = () => {
