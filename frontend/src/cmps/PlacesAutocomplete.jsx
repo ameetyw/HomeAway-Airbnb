@@ -12,7 +12,7 @@ export const PlacesAutocomplete = () => {
     const autoCompleteRef = useRef(null);
     let autoComplete = null;
     const autoCompleteOptions = {
-        types: ['(cities)'],
+        types: ['geocode'],
         fields: ['name'],
         sessionToken,
     };

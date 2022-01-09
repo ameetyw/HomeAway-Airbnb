@@ -29,6 +29,7 @@
 }
 
 .pac-container {
+    // .pac-container.pac-logo {
     margin-top: 12px;
     padding: 16px 0;
     border-radius: 32px;
@@ -54,6 +55,7 @@
     }
     .pac-item {
         padding: 8px 32px;
+        // padding: 8px 16px 8px 32px;
         display: flex;
         align-items: center;
         border: none;
@@ -75,10 +77,17 @@
                 content: url(../../imgs/icons/general/icon-pin.svg);
                 height: rem(22px);
                 width: rem(22px);
+                // background-image: url(../../imgs/icons/general/icon-pin-filled.svg);
                 position: absolute;
                 top: rem(13px);
                 left: rem(13px);
             }
+        }
+        overflow: hidden;
+        > span:last-of-type {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
     }
 }
