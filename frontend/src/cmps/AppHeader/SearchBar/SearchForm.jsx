@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSearchExpand, getGuestsTitle } from '../../../store/actions/appActions';
-import { DynamicSearchBtn } from './DynamicSearchBtn';
+import { setSearchExpand, setDates, setGuests } from '../../../store/actions/appActions';
+import { RegSearchForm } from './RegSearchForm';
 import { GuestsPicker } from '../../GuestsPicker';
-import { ReactComponent as MagnifyGlassIcon } from '../../../assets/imgs/icons/header/icon-magnify-glass.svg';
 import { DatePickerRange } from '../../DatePickerRange';
+import { MobileSearch } from './MobileSearch';
 
 export const SearchForm = ({ isSearchExpand, isHomeTop }) => {
     const dispatch = useDispatch();
+    const { isMobile } = useSelector(state => state.appModule);
     const searchDates = useSelector(state => state.appModule.searchInput.dates);
     const searchGuests = useSelector(state => state.appModule.searchInput.guests);
     const [isOpen, setOpen] = useState({
@@ -19,14 +19,13 @@ export const SearchForm = ({ isSearchExpand, isHomeTop }) => {
         isFormActive: false
     });
 
-    
     const setCalendarState = (newState) => {
         const newIsOpen = { ...isOpen };
         newIsOpen.startDate = newState.isStartOpen;
         newIsOpen.endDate = newState.isEndOpen;
         setOpen(newIsOpen);
     };
-    
+
     const toggleBtnIsOpen = (ev, type) => {
         ev.stopPropagation();
         const newIsOpen = { ...isOpen };
@@ -36,66 +35,86 @@ export const SearchForm = ({ isSearchExpand, isHomeTop }) => {
         newIsOpen.isFormActive = true;
         setOpen(newIsOpen);
     };
-    
+
     const closeAll = () => {
         const newIsOpen = { ...isOpen };
         Object.keys(newIsOpen).forEach(key => newIsOpen[key] = false);
         setOpen(newIsOpen);
     };
-    
+
     const closeSearch = () => {
-        if (!isHomeTop) dispatch(setSearchExpand(false));
         closeAll();
+        if ((isMobile && !isOpen.isFormActive) || (!isMobile && !isHomeTop)) {
+            dispatch(setSearchExpand(false));
+        }
     };
-    
-    const getDateSubtitle = (date) => {
-        if (!date) return 'Add dates';
-        return date.toLocaleString('en-US', { month: 'short', day: 'numeric' });
-    };
-    
-    const stopProp = (ev) => {
-        ev.stopPropagation();
-    };
-    
+
     useEffect(() => {
         if (!isSearchExpand) closeSearch();
     }, [isSearchExpand]);
-    
+
     return (
         <>
             <span className={`form-screen${isOpen.isFormActive ? " active" : ""}`} onClick={closeAll}>
                 <form className=
-                    {`expanded-search flex align-center${isSearchExpand ? " open" : ""}${isOpen.isFormActive ? " active" : ""}`}>
-                    <DynamicSearchBtn type="location" subtitle="Where are you going?" isOpen={isOpen.location} toggleIsOpen={toggleBtnIsOpen} />
-                    <span className="dates-wrapper flex">
-                        <DynamicSearchBtn type="check-in"
-                            subtitle={getDateSubtitle(searchDates.startDate)}
-                            isOpen={isOpen.startDate} toggleIsOpen={toggleBtnIsOpen} />
-                        <DynamicSearchBtn type="check-out"
-                            subtitle={getDateSubtitle(searchDates.endDate)}
-                            isOpen={isOpen.endDate} toggleIsOpen={toggleBtnIsOpen} />
-                    </span>
-                    <DynamicSearchBtn type="guests"
-                        subtitle={getGuestsTitle(searchGuests)}
-                        isOpen={isOpen.guests} toggleIsOpen={toggleBtnIsOpen}>
-                        <Link to="/explore">
-                            {/* <button className={`search-btn center-content`} onClick={onSearch}> */}
-                            <button className={`search-btn center-content`}>
-                                <span className="btn-content flex align-center">
-                                    <MagnifyGlassIcon />
-                                    <span className="open">Search</span>
-                                </span>
-                            </button>
-                        </Link>
-                    </DynamicSearchBtn>
-                    {isOpen.guests && <div className="guests-picker-wrapper popover" onClick={stopProp}>
-                        <GuestsPicker />
-                    </div>}
-                    {(isOpen.startDate || isOpen.endDate) && <div className="date-picker-wrapper popover" onClick={stopProp}>
-                        <DatePickerRange isStay={false}
-                            isOpen={{ isStartOpen: isOpen.startDate, isEndOpen: isOpen.endDate }}
-                            setIsOpen={setCalendarState} />
-                    </div>}
+                    {`expanded-search flex align-center${isHomeTop ? " home-top" : ""}` +
+                        `${isSearchExpand ? " open" : ""}${isOpen.isFormActive ? " active" : ""}`}>
+
+                    {isMobile ?
+                        <MobileSearch
+                            isOpen={isOpen}
+                            toggleBtnIsOpen={toggleBtnIsOpen}
+                            searchDates={searchDates}
+                            searchGuests={searchGuests} />
+                        :
+                        <RegSearchForm
+                            isOpen={isOpen}
+                            toggleBtnIsOpen={toggleBtnIsOpen}
+                            searchDates={searchDates}
+                            searchGuests={searchGuests} />
+                    }
+
+                    {isOpen.guests &&
+                        <div className="guests-picker-wrapper popover" onClick={ev => ev.stopPropagation()}>
+                            <GuestsPicker />
+
+                            <span className="dates-ctrl flex justify-end title fs4">
+                                <button className={`clear-btn${!Object.keys(searchGuests).length ? " disabled" : ""}`}
+                                    onClick={(ev) => {
+                                        ev.preventDefault();
+                                        dispatch(setGuests({ type: 'search', guests: {} }));
+                                    }}>
+                                    Clear
+                                </button>
+                                <button className="dark-btn"
+                                    onClick={closeAll}>
+                                    Close
+                                </button>
+                            </span>
+                        </div>
+                    }
+
+                    {(isOpen.startDate || isOpen.endDate) &&
+                        <div className="date-picker-wrapper popover" onClick={ev => ev.stopPropagation()}>
+                            <DatePickerRange isStay={false}
+                                isOpen={{ isStartOpen: isOpen.startDate, isEndOpen: isOpen.endDate }}
+                                setIsOpen={setCalendarState} />
+
+                            <span className="dates-ctrl flex justify-end title fs4">
+                                <button className={`clear-btn${!searchDates.startDate && !searchDates.endDate ? " disabled" : ""}`}
+                                    onClick={(ev) => {
+                                        ev.preventDefault();
+                                        dispatch(setDates({ type: 'search', dates: { startDate: null, endDate: null } }));
+                                    }}>
+                                    Clear dates
+                                </button>
+                                <button className="dark-btn"
+                                    onClick={closeAll}>
+                                    Close
+                                </button>
+                            </span>
+                        </div>
+                    }
                 </form>
             </span>
             <span className={`close-search${isSearchExpand ? " active" : ""}${isHomeTop ? " home-top" : ""}`} onClick={closeSearch} />

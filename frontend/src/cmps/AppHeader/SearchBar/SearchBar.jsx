@@ -1,6 +1,6 @@
-import { ReactComponent as MagnifyGlassIcon } from '../../../assets/imgs/icons/header/icon-magnify-glass.svg';
 import { useDispatch } from 'react-redux';
 import { setSearchExpand } from '../../../store/actions/appActions';
+import { ReactComponent as MagnifyGlassIcon } from '../../../assets/imgs/icons/header/icon-magnify-glass.svg';
 
 export const SearchBar = ({ isSearchExpand, isHomeTop }) => {
     const dispatch = useDispatch();

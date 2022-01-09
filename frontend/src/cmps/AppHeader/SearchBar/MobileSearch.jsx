@@ -1,64 +1,56 @@
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { getGuestsTitle } from '../../../services/formatting.service';
+import { PlacesAutocomplete } from '../../PlacesAutocomplete';
+// import { ReactComponent as MagnifyGlassIcon } from '../../../assets/imgs/icons/header/icon-magnify-mobile.svg';
+import { ReactComponent as MagnifyGlassIcon } from '../../../assets/imgs/icons/header/icon-magnify-glass.svg';
+import { ReactComponent as CalendarIcon } from '../../../assets/imgs/icons/header/icon-dates-mobile.svg';
+import { ReactComponent as GuestIcon } from '../../../assets/imgs/icons/header/icon-guests-mobile.svg';
 
-export const MobileSearch = () => {
-    const [isOpen, setOpen] = useState({
-        location: false,
-        dates: false,
-        guests: false,
-        isAnyOpen: false
-    });
+export const MobileSearch = ({ isOpen, toggleBtnIsOpen, searchDates, searchGuests }) => {
 
-    const openDynBtn = (type) => {
-        // falsify all keys, then set 'type' key to true
-        const newIsOpen = { ...isOpen };
-        Object.keys(newIsOpen).forEach(key => newIsOpen[key] = false);
-        newIsOpen[type] = true;
-        newIsOpen.isAnyOpen = true;
-        setOpen(newIsOpen);
-    };
-
-    const closeAllBtns = () => {
-        const newIsOpen = { ...isOpen };
-        Object.keys(newIsOpen).forEach(key => newIsOpen[key] = false);
-        setOpen(newIsOpen);
-    };
-
-    const dynamicBtn = (type, subtitle) => {
-        const typeToTitle = type.split('-').join(' ');
-        const capitalTitle = typeToTitle.charAt(0).toUpperCase() + typeToTitle.slice(1);
-        switch (type) {
-            case 'location':
-                return <label htmlFor={type}
-                    className={`search-btn flex column${isOpen.location ? " open" : ""}`}
-                    onClick={() => openDynBtn(type)}>
-                    <h4 className="search-title">{capitalTitle}</h4>
-                    <input value="" type="text"
-                        id={type} name={type} placeholder={subtitle}
-                    // onChange={handleChange} 
-                    />
-                </label>;
-            default:
-                return <button className={`search-btn ${type} flex column${isOpen[type] ? " open" : ""}`}
-                    onClick={() => openDynBtn(type)}>
-                    <h4 className="search-title">{capitalTitle}</h4>
-                    <p>{subtitle}</p>
-                </button>;
+    const getDateSubtitle = () => {
+        if (!searchDates.startDate && !searchDates.endDate) {
+            return <p className="subtitle placeholder">Add dates</p>;
         }
+
+        const getFormattedDate = date => date ? date.toLocaleString('en-US', { month: 'short', day: 'numeric' }) : '';
+
+        return <p className="subtitle">
+            {getFormattedDate(searchDates.startDate) + '-' +
+                getFormattedDate(searchDates.endDate)}
+        </p>;
     };
 
-    const onSearch = () => {
-        console.log('search...');
-    };
+    return <>
+        <span className="form-container fs14">
+            <label htmlFor="location-input"
+                className={`location flex align-center${isOpen.location ? " open" : ""}`}
+                onClick={(ev) => toggleBtnIsOpen(ev, 'location')}>
+                <MagnifyGlassIcon />
+                <PlacesAutocomplete />
+            </label>
 
-    return (
-        <>
-            <form className={`expanded-search`} onSubmit={onSearch}>
-                Mobile search form...
-                {/* <SearchFormBtn title={"location"} subtitle={"Where are you going?"} /> */}
-                {/* {dynamicBtn} */}
-                {/* <button className={isExpandedActive ? "active" : ""}>{isExpandedActive && "Search"}</button> */}
-            </form>
-            <span className={`form-btn-screen${isOpen.isAnyOpen ? " active" : ""}`} onClick={closeAllBtns}></span>
-        </>
-    );
+            <span className={"dates flex align-center" +
+                `${(isOpen.startDate || isOpen.endDate) ? " open" : ""}`}
+                onClick={(ev) => toggleBtnIsOpen(ev, 'startDate')}>
+                <CalendarIcon />
+                {getDateSubtitle()}
+            </span>
+
+            <span className={`guests flex align-center${isOpen.guests ? " open" : ""}`}
+                onClick={(ev) => toggleBtnIsOpen(ev, 'guests')}>
+                <GuestIcon />
+                {getGuestsTitle(searchGuests)}
+            </span>
+        </span>
+
+        <Link to="/explore">
+            <button className="search-btn center-content">
+                <MagnifyGlassIcon />
+                <span className="btn-content">
+                    Search
+                </span>
+            </button>
+        </Link>
+    </>;
 };

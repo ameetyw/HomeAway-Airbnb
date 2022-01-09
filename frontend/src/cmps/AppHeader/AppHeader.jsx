@@ -2,13 +2,12 @@ import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadScript } from '../../services/util.service';
-import { setHomeTop, setSearchExpand, setGoogleScriptLoad } from '../../store/actions/appActions';
+import { setHomeTop, setSearchExpand, setScreenSize, setIsMobile, setGoogleScriptLoad } from '../../store/actions/appActions';
 import { SearchBar } from './SearchBar/SearchBar';
 import { UserMenuBtn } from './UserMenuBtn';
 import WhiteLogo from '../../assets/imgs/logo-white.svg';
 import RedLogo from '../../assets/imgs/logo-red.svg';
 import { SearchForm } from './SearchBar/SearchForm';
-// import { MobileSearch } from './SearchBar/MobileSearch';
 import { UserMsg } from '../UserMsg';
 
 const GOOGLE_KEY = 'AIzaSyDm1kVff1tOF1Jvd-Uxba4C__Ux4bt3R8I';
@@ -18,13 +17,35 @@ export const AppHeader = () => {
     const dispatch = useDispatch();
     const { pathname } = useLocation();
     const pageType = pathname.includes('/stay') ? " stay" : (pathname.includes('/explore') ? " explore" : "");
-    const { isHomeTop, isSearchExpand, isGoogleScriptLoaded } = useSelector(state => state.appModule);
+    const { isHomeTop, isSearchExpand, screenSize, isMobile, isGoogleScriptLoaded } = useSelector(state => state.appModule);
+    const mobileBreakpoint = 727;
+
+    // listen to screen resize
+    useEffect(() => {
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+        return () => {
+            window.removeEventListener('resize', checkScreenSize);
+        };
+
+        function checkScreenSize() {
+            const screenWidth = window.screen.width;
+            const innerWidth = window.innerWidth;
+            const currSize = screenWidth < innerWidth ? screenWidth : innerWidth;
+            if (currSize !== screenSize) {
+                dispatch(setScreenSize(currSize));
+                if (currSize < mobileBreakpoint && !isMobile) dispatch(setIsMobile(true));
+                else if (currSize >= mobileBreakpoint && isMobile) dispatch(setIsMobile(false));
+            }
+        }
+    }, [screenSize]);
 
     useEffect(() => {
         if (pageType) {
             dispatch(setHomeTop(false));
             dispatch(setSearchExpand(false));
         }
+        if (isMobile) dispatch(setSearchExpand(false));
     }, [pageType, isHomeTop, dispatch]);
 
     useEffect(() => {
@@ -63,17 +84,12 @@ export const AppHeader = () => {
                     <SearchBar isHomeTop={isHomeTop} isSearchExpand={isSearchExpand} />
 
                     <nav className="user-nav">
-                        <Link to="/">Become a Host</Link>
+                        {/* <Link to="/">Become a Host</Link> */}
                         <UserMenuBtn />
                     </nav>
                 </div>
                 <SearchForm isHomeTop={isHomeTop} isSearchExpand={isSearchExpand} />
-                {/* <MobileSearch /> */}
             </div>
-
-            {/* <nav className="mobile-nav flex align-center">
-                <p>I am mobile nav</p>
-            </nav> */}
 
             <UserMsg />
         </header>

@@ -114,9 +114,9 @@ export const ExploreHeader = ({ filterBy, setFilter }) => {
     return (
         <section className="explore-header flex">
             <section className={`left flex align-center${isAnyOpen ? " open" : ""}`}>
-                <LeftBtn type="price" >
+                {/* <LeftBtn type="price" >
                     {isBtnOpen.price && <></>}
-                </LeftBtn>
+                </LeftBtn> */}
 
                 <LeftBtn type="type" >
                     {isBtnOpen.type &&
@@ -130,11 +130,11 @@ export const ExploreHeader = ({ filterBy, setFilter }) => {
                 <span className="filters-btns flex wrap">
                     {isBtnSelected.map(btn => <RightBtn key={btn.type} btn={btn} />)}
                 </span>
-                <button className={`filter-btn header-btn flex align-center${filterCount ? " selected" : ""}`}>
+                {/* <button className={`filter-btn header-btn flex align-center${filterCount ? " selected" : ""}`}>
                     <FilterIcon />
                     Filters
                     {filterCount ? <span className="filter-count">{filterCount}</span> : ''}
-                </button>
+                </button> */}
             </section>
         </section>
     );

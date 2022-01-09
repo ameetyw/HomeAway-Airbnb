@@ -2,26 +2,36 @@ header {
     @import "./AppHeader/UserMenu";
     @import "./AppHeader/SearchBar";
     @import "./AppHeader/SearchForm";
+
     position: fixed;
     width: 100%;
     z-index: 2;
     background-color: #fff;
-    transition: height 0.2s ease-in-out;
+    transition: height 0.4s ease-in-out;
+
+    // height: rem(64px);
+    // @include for-tablet-portrait-up {
     height: rem(80px);
+    // }
 
     &:not(.explore) {
         box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 0px;
         &:not(.stay) {
-            @include for-tablet-portrait-up {
-                box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
+            // @include for-tablet-portrait-up {
+            box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
+            // }
+            @include for-mobile-only {
+                &.home-top {
+                    box-shadow: none;
+                }
             }
         }
     }
 
     &.home-top {
-        box-shadow: none;
         background-color: transparent;
         @include for-mobile-only {
+            box-shadow: none;
             background: linear-gradient(
                 180deg,
                 rgba(0, 0, 0, 0.419608) 0,
@@ -47,15 +57,45 @@ header {
                 display: none;
             }
         }
+
+        .close-search {
+            opacity: 0;
+            transition: opacity 0.3s ease-in;
+            &.active {
+                opacity: 1;
+                position: fixed;
+                top: rem(270px);
+                left: 0;
+                width: 100%;
+                bottom: 0;
+                z-index: 1;
+                &:not(.home-top) {
+                    background-color: rgba(0, 0, 0, 0.1);
+                }
+            }
+        }
+    }
+
+    @include for-mobile-only {
+        .header-content {
+            background-color: inherit;
+        }
+        &.expanded {
+            height: rem(270px);
+            .form-screen.active ~ .close-search {
+                top:0;
+            }
+        }
     }
 
     @include for-tablet-portrait-up {
+        transition: height 0.2s ease-in-out;
         &.expanded {
             height: rem(180px);
         }
-
         .header-content {
             .top {
+                padding: 16px 0;
                 justify-content: space-between;
                 font-size: rem(14px);
                 line-height: rem(18px);
@@ -97,16 +137,8 @@ header {
             }
 
             .close-search {
-                opacity: 0;
-                transition: opacity 0.3s ease-in;
                 &.active {
-                    opacity: 1;
-                    position: fixed;
                     top: rem(180px);
-                    left: 0;
-                    width: 100%;
-                    bottom: 0;
-                    background-color: rgba(0, 0, 0, 0.05);
                 }
                 &.home-top {
                     display: none;
@@ -124,10 +156,6 @@ header {
                     background-color: #ffffff26;
                 }
             }
-        }
-
-        .mobile-nav {
-            display: none;
         }
     }
 }

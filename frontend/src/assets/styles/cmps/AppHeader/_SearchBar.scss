@@ -4,16 +4,16 @@
     }
     .simple-search-bar {
         opacity: 0;
-        height: 48px;
+        height: rem(48px);
         width: 0;
         font-size: rem(14px);
         line-height: rem(18px);
         font-family: AirbnbCereal-Med;
         color: $main-font-clr;
-
-        @include for-mobile-only {
-            width: 100%;
+        &.active {
             opacity: 1;
+        }
+        @include for-mobile-only {
             justify-content: center;
             border-radius: rem(24px);
             background-color: $reg-btn-hover-clr;
@@ -23,6 +23,10 @@
             }
 
             &.active {
+                animation: slide-top-mobile 0.35s;
+                width: 100%;
+                position: relative;
+                z-index: 1;
             }
 
             &::after {
@@ -53,9 +57,8 @@
             }
 
             &.active {
-                animation: slide-top 0.2s;
-                opacity: 1;
                 width: 300px;
+                animation: slide-top 0.2s;
                 cursor: pointer;
             }
 
@@ -93,30 +96,42 @@
 
     .explore {
         display: none;
-        &.active,
-        &.home-top {
-            @include for-mobile-only {
-                display: none;
-            }
+        flex-direction: column;
+        align-items: center;
+        font-family: AirbnbCereal-Med;
+        &::after {
+            content: "";
+            position: relative;
+            top: 9px;
+            border-radius: 1px;
+            width: rem(12px);
+            height: 2px;
+            background-color: currentColor;
+        }
+        &.active {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            &::after {
-                content: "";
-                position: relative;
-                top: 9px;
-                border-radius: 1px;
-                width: rem(12px);
-                height: 2px;
-                background-color: currentColor;
+            @include for-mobile-only {
+                border-bottom: none;
             }
+        }
+        &.active.home-top {
+            color: #fff;
         }
     }
 }
 
 @keyframes slide-top {
     0% {
-        transform: translateY(60px) scaleX(1.4) scaleY(1.2);
+        transform: translateY(rem(60px)) scaleX(1.4) scaleY(1.2);
+    }
+    100% {
+        transform: translateY(0) scaleX(1) scaleY(1);
+    }
+}
+
+@keyframes slide-top-mobile {
+    0% {
+        transform: translateY(rem(150px)) scaleX(1.4) scaleY(1.2);
     }
     100% {
         transform: translateY(0) scaleX(1) scaleY(1);

@@ -6,6 +6,7 @@ import { setDates } from '../store/actions/appActions';
 
 export const DatePickerRange = ({ isOpen, setIsOpen, isStay, excludeDates }) => {
     const dispatch = useDispatch();
+    const { isMobile } = useSelector(state => state.appModule);
     const { stayDates } = useSelector(state => state.appModule.currBooking);
     const searchDates = useSelector(state => state.appModule.searchInput.dates);
     const dates = isStay ? stayDates : searchDates;
@@ -23,8 +24,6 @@ export const DatePickerRange = ({ isOpen, setIsOpen, isStay, excludeDates }) => 
             setIsOpen({ isStartOpen: false, isEndOpen: true });
         } else {
             if (newDate < startDate) newDates.startDate = newDate;
-            // else if (!startDate && endDate && newDate > endDate)x`` {
-            // newDates = { startDate: newDate, endDate: null };
             else newDates.endDate = newDate;
         }
         if (isStay) dispatch(setDates({ type: 'stay', dates: newDates }));
@@ -32,39 +31,8 @@ export const DatePickerRange = ({ isOpen, setIsOpen, isStay, excludeDates }) => 
         if (!newDates.startDate) setIsOpen({ isStartOpen: true, isEndOpen: false });
     };
 
-    // const handleClick = (btnType) => {
-    //     if (btnType === 'start') {
-    //         setIsOpen([!isStartOpen, false]);
-    //     } else {
-    //         setIsOpen([false, !isEndOpen]);
-    //     }
-    // };
-
-    // const getFormattedDate = (date) => {
-    //     return date.toLocaleDateString('en-US', { dateStyle: 'medium' }).split(',')[0];
-    // };
-
-    // function getDatesBetweenRangeToExclude(startDate, endDate) {
-    //     let dates = [];
-    //     let currentDate = startDate;
-    //     while (currentDate <= endDate) {
-    //         dates.push(new Date (currentDate));
-    //         currentDate = currentDate.addDays(1);
-    //     }
-    //     return dates;
-    // }
-
     return (
         <>
-            {/* <span className="date-btns flex align-center">
-                    <button className={`date-btn${isStartOpen ? " open" : ""}`} onClick={() => handleClick('start')}>
-                        {startDate ? getFormattedDate(startDate) : "Add date"}
-                    </button>
-                    <button className={`date-btn${isEndOpen ? " open" : ""}`} onClick={() => handleClick('end')}>
-                        {endDate ? getFormattedDate(endDate) : "Add date"}
-                    </button>
-                </span> */}
-
             {isStartOpen && (
                 <DatePicker
                     selectsStart
@@ -73,7 +41,7 @@ export const DatePickerRange = ({ isOpen, setIsOpen, isStay, excludeDates }) => 
                     minDate={new Date()}
                     startDate={startDate}
                     endDate={endDate}
-                    monthsShown={2}
+                    monthsShown={isMobile ? 1 : 2}
                     inline
                 />
             )}
@@ -85,7 +53,7 @@ export const DatePickerRange = ({ isOpen, setIsOpen, isStay, excludeDates }) => 
                     minDate={new Date()}
                     startDate={startDate}
                     endDate={endDate}
-                    monthsShown={2}
+                    monthsShown={isMobile ? 1 : 2}
                     inline
                 />
             )}

@@ -28,11 +28,21 @@
     }
 }
 
-.pac-container.pac-logo {
+.pac-container {
     margin-top: 12px;
     padding: 16px 0;
     border-radius: 32px;
-    box-shadow: rgba(0, 0, 0, 0.20) 0px 6px 20px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
+    @include for-mobile-only {
+        right: 0 !important;
+        left: 0 !important;
+        width: calc(100% - (24px * 2)) !important;
+        margin: auto;
+        border-radius: rem(12px);
+    }
+    @include for-tablet-portrait-up {
+        width: 500px !important;
+    }
     &::after {
         display: none;
     }
@@ -42,10 +52,8 @@
         font-weight: 400;
         font-size: rem(16px);
     }
-    width: 500px !important;
     .pac-item {
         padding: 8px 32px;
-        // padding: 8px 16px 8px 32px;
         display: flex;
         align-items: center;
         border: none;
@@ -67,7 +75,6 @@
                 content: url(../../imgs/icons/general/icon-pin.svg);
                 height: rem(22px);
                 width: rem(22px);
-                // background-image: url(../../imgs/icons/general/icon-pin-filled.svg);
                 position: absolute;
                 top: rem(13px);
                 left: rem(13px);
