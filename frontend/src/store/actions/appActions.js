@@ -12,10 +12,17 @@ export function setSearchExpand(isSearchExpand) {
     };
 }
 
-export function setCurrScreenSize(currScreenSize) {
+export function setScreenSize(screenSize) {
     return {
         type: 'SET_SCREEN_SIZE',
-        currScreenSize
+        screenSize
+    };
+}
+
+export function setIsMobile(isMobile) {
+    return {
+        type: 'SET_IS_MOBILE',
+        isMobile
     };
 }
 
@@ -76,14 +83,4 @@ export function setDestination(destination) {
         type: 'SET_DESTINATION',
         destination
     };
-}
-
-export function getGuestsTitle(guestsDetails) {
-    if (!Object.keys(guestsDetails).length) return 'Add guests';
-    const { adults, children, infants, pets } = guestsDetails;
-    const totalGuests = adults + (children || 0);
-    let guestsTitle = `${totalGuests} guest${totalGuests > 1 ? "s" : ""}`;
-    guestsTitle += infants ? `, ${infants} infant${infants > 1 ? "s" : ""}` : "";
-    guestsTitle += pets ? `, ${pets} pet${pets > 1 ? "s" : ""}` : "";
-    return guestsTitle;
 }

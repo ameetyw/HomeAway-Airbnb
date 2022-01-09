@@ -11,7 +11,8 @@ const initialState = {
     isSearchExpand: false,
     isGoogleScriptLoaded: false,
 
-    currScreenSize: null,
+    screenSize: null,
+    isMobile: true,
 
     searchInput: {
         dates: emptyDates,
@@ -41,15 +42,20 @@ export function appReducer(state = initialState, action) {
                 ...state,
                 isSearchExpand: action.isSearchExpand
             };
+        case 'SET_SCREEN_SIZE':
+            return {
+                ...state,
+                screenSize: action.screenSize
+            };
+        case 'SET_IS_MOBILE':
+            return {
+                ...state,
+                isMobile: action.isMobile
+            };
         case 'SET_GOOGLE_LOAD':
             return {
                 ...state,
                 isGoogleScriptLoaded: action.isLoaded
-            };
-        case 'SET_SCREEN_SIZE':
-            return {
-                ...state,
-                currScreenSize: action.currScreenSize
             };
         case 'SET_SEARCH_INPUT':
             return {
