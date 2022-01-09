@@ -3,8 +3,6 @@ import { PlacesAutocomplete } from "../../PlacesAutocomplete";
 export const DynamicSearchBtn = ({ type, subtitle, isOpen, children, toggleIsOpen }) => {
     const typeToTitle = type.split('-').join(' ');
     const capitalTitle = typeToTitle.charAt(0).toUpperCase() + typeToTitle.slice(1);
-    const isPlaceholder = (!subtitle || subtitle.startsWith('Add') ||
-        subtitle.startsWith('Where')) ? 'placeholder' : '';
 
     const onToggleBtn = (ev) => {
         const correctedType = (type === 'check-in') ? 'startDate' :
@@ -30,7 +28,7 @@ export const DynamicSearchBtn = ({ type, subtitle, isOpen, children, toggleIsOpe
                 <span className={`search-sub-btn ${newType}${isOpen ? " open" : ""} flex align-center`}>
                     <span className={`${newType}-wrapper flex column`} onClick={onToggleBtn}>
                         <h4 className="search-title">{capitalTitle}</h4>
-                        <p className={isPlaceholder}>{subtitle}</p>
+                        {subtitle}
                     </span>
                     {children}
                 </span>
