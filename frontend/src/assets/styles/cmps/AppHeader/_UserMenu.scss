@@ -6,7 +6,6 @@
     border-radius: rem(21px);
     height: rem(42px);
     transition: box-shadow 0.2s ease;
-    // z-index: 1;
     color: $main-font-clr;
     font-weight: 800;
     &:hover {
@@ -36,17 +35,3 @@
         color: #fff;
     }
 }
-
-// avatar div: 30x30px, color: #717171, margin-left: 12px;
-// flex: 0 0 30px; overflow: hidden; pos: rel, z-idx: 1 ??
-// avatar img: bgc: currentcolor; border-radius: 50%; display: block;? full-size
-
-// notification icon settings
-// position: absolute;
-// z-index: 1;
-// font-weight: 800;
-// left: 100%;
-// margin-left: -14px;
-// padding: 0px 5px;
-// text-align: center;
-// top: -2px;

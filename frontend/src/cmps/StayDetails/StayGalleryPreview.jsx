@@ -12,10 +12,10 @@ export const StayGalleryPreview = ({ stayImgUrls, isMobile }) => {
                     {stayImgUrls.slice(0, 5).map((imgUrl, idx) => (
                         <Link key={`img${idx + 1}`} to=""><img src={imgUrl} alt="" /></Link>
                     ))}
-                    <button className="show-all flex align-center">
+                    {/* <button className="show-all flex align-center">
                         <MoreIcon />
                         Show all photos
-                    </button>
+                    </button> */}
                 </>}
         </section>
     );

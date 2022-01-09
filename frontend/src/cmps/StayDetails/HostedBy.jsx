@@ -5,20 +5,8 @@ import { ReactComponent as VerifiedIcon } from '../../assets/imgs/icons/general/
 import { ReactComponent as SuperIcon } from '../../assets/imgs/icons/general/icon-medal.svg';
 import GenericAvatar from '../../assets/imgs/generic-avatar.png';
 
-// "host": {
-//     "_id": "51399391",
-//     "firstName": "Tomer",
-//     "memberSince": "2013-02-14T21:00:00.000Z",
-//     "imgUrl": "https://randomuser.me/api/portraits/men/58.jpg",
-//     "about": "Hi, my name is Tomer, and welcome to Tel Aviv! It is a beautiful city and I am sure you'll love it! I am more than happy to answer any questions or request you might have and will do so as fast as possible. Looking forward to hearing from you! I wish you a pleasant stay in Tel Aviv :) Tomer",
-//     "duringStay": "I commit to help with every request or question you may encounter upon staying at my apartment.",
-//     "reviewsCount": 54,
-//     "isVerified": true,
-//     "isSuperHost": true,
-// }
-
 export const HostedBy = ({ host }) => {
-    const { currScreenSize } = useSelector(state => state.appModule);
+    const { screenSize } = useSelector(state => state.appModule);
     const heightRef = useRef(null);
     const [style, setStyle] = useState({});
 
@@ -27,7 +15,7 @@ export const HostedBy = ({ host }) => {
             const { scrollHeight, clientHeight } = heightRef.current;
             setStyle({ marginBottom: `${scrollHeight - clientHeight}px` });
         }
-    }, [heightRef.current, currScreenSize]);
+    }, [heightRef.current, screenSize]);
 
     const AboutHost = ({ about }) => {
         const aboutHost = [<p>{about.substring(0, 180)}</p>];

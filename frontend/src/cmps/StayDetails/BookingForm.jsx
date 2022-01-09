@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { getGuestsTitle } from '../../store/actions/appActions';
+import { getGuestsTitle } from '../../services/formatting.service';
 import { RatingReviews } from './RatingReviews';
 import { GuestsPicker } from '../GuestsPicker';
 import { DatesBtn } from './DatesBtn';
@@ -8,9 +8,9 @@ import { ExpandedDatesForm } from './ExpandedDatesForm';
 import { StayFormPricing } from './StayFormPricing';
 import { ReactComponent as ArrowDown } from '../../assets/imgs/icons/general/icon-arrowhead-down.svg';
 import { ReactComponent as ArrowUp } from '../../assets/imgs/icons/general/icon-arrowhead-up.svg';
-import { ReactComponent as FlagIcon } from '../../assets/imgs/icons/general/icon-flag.svg';
+// import { ReactComponent as FlagIcon } from '../../assets/imgs/icons/general/icon-flag.svg';
 
-export const BookingForm = ({ stay, isMobile }) => {
+export const BookingForm = ({ stay, scrollToReviews, isMobile }) => {
     const { stayDates, stayGuests } = useSelector(state => state.appModule.currBooking);
     const { startDate, endDate } = stayDates;
 
@@ -54,7 +54,7 @@ export const BookingForm = ({ stay, isMobile }) => {
                 </div>
                 {isMobile && startDate && endDate ?
                     <p className="dates">{getFormattedDate(startDate)} – {getFormattedDate(endDate)}</p> :
-                    <RatingReviews totalRate={stay.rating.total} totalReviews={stay.reviewsCount} />
+                    <RatingReviews totalRate={stay.rating.total} totalReviews={stay.reviewsCount} scrollToReviews={scrollToReviews} />
                 }
             </div>
 
@@ -74,9 +74,10 @@ export const BookingForm = ({ stay, isMobile }) => {
                     onClick={() => setGuestsOpen(!isGuestsOpen)}>
                     <span>
                         <h4 className="title">Guests</h4>
-                        <span className="input fs14">
+                        {/* <span className="input fs14">
                             {getGuestsTitle(stayGuests)}
-                        </span>
+                        </span> */}
+                        {getGuestsTitle(stayGuests)}
                     </span>
                     {isGuestsOpen ? <ArrowUp /> : <ArrowDown />}
                 </button>
@@ -110,12 +111,12 @@ export const BookingForm = ({ stay, isMobile }) => {
                     nightCount={(endDate - startDate) / (1000 * 60 * 60 * 24)}
                     cleaningFee={stay.cleaning} />}
 
-            <span className="report">
+            {/* <span className="report">
                 <button className="report-btn fs14 title flex align-center">
                     <FlagIcon />
                     Report this listing
                 </button>
-            </span>
+            </span> */}
         </div>
     );
 };

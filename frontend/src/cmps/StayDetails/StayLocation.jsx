@@ -6,15 +6,6 @@ import { GoogleMapMarker } from '../GoogleMapMarker';
 import { ShowMoreBtn } from '../ShowMoreBtn';
 import { Loader } from '../Loader';
 
-// "loc": {
-//     "country": "Israel",
-//     "countryCode": "ISR",
-//     "city": "Tel Aviv-Yafo",
-//     "address": "Nahalat Binyamin St 77",
-//     "zip": "",
-//     "lat": 32.06196364406076,
-//     "lng": 34.77239418059386
-// }
 export const StayLocation = ({ location }) => {
     const { isGoogleScriptLoaded } = useSelector(state => state.appModule);
     const widthRefEl = useRef(null);
@@ -63,7 +54,7 @@ export const StayLocation = ({ location }) => {
                 <p ref={widthRefEl} className="location-desc clamp-3-lines">
                     {location.desc}
                 </p>
-                {isShowMore && <ShowMoreBtn />}
+                {/* {isShowMore && <ShowMoreBtn />} */}
             </> : ''}
         </section>
     );

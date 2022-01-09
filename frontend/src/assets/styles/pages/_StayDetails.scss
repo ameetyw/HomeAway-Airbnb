@@ -3,6 +3,7 @@
     > * {
         width: 100%;
     }
+
     @include for-mobile-only {
         .gallery {
             grid-row: 1/2;
@@ -23,7 +24,24 @@
         }
     }
 
-    
+    // .popup {
+    //     background-color: rgba(0, 0, 0, 0.3);
+    //     position: fixed;
+    //     top: 0;
+    //     bottom: 0;
+    //     left: 0;
+    //     right: 0;
+    //     .popup-content {
+    //         background-color: #fff;
+    //         padding: 40px;
+    //         border-radius: rem(12px);
+    //     }
+    // }
+
+    .reviews-anchor {
+        position: relative;
+        top: rem(-60px);
+    }
 
     .show-more-btn {
         text-decoration: underline;

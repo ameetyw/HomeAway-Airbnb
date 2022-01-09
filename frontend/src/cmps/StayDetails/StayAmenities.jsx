@@ -30,7 +30,7 @@ export const StayAmenities = ({ amenities }) => {
                         Smoke alarm
                     </span> : <></>}
             </div>
-            <button className="show-all-btn">Show all {amenities.length} amenities</button>
+            {/* <button className="show-all-btn">Show all {amenities.length} amenities</button> */}
         </div>
     );
 };

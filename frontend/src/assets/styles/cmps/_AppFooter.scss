@@ -1,10 +1,10 @@
 footer {
-    @include for-mobile-only {
-        * {
-            display: none;
-        }
-    }
-    @include for-tablet-portrait-up {
+    // @include for-mobile-only {
+    //     * {
+    //         display: none;
+    //     }
+    // }
+    // @include for-tablet-portrait-up {
         &.explore {
             display: none;
         }
@@ -68,5 +68,5 @@ footer {
                 }
             }
         }
-    }
+    // }
 }

@@ -47,7 +47,7 @@ export const StayReviews = ({ rates, reviews }) => {
                     <ReviewPreview key={review.id} review={review} />)}
             </section>
 
-            <button className="show-all-btn">Show all {reviews.length} reviews</button>
+            {/* <button className="show-all-btn">Show all {reviews.length} reviews</button> */}
 
         </section>
     );
