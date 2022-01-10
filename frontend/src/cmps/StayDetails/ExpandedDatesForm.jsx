@@ -11,7 +11,7 @@ export const ExpandedDatesForm = ({
     const dispatch = useDispatch();
     const { startDate, endDate } = useSelector(state =>
         state.appModule.currBooking.stayDates);
-    const { unavailableDates } = useSelector(state => state.appModule.currStay);
+    // const { unavailableDates } = useSelector(state => state.appModule.currStay);
     const { isStartOpen, isEndOpen } = isCalendarOpen;
 
     const getDatesHeader = () => {
@@ -62,7 +62,7 @@ export const ExpandedDatesForm = ({
                 isStay={true}
                 isOpen={isCalendarOpen}
                 setIsOpen={setCalendarOpen}
-                excludeDates={unavailableDates}
+                // excludeDates={unavailableDates}
             />
             <span className="dates-ctrl flex justify-end title fs4">
                 <button className="clear-btn"

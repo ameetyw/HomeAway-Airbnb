@@ -52,7 +52,6 @@ header {
             padding: 16px 0;
             justify-content: center;
             .user-nav,
-            .logo-wrapper .logo,
             .logo-wrapper .name {
                 display: none;
             }
@@ -79,11 +78,17 @@ header {
     @include for-mobile-only {
         .header-content {
             background-color: inherit;
+            .logo {
+                height: rem(26px);
+                width: rem(28px);
+                margin-inline-end: rem(14px);
+                margin-inline-start: rem(-10px);
+            }
         }
         &.expanded {
             height: rem(270px);
             .form-screen.active ~ .close-search {
-                top:0;
+                top: 0;
             }
         }
     }

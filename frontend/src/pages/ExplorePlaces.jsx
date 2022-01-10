@@ -10,7 +10,7 @@ import { ReactComponent as MapIcon } from '../assets/imgs/icons/general/icon-map
 import { ReactComponent as ListIcon } from '../assets/imgs/icons/general/icon-list.svg';
 
 export const ExplorePlaces = () => {
-    const { isGoogleScriptLoaded } = useSelector(state => state.appModule);
+    const { isGoogleScriptLoaded } = useSelector(state => state.pageModule);
     const [filterBy, setFilter] = useState({});
     const [isListView, setListView] = useState(true);
     const [stays, setStays] = useState(null);
@@ -44,7 +44,7 @@ export const ExplorePlaces = () => {
                 strokeWeight: 20,
             }
         };
-        const targetUrl = `http://localhost:3000/stay/${stay._id}`;
+        const targetUrl = `https://myhomeaway.herokuapp.com/stay/${stay._id}`;
         return <GoogleMapMarker key={stay._id} options={markerOpts} targetUrl={targetUrl} />;
     };
 

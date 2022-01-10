@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ReactComponent as GlobeIcon } from '../assets/imgs/icons/general/icon-globe.svg';
 import { ReactComponent as FacebookIcon } from '../assets/imgs/icons/social/icon-facebook.svg';
@@ -6,10 +7,15 @@ import { ReactComponent as GithubIcon } from '../assets/imgs/icons/social/icon-g
 
 export const AppFooter = () => {
     const { pathname } = useLocation();
-    const layoutType = pathname.includes('/stay/') ? " stay" : (pathname.includes('/explore') ? " explore" : "");
+    const [pageType, setPageType] = useState("");
 
+    useEffect(() => {
+        const currType = pathname.includes('/stay') ? " stay" : (pathname.includes('/explore') ? " explore" : "");
+        if (currType !== pageType) setPageType(currType);
+    }, [pathname, pageType])
+        
     return (
-        <footer className={`content-wrapper${layoutType}`}>
+        <footer className={`content-wrapper${pageType}`}>
             <div className="footer-content flex align-center">
                 <span className="footer-start flex align-center">
                     <span className="rights flex align-center">

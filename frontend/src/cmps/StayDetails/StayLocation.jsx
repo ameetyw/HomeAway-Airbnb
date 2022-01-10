@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { isContentOverflown } from '../../services/util.service';
+// import { isContentOverflown } from '../../services/util.service';
 import { GoogleMap } from '../GoogleMap';
 import { GoogleMapMarker } from '../GoogleMapMarker';
-import { ShowMoreBtn } from '../ShowMoreBtn';
+// import { ShowMoreBtn } from '../ShowMoreBtn';
 import { Loader } from '../Loader';
 
 export const StayLocation = ({ location }) => {
-    const { isGoogleScriptLoaded } = useSelector(state => state.appModule);
+    const { isGoogleScriptLoaded } = useSelector(state => state.pageModule);
     const widthRefEl = useRef(null);
-    const [isShowMore, setShowMore] = useState(false);
+    // const [isShowMore, setShowMore] = useState(false);
     const [mapMarkerOptions, setMarkerOptions] = useState(null);
 
     useEffect(() => {
@@ -30,9 +30,9 @@ export const StayLocation = ({ location }) => {
         });
     }, [isGoogleScriptLoaded]);
 
-    useEffect(() => {
-        if (widthRefEl.current) setShowMore(isContentOverflown(widthRefEl.current));
-    }, [widthRefEl.current]);
+    // useEffect(() => {
+    //     if (widthRefEl.current) setShowMore(isContentOverflown(widthRefEl.current));
+    // }, [widthRefEl.current]);
 
     const LocationTitle = ({ className = "" }) => {
         return <p className={className}>{location.city}, {location.country}</p>;

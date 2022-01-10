@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setHomeTop, setSearchExpand } from '../store/actions/appActions';
+import { setHomeTop, setSearchExpand } from '../store/actions/pageActions';
 import { Popular } from '../cmps/HomePage/Popular';
 import { Anywhere } from '../cmps/HomePage/Anywhere';
 import HostImg from '../assets/imgs/HomePage/host.jpg';

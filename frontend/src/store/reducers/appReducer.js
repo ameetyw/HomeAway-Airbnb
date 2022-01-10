@@ -1,4 +1,4 @@
-// import { userService } from '../../services/user.service';
+import { userService } from '../../services/user.service';
 
 const emptyDates = {
     startDate: null,
@@ -6,19 +6,12 @@ const emptyDates = {
 };
 
 const initialState = {
-    // loggedInUser: userService.getLoggedinUser(),
-    isHomeTop: false,
-    isSearchExpand: false,
-    isGoogleScriptLoaded: false,
-
-    screenSize: null,
-    isMobile: true,
-
+    loggedInUser: userService.getLoggedinUser(),
     searchInput: {
         dates: emptyDates,
         guests: {}
     },
-    currStay: {},
+    currStay: null,
     currBooking: {
         stayDates: emptyDates,
         stayGuests: { adults: 1 }
@@ -32,40 +25,15 @@ export function appReducer(state = initialState, action) {
                 ...state,
                 loggedInUser: action.loggedInUser
             };
-        case 'SET_HOME_TOP':
-            return {
-                ...state,
-                isHomeTop: action.isHomeTop
-            };
-        case 'SET_SEARCH_EXPAND':
-            return {
-                ...state,
-                isSearchExpand: action.isSearchExpand
-            };
-        case 'SET_SCREEN_SIZE':
-            return {
-                ...state,
-                screenSize: action.screenSize
-            };
-        case 'SET_IS_MOBILE':
-            return {
-                ...state,
-                isMobile: action.isMobile
-            };
-        case 'SET_GOOGLE_LOAD':
-            return {
-                ...state,
-                isGoogleScriptLoaded: action.isLoaded
-            };
         case 'SET_SEARCH_INPUT':
             return {
                 ...state,
                 searchInput: action.searchInput
             };
-        case 'SET_STAY':
+            case 'SET_STAY':
             return {
                 ...state,
-                currStay: action.currStay
+                currStay: action.stay
             };
         case 'SET_BOOKING':
             return {

@@ -1,31 +1,3 @@
-export function setHomeTop(isHomeTop) {
-    return {
-        type: 'SET_HOME_TOP',
-        isHomeTop
-    };
-}
-
-export function setSearchExpand(isSearchExpand) {
-    return {
-        type: 'SET_SEARCH_EXPAND',
-        isSearchExpand
-    };
-}
-
-export function setScreenSize(screenSize) {
-    return {
-        type: 'SET_SCREEN_SIZE',
-        screenSize
-    };
-}
-
-export function setIsMobile(isMobile) {
-    return {
-        type: 'SET_IS_MOBILE',
-        isMobile
-    };
-}
-
 export function setUser(loggedInUser) {
     return {
         type: 'SET_USER',
@@ -33,10 +5,10 @@ export function setUser(loggedInUser) {
     };
 }
 
-export function setStay(currStay) {
+export function setStay(stay) {
     return {
         type: 'SET_STAY',
-        currStay
+        stay
     };
 }
 
@@ -51,13 +23,6 @@ export function setSearch(searchInput) {
     return {
         type: 'SET_SEARCH_INPUT',
         searchInput
-    };
-}
-
-export function setGoogleScriptLoad(isLoaded) {
-    return {
-        type: 'SET_GOOGLE_LOAD',
-        isLoaded
     };
 }
 

@@ -6,7 +6,7 @@ import { ReactComponent as SuperIcon } from '../../assets/imgs/icons/general/ico
 import GenericAvatar from '../../assets/imgs/generic-avatar.png';
 
 export const HostedBy = ({ host }) => {
-    const { screenSize } = useSelector(state => state.appModule);
+    const { screenSize } = useSelector(state => state.pageModule);
     const heightRef = useRef(null);
     const [style, setStyle] = useState({});
 
@@ -83,7 +83,7 @@ export const HostedBy = ({ host }) => {
                         <p>Response time: within an hour</p>
                     </div>
                     <button className="contact show-all-btn">Contact Host</button>
-                    <p className="warning fs12">To protect your payment, never transfer money or communicate outside of the Airbnb website or app.</p>
+                    <p className="warning fs12">To protect your payment, never transfer money or communicate outside of our website.</p>
                 </div>
             </div>
 

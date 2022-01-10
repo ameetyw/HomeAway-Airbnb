@@ -5,7 +5,7 @@ import { ReactComponent as CloseIcon } from '../assets/imgs/icons/general/icon-c
 
 export const PlacesAutocomplete = () => {
     const dispatch = useDispatch();
-    const { isGoogleScriptLoaded } = useSelector(state => state.appModule);
+    const { isGoogleScriptLoaded } = useSelector(state => state.pageModule);
     const [sessionToken, setSessionToken] = useState(null);
     const [query, setQuery] = useState('');
     const [isShowBtn, setShowBtn] = useState(false);

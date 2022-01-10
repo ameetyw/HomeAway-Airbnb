@@ -4,7 +4,6 @@ import { ReactComponent as MenuBurgerIcon } from '../../assets/imgs/icons/header
 
 export const UserMenuBtn = () => {
     const { loggedInUser } = useSelector(state => state.appModule);
-
     return (
         <button className="user-menu-btn flex align-center">
             <MenuBurgerIcon className="menu-icon" />

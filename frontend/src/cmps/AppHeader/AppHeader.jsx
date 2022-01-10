@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadScript } from '../../services/util.service';
-import { setHomeTop, setSearchExpand, setScreenSize, setIsMobile, setGoogleScriptLoad } from '../../store/actions/appActions';
+import { setHomeTop, setSearchExpand, setScreenSize, setIsMobile, setIsGoogleLoad } from '../../store/actions/pageActions';
 import { SearchBar } from './SearchBar/SearchBar';
 import { UserMenuBtn } from './UserMenuBtn';
 import WhiteLogo from '../../assets/imgs/logo-white.svg';
@@ -12,13 +12,14 @@ import { UserMsg } from '../UserMsg';
 
 const GOOGLE_KEY = 'YOUR_KEY';
 const scriptUrl = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_KEY}&libraries=places`;
+const mobileBreakpoint = 727;
 
 export const AppHeader = () => {
     const dispatch = useDispatch();
     const { pathname } = useLocation();
-    const pageType = pathname.includes('/stay') ? " stay" : (pathname.includes('/explore') ? " explore" : "");
-    const { isHomeTop, isSearchExpand, screenSize, isMobile, isGoogleScriptLoaded } = useSelector(state => state.appModule);
-    const mobileBreakpoint = 727;
+    const [pageType, setPageType] = useState("");
+    // const pageType = pathname.includes('/stay') ? " stay" : (pathname.includes('/explore') ? " explore" : "");
+    const { isHomeTop, isSearchExpand, screenSize, isMobile, isGoogleScriptLoaded } = useSelector(state => state.pageModule);
 
     // listen to screen resize
     useEffect(() => {
@@ -38,20 +39,27 @@ export const AppHeader = () => {
                 else if (currSize >= mobileBreakpoint && isMobile) dispatch(setIsMobile(false));
             }
         }
-    }, [screenSize]);
+    }, [screenSize, isMobile, dispatch]);
 
+    useEffect(() => {
+        const currType = pathname.includes('/stay') ? " stay" : (pathname.includes('/explore') ? " explore" : "");
+        if (currType !== pageType) setPageType(currType);
+    }, [pathname, pageType]);
+
+    // when page type changes-
     useEffect(() => {
         if (pageType) {
             dispatch(setHomeTop(false));
             dispatch(setSearchExpand(false));
         }
         if (isMobile) dispatch(setSearchExpand(false));
-    }, [pageType, isHomeTop, dispatch]);
+    }, [pageType, isMobile, dispatch]);
+
 
     useEffect(() => {
         if (!isGoogleScriptLoaded) loadScript('google-maps', scriptUrl, {
             async: true,
-            callback: () => { dispatch(setGoogleScriptLoad(true)); }
+            callback: () => { dispatch(setIsGoogleLoad(true)); }
         });
     }, [isGoogleScriptLoaded, dispatch]);
 

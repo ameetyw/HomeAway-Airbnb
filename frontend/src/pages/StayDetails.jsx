@@ -18,11 +18,11 @@ export const StayDetails = () => {
     const dispatch = useDispatch();
     const stayId = useParams().id;
     const stay = useSelector(state => state.appModule.currStay);
-    const { isMobile } = useSelector(state => state.appModule);
+    const { isMobile } = useSelector(state => state.pageModule);
     const reviewsRef = useRef(null);
 
     useEffect(() => {
-        if (Object.keys(stay).length && stay._id === stayId) {
+        if (stay?._id === stayId) {
             document.title = `HomeAway: ${stay.title}`;
         }
         else getStay();
@@ -37,13 +37,13 @@ export const StayDetails = () => {
                 navigate('/oops');
             }
         }
-    }, [stay._id]);
+    }, [stay?._id]);
 
     const scrollToReviews = () => {
         reviewsRef.current.scrollIntoView();
     };
 
-    if (stay._id !== stayId) return <Loader />;
+    if (stay?._id !== stayId) return <Loader />;
 
     return (
         <section className="stay stay-details content-wrapper">

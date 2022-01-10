@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSearchExpand, setDates, setGuests } from '../../../store/actions/appActions';
+import { setDates, setGuests } from '../../../store/actions/appActions';
+import { setSearchExpand } from '../../../store/actions/pageActions';
 import { RegSearchForm } from './RegSearchForm';
 import { GuestsPicker } from '../../GuestsPicker';
 import { DatePickerRange } from '../../DatePickerRange';
@@ -8,9 +9,8 @@ import { MobileSearch } from './MobileSearch';
 
 export const SearchForm = ({ isSearchExpand, isHomeTop }) => {
     const dispatch = useDispatch();
-    const { isMobile } = useSelector(state => state.appModule);
-    const searchDates = useSelector(state => state.appModule.searchInput.dates);
-    const searchGuests = useSelector(state => state.appModule.searchInput.guests);
+    const { isMobile } = useSelector(state => state.pageModule);
+    const { dates: searchDates, guests: searchGuests } = useSelector(state => state.appModule.searchInput);
     const [isOpen, setOpen] = useState({
         location: false,
         startDate: false,

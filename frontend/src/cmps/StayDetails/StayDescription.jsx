@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { isContentOverflown } from '../../services/util.service';
-import { ShowMoreBtn } from '../ShowMoreBtn';
+// import { ShowMoreBtn } from '../ShowMoreBtn';
 
 export const StayDescription = ({ desc }) => {
 
@@ -9,7 +9,7 @@ export const StayDescription = ({ desc }) => {
     const boldedDesc = desc.replace(boldSep, '<span class="title">$1</span>');
     const widthRef = useRef(null);
     const [isDescOverflow, setDescOverflow] = useState(false);
-    const { screenSize } = useSelector(state => state.appModule);
+    const { screenSize } = useSelector(state => state.pageModule);
 
     useEffect(() => {
         const elDesc = widthRef.current;
