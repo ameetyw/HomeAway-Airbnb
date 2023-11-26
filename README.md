@@ -1,6 +1,6 @@
 # HomeAway Airbnb Clone App
 
-https://myhomeaway.herokuapp.com/
+https://victorious-toad-bandanna.cyclic.app/
 
 * Created with the latest React v17, React Router v6, Redux v7.2, Thunk v2.4.
 * Frontend: Hooks, Flux State Management, SCSS, Axios, Google Maps and Google Places
